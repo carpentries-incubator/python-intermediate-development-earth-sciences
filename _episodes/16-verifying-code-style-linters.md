@@ -91,8 +91,8 @@ Pylint can also identify **code smells**.
 Pylint recommendations are given as warnings or errors,
 and Pylint also scores the code with an overall mark. 
 We can look at a specific file (e.g. `catchment-analysis.py`),
-or a module (e.g. `catchment`).
-Let's look at our `catchment` module and code inside it (namely `models.py` and `views.py`). 
+or a package (e.g. `catchment`).
+Let's look at our `catchment` package and code inside it (namely `models.py` and `views.py`). 
 From the project root do:
 
 ~~~

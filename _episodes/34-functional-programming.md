@@ -497,15 +497,15 @@ One example of reducing would be to calculate the product of a sequence of numbe
 ~~~
 from functools import reduce
 
-l = [1, 2, 3, 4]
+sequence = [1, 2, 3, 4]
 
 def product(a, b):
     return a * b
 
-print(reduce(product, l))
+print(reduce(product, sequence))
 
 # The same reduction using a lambda function
-print(reduce((lambda a, b: a * b), l))
+print(reduce((lambda a, b: a * b), sequence))
 ~~~
 {: .language-python}
 ~~~
@@ -526,15 +526,15 @@ you need to import it from library `functools`.
 > > ~~~
 > > from functools import reduce
 > >
-> > l = [1, 2, 3, 4]
+> > sequence = [1, 2, 3, 4]
 > >
 > > def add(a, b):
 > >     return a + b
 > >
-> > print(reduce(add, l))
+> > print(reduce(add, sequence))
 > >
 > > # The same reduction using a lambda function
-> > print(reduce((lambda a, b: a + b), l))
+> > print(reduce((lambda a, b: a + b), sequence))
 > > ~~~
 > > {: .language-python}
 > > ~~~
@@ -556,8 +556,8 @@ using the MapReduce approach.
 ~~~
 from functools import reduce
 
-def sum_of_squares(l):
-    squares = [x * x for x in l]  # use list comprehension for mapping
+def sum_of_squares(sequence):
+    squares = [x * x for x in sequence]  # use list comprehension for mapping
     return reduce(lambda a, b: a + b, squares)
 ~~~
 {: .language-python}
@@ -601,8 +601,8 @@ The code may look like:
 ~~~
 from functools import reduce
 
-def sum_of_squares(l):
-    integers = [int(x) for x in l]
+def sum_of_squares(sequence):
+    integers = [int(x) for x in sequence]
     squares = [x * x for x in integers]
     return reduce(lambda a, b: a + b, squares)
 ~~~
@@ -630,8 +630,8 @@ To do so, we may filter out certain elements and have:
 ~~~
 from functools import reduce
 
-def sum_of_squares(l):
-    integers = [int(x) for x in l if x[0] != '#']
+def sum_of_squares(sequence):
+    integers = [int(x) for x in sequence if x[0] != '#']
     squares = [x * x for x in integers]
     return reduce(lambda a, b: a + b, squares)
 ~~~
