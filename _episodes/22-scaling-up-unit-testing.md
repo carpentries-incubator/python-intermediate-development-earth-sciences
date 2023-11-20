@@ -229,7 +229,7 @@ that is used by Pytest and using that, we can find this out:
 
 ~~~
 $ pip3 install pytest-cov
-$ python -m pytest --cov=catchment.models tests/test_models.py
+$ python3 -m pytest --cov=catchment.models tests/test_models.py
 ~~~
 {: .language-bash}
 
@@ -240,7 +240,7 @@ specifying the code to analyse for test coverage.
 ...
 tests/test_models.py .........                                            [100%]
 
----------- coverage: platform darwin, python 3.9.4-final-0 -----------
+---------- coverage: platform darwin, python 3.11.4-final-0 -----------
 Name                  Stmts   Miss  Cover
 -----------------------------------------
 catchment/models.py      19     10    47%
@@ -257,7 +257,7 @@ But which statements are not being tested?
 The additional argument `--cov-report term-missing` can tell us:
 
 ~~~
-$ python -m pytest --cov=catchment.models --cov-report term-missing tests/test_models.py
+$ python3 -m pytest --cov=catchment.models --cov-report term-missing tests/test_models.py
 ~~~
 {: .language-bash}
 

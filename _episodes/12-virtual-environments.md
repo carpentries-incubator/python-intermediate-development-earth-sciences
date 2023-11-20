@@ -417,15 +417,15 @@ To display information about a particular installed package do:
 {: .language-bash}
 ~~~
 Name: numpy
-Version: 1.21.2
-Summary: NumPy is the fundamental package for array computing with Python.
-Home-page: https://www.numpy.org
+Version: 1.26.2
+Summary: Fundamental package for array computing in Python
+Home-page: https://numpy.org
 Author: Travis E. Oliphant et al.
-Author-email: None
-License: BSD
-Location: /Users/alex/work/SSI/Carpentries/python-intermediate-inflammation/inflammation/lib/python3.9/site-packages
-Requires:
-Required-by: matplotlib
+Author-email: 
+License: Copyright (c) 2005-2023, NumPy Developers.
+All rights reserved.
+...
+Required-by: contourpy, matplotlib
 ~~~
 {: .output}
 
@@ -438,20 +438,18 @@ To list all packages installed with `pip` (in your current virtual environment):
 ~~~
 Package         Version
 --------------- -------
-contourpy       1.0.5
-cycler          0.11.0
-fonttools       4.37.4
-kiwisolver      1.4.4
-matplotlib      3.6.1
-numpy           1.23.4
-packaging       21.3
-pandas          1.5.0
-Pillow          9.2.0
-pip             20.2.3
-pyparsing       3.0.9
+contourpy       1.2.0
+cycler          0.12.1
+fonttools       4.45.0
+kiwisolver      1.4.5
+matplotlib      3.8.2
+numpy           1.26.2
+packaging       23.2
+Pillow          10.1.0
+pip             23.0.1
+pyparsing       3.1.1
 python-dateutil 2.8.2
-pytz            2022.4
-setuptools      49.2.1
+setuptools      67.6.1
 six             1.16.0
 ~~~
 {: .output}
@@ -477,18 +475,16 @@ A common convention is to put this list in a `requirements.txt` file:
 ~~~
 {: .language-bash}
 ~~~
-contourpy==1.0.5
-cycler==0.11.0
-fonttools==4.37.4
-kiwisolver==1.4.4
-matplotlib==3.6.1
-numpy==1.23.4
-packaging==21.3
-pandas==1.5.0
-Pillow==9.2.0
-pyparsing==3.0.9
+contourpy==1.2.0
+cycler==0.12.1
+fonttools==4.45.0
+kiwisolver==1.4.5
+matplotlib==3.8.2
+numpy==1.26.2
+packaging==23.2
+Pillow==10.1.0
+pyparsing==3.1.1
 python-dateutil==2.8.2
-pytz==2022.4
 six==1.16.0
 ~~~
 {: .output}
