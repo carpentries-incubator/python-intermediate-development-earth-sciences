@@ -69,7 +69,7 @@ Meeting notes are kept in the [Google doc](https://docs.google.com/document/d/1-
 
 ## Authors
 
-A list of all contributors to the lesson can be found in [AUTHORS](AUTHORS).
+A list of people who authored the lesson can be found in [AUTHORS](AUTHORS).
 
 ## Licence
 
