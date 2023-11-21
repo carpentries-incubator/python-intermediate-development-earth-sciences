@@ -227,7 +227,7 @@ to install an additional package `pytest-cov` to our virtual environment,
 which is used by `pytest` to tell us how many statements in our code are being tested.
 
 ~~~
-$ pip3 install pytest-cov
+$ python3 -m pip install pytest-cov
 $ python3 -m pytest --cov=catchment.models tests/test_models.py
 ~~~
 {: .language-bash}
@@ -290,7 +290,7 @@ Again, we should also update our `requirements.txt` file with our latest package
 which now also includes `pytest-cov`, and commit it:
 
 ~~~
-$ pip3 freeze > requirements.txt
+$ python3 -m pip freeze > requirements.txt
 $ cat requirements.txt
 ~~~
 {: .language-bash}

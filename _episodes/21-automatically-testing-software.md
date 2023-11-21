@@ -597,7 +597,7 @@ exit the Python console first (either with `Ctrl-D` or by typing `exit()`),
 then do:
 
 ~~~
-$ pip3 install pytest
+$ python3 -m pip install pytest
 ~~~
 {: .language-bash}
 
@@ -611,14 +611,14 @@ our virtual environment will now have the `pytest` package installed for use.
 Now we can run these tests using `pytest`:
 
 ~~~
-$ python -m pytest tests/test_models.py
+$ python3 -m pytest tests/test_models.py
 ~~~
 {: .language-bash}
 
-Here, we use `-m` to invoke the `pytest` module,
+Here, we use `-m` flag of the `python3` command to invoke the `pytest` module,
 and specify the `tests/test_models.py` file to run the tests in that file explicitly.
 
-> ## Why Run Pytest Using `python -m` and Not `pytest` ?
+> ## Why Run Pytest Using `python3 -m pytest` and Not `pytest`?
 >
 > Another way to run `pytest` is via its own command,
 > so we *could* try to use `pytest tests/test_models.py` on the command line instead, 
@@ -764,7 +764,7 @@ Since we've installed `pytest` to our environment,
 we should also regenerate our `requirements.txt`:
 
 ~~~
-$ pip3 freeze > requirements.txt
+$ python3 -m pip freeze > requirements.txt
 ~~~
 {: .language-bash}
 
