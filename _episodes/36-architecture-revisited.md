@@ -667,7 +667,7 @@ You can find more information in [Click's documentation](https://click.palletspr
 >
 > Both episodes cover the persistence layer of software architectures
 > and methods of persistently storing data, but take different approaches.
-> The episode on [persistence with JSON](python-intermediate-development/persistence) covers
+> The episode on [persistence with JSON](../persistence) covers
 > some more advanced concepts in Object Oriented Programming, while
 > the episode on [databases](python-intermediate-development/databases) starts to build towards a true multilayer architecture,
 > which would allow our software to handle much larger quantities of data.
