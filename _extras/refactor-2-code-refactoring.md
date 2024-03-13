@@ -52,7 +52,7 @@ making the code easier to understand and test.
 
 ## Writing Tests Before Refactoring
 
-When refactoring, first we need to make sure there are tests that verity 
+When refactoring, first we need to make sure there are tests that verify 
 the code behaviour as it is now (or write them if they are missing), 
 then refactor the code and, finally, check that the original tests still pass. 
 This is to make sure we do not break the existing behaviour through refactoring.
