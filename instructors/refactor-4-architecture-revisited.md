@@ -1,14 +1,13 @@
 ---
-title: "Refactor 4: Architecture Revisited: Extending Software"
+title: 'Refactor 4: Architecture Revisited: Extending Software'
 teaching: 15
 exercises: 0
-questions:
-- "How can we extend our software within the constraints of the MVC architecture?"
-objectives:
-- "Extend our software to add a view of a single patient in the study and the software's command line interface to request a specific view."
-keypoints:
-- "By breaking down our software into components with a single responsibility, we avoid having to rewrite it all when requirements change.
-  Such components can be as small as a single function, or be a software package in their own right."
+questions: How can we extend our software within the constraints of the MVC architecture?
+objectives: Extend our software to add a view of a single patient in the study and
+  the software's command line interface to request a specific view.
+keypoints: By breaking down our software into components with a single responsibility,
+  we avoid having to rewrite it all when requirements change. Such components can
+  be as small as a single function, or be a software package in their own right.
 ---
 
 As we have seen, we have different programming paradigms that are suitable for different problems
@@ -48,112 +47,133 @@ that suit the way in which we expect to use it.
 We should reuse these established ideas where we can, but we don't need to stick to them exactly.
 
 The key thing to take away is the distinction between the Model and the View code, while
-the View and the Controller can be more or less coupled together (e.g. the code that specifies 
+the View and the Controller can be more or less coupled together (e.g. the code that specifies
 there is a button on the screen, might be the same code that specifies what that button does).
-The View may be hard to test, or use special libraries to draw the UI, but should not contain any 
+The View may be hard to test, or use special libraries to draw the UI, but should not contain any
 complex logic, and is really just a presentation layer on top of the Model.
-The Model, conversely, should not care how the data is displayed. 
-For example, the View may present dates as "Monday 24th July 2023", 
+The Model, conversely, should not care how the data is displayed.
+For example, the View may present dates as "Monday 24th July 2023",
 but the Model stores it using a `Date` object rather than its string representation.
 
 ## Our Project's Architecture (Revisited)
 
-Recall that in our software project, the **Controller** module is in `catchment-analysis.py`, 
-and the View and Model modules are contained in 
+Recall that in our software project, the **Controller** module is in `catchment-analysis.py`,
+and the View and Model modules are contained in
 `catchment/views.py` and `catchment/models.py`, respectively.
 Data underlying the Model is contained within the directory `data`.
 
 Looking at the code in the branch `full-data-analysis` (where we should be currently located),
-we can notice that the new code was added in a separate script `catchment/compute_data.py` and 
+we can notice that the new code was added in a separate script `catchment/compute_data.py` and
 contains a mix of Model, View and Controller code.
 
-> ## Exercise: Identify Model, View and Controller Parts of the Code
-> Looking at the code inside `compute_data.py`, what parts could be considered 
-> Model, View and Controller code?
->
->> ## Solution
->> * Computing the standard deviation belongs to Model.
->> * Reading the data from CSV files also belongs to Model.
->> * Displaying of the output as a graph is View.
->> * The logic that processes the supplied files is Controller.
-> {: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Identify Model, View and Controller Parts of the Code
+
+Looking at the code inside `compute_data.py`, what parts could be considered
+Model, View and Controller code?
+
+:::::::::::::::  solution
+
+## Solution
+
+- Computing the standard deviation belongs to Model.
+- Reading the data from CSV files also belongs to Model.
+- Displaying of the output as a graph is View.
+- The logic that processes the supplied files is Controller.
+  
+  
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Within the Model further separations make sense.
-For example, as we did in the before, separating out the impure code that interacts with 
+For example, as we did in the before, separating out the impure code that interacts with
 the file system from the pure calculations helps with readability and testability.
-Nevertheless, the MVC architectural pattern is a great starting point when thinking about 
+Nevertheless, the MVC architectural pattern is a great starting point when thinking about
 how you should structure your code.
 
-> ## Exercise: Split out the Model, View and Controller Code
-> Refactor `analyse_data()` function so that the Model, View and Controller code 
-> we identified in the previous exercise is moved to appropriate modules.
->> ## Solution
->> The idea here is for the `analyse_data()` function not to have any "view" considerations.
->> That is, it should just compute and return the data and 
->> should be located in `catchment/models.py`.
->>
->> ```python
->> def analyse_data(data_source):
->>     """Calculate the standard deviation by day between datasets
->>     Gets all the measurement data from the CSV files in the data directory,
->>     works out the mean for each day, and then graphs the standard deviation
->>     of these means.
->>     """
->>     data = data_source.load_catchment_data()
->>     daily_standard_deviation = compute_standard_deviation_by_data(data)
->>
->>     return daily_standard_deviation
->> ```
->> There can be a separate bit of code in the Controller `catchment-analysis.py` 
->> that chooses how data should be presented, e.g. as a graph:
->>
->> ```python
->> if args.full_data_analysis:
->>   _, extension = os.path.splitext(InFiles[0])
->>   if extension == '.json':
->>     data_source = JSONDataSource(os.path.dirname(InFiles[0]))
->>   elif extension == '.csv':
->>     data_source = CSVDataSource(os.path.dirname(InFiles[0]))
->>   else:
->>     raise ValueError(f'Unsupported file format: {extension}')
->>   data_result = analyse_data(data_source)
->>   graph_data = {
->>     'daily standard deviation': data_result,
->>   }
->>   views.visualize(graph_data)
->>   return
->> ```
->> Note that this is, more or less, the change we did to write our regression test.
->> This demonstrates that splitting up Model code from View code can
->> immediately make your code much more testable.
->> Ensure you re-run our regression test to check this refactoring has not
->> changed the output of `analyse_data()`.
-> {: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Split out the Model, View and Controller Code
+
+Refactor `analyse_data()` function so that the Model, View and Controller code
+we identified in the previous exercise is moved to appropriate modules.
+
+:::::::::::::::  solution
+
+## Solution
+
+The idea here is for the `analyse_data()` function not to have any "view" considerations.
+That is, it should just compute and return the data and
+should be located in `catchment/models.py`.
+
+```python
+def analyse_data(data_source):
+    """Calculate the standard deviation by day between datasets
+    Gets all the measurement data from the CSV files in the data directory,
+    works out the mean for each day, and then graphs the standard deviation
+    of these means.
+    """
+    data = data_source.load_catchment_data()
+    daily_standard_deviation = compute_standard_deviation_by_data(data)
+
+    return daily_standard_deviation
+```
+
+There can be a separate bit of code in the Controller `catchment-analysis.py`
+that chooses how data should be presented, e.g. as a graph:
+
+```python
+if args.full_data_analysis:
+  _, extension = os.path.splitext(InFiles[0])
+  if extension == '.json':
+    data_source = JSONDataSource(os.path.dirname(InFiles[0]))
+  elif extension == '.csv':
+    data_source = CSVDataSource(os.path.dirname(InFiles[0]))
+  else:
+    raise ValueError(f'Unsupported file format: {extension}')
+  data_result = analyse_data(data_source)
+  graph_data = {
+    'daily standard deviation': data_result,
+  }
+  views.visualize(graph_data)
+  return
+```
+
+Note that this is, more or less, the change we did to write our regression test.
+This demonstrates that splitting up Model code from View code can
+immediately make your code much more testable.
+Ensure you re-run our regression test to check this refactoring has not
+changed the output of `analyse_data()`.
+
+
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 At this point, you have refactored and tested all the code on branch `full-data-analysis`
 and it is working as expected. The branch is ready to be incorporated into `develop`
 and then, later on, `main`, which may also have been changed by other developers working on
 the code at the same time so make sure to update accordingly or resolve any conflicts.
 
-~~~
+```bash
 $ git switch develop
 $ git merge full-data-analysis
-~~~
-{: .language-bash}
+```
 
 Let's now have a closer look at our Controller, and how can handling command line arguments in Python
-(which is something you may find yourself doing often if you need to run the code from a 
+(which is something you may find yourself doing often if you need to run the code from a
 command line tool).
-
 
 ### Controller file structure
 
 You will have noticed already that structure of the `catchment-analysis.py` file
 follows this pattern:
 
-~~~
+```python
 # import modules
 
 def main():
@@ -162,8 +182,7 @@ def main():
 if __name__ == "__main__":
     # perform some actions before main()
     main()
-~~~
-{: .language-python}
+```
 
 In this pattern the actions performed by the script are contained within the `main` function
 (which does not need to be called `main`,
@@ -179,35 +198,32 @@ the manner in which it is loaded.
 
 If we run the source file directly using the Python interpreter, e.g.:
 
-~~~
+```bash
 python catchment-analysis.py
-~~~
-{: .language-bash}
+```
+
 then the interpreter will assign the hard-coded string `"__main__"` to the `__name__` variable:
 
-~~~
+```python
 __name__ = "__main__"
 ...
 # rest of your code
-~~~
-{: .language-python}
+```
 
 However, if your source file is imported by another Python script, e.g:
 
-~~~
+```python
 import catchment-analysis
-~~~
-{: .language-python}
+```
 
 then the interpreter will assign the name `"catchment-analysis"`
 from the import statement to the `__name__` variable:
 
-~~~
+```python
 __name__ = "catchment-analysis"
 ...
 # rest of your code
-~~~
-{: .language-python}
+```
 
 Because of this behaviour of the interpreter,
 we can put any code that should only be executed when running the script
@@ -230,35 +246,32 @@ The standard python library for reading command line arguments passed to a scrip
 This module reads arguments passed by the system,
 and enables the automatic generation of help and usage messages.
 These include, as we saw at the start of this course,
-the generation of helpful error messages when users give the program invalid arguments. 
+the generation of helpful error messages when users give the program invalid arguments.
 
 The basic usage of `argparse` can be seen in the `catchment-analysis.py` script.
 First we import the library:
 
-~~~
+```python
 import argparse
-~~~
-{: .language-python}
+```
 
 We then initialise the argument parser class, passing an (optional) description of the program:
 
-~~~
+```python
 parser = argparse.ArgumentParser(
     description='A basic environmental data management system')
-~~~
-{: .language-python}
+```
 
 Once the parser has been initialised we can add
 the arguments that we want argparse to look out for.
-In our basic case, we want only the names of the file(s) to process: 
+In our basic case, we want only the names of the file(s) to process:
 
-~~~
+```python
 parser.add_argument(
     'infiles',
     nargs='+',
     help='Input CSV(s) containing measurement data')
-~~~
-{: .language-python}
+```
 
 Here we have defined what the argument will be called (`'infiles'`) when it is read in;
 the number of arguments to be expected
@@ -273,23 +286,22 @@ and we will explain how to do this in more detail below.
 
 Finally we parse the arguments passed to the script using:
 
-~~~
+```python
 args = parser.parse_args()
-~~~
-{: .language-python}
+```
 
-This returns an object (that we've called `arg`) containing all the arguments requested. 
+This returns an object (that we've called `arg`) containing all the arguments requested.
 These can be accessed using the names that we have defined for each argument,
 e.g. `args.infiles` would return the filenames that have been input.
 
 The help for the script can be accessed using the `-h` or `--help` optional argument
 (which `argparse` includes by default):
 
-~~~
+```bash
 python catchment-analysis.py --help
-~~~
-{: .language-bash}
-~~~
+```
+
+```output
 usage: catchment-analysis.py [-h] infiles [infiles ...]
 
 A basic environmental data management system
@@ -299,13 +311,12 @@ positional arguments:
 
 optional arguments:
   -h, --help  show this help message and exit
-~~~
-{: .output}
+```
 
 The help page starts with the command line usage,
 illustrating what inputs can be given (any within `[]` brackets are optional).
 It then lists the **positional** and **optional** arguments,
-giving as detailed a description of each as you have added to the `add_argument()` command. 
+giving as detailed a description of each as you have added to the `add_argument()` command.
 Positional arguments are arguments that need to be included
 in the proper position or order when calling the script.
 
@@ -317,21 +328,25 @@ contains a clearly defined number of elements.
 If more than one option can have an indeterminate number of entries,
 then it is better to create them as 'optional' arguments.
 These can be made a required input though,
-by setting `required = True` within the `add_argument()` command. 
+by setting `required = True` within the `add_argument()` command.
 
-> ## Positional and Optional Argument Order
->
-> The usage section of the help page above shows 
-> the optional arguments going before the positional arguments. 
-> This is the customary way to present options, but is not mandatory.
-> Instead there are two rules which must be followed for these arguments:
->
-> 1. Positional and optional arguments must each be given all together, and not inter-mixed. 
->    For example, the order can be either `optional - positional` or `positional - optional`,
->    but not `optional - positional - optional`.
-> 2. Positional arguments must be given in the order that they are shown
->    in the usage section of the help page. 
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Positional and Optional Argument Order
+
+The usage section of the help page above shows
+the optional arguments going before the positional arguments.
+This is the customary way to present options, but is not mandatory.
+Instead there are two rules which must be followed for these arguments:
+
+1. Positional and optional arguments must each be given all together, and not inter-mixed.
+  For example, the order can be either `optional - positional` or `positional - optional`,
+  but not `optional - positional - optional`.
+2. Positional arguments must be given in the order that they are shown
+  in the usage section of the help page.
+  
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Now that you have some familiarity with `argparse`,
 we will demonstrate below how you can use this to add extra functionality to your controller.
@@ -343,11 +358,12 @@ But what if we want to read the river measurement data too?
 We can, simply, change the file that we are reading,
 by passing a different file name.
 But when we do this with the river data we get the following error:
-~~~
+
+```bash
 python catchment-analysis.py data/river_data_2015-12.csv
-~~~
-{: .language-bash}
-~~~
+```
+
+```output
 Traceback (most recent call last):
   File "/Users/mbessdl2/work/manchester/Course_Material/Intermediate_Programming_Skills/python-intermediate-rivercatchment-template/catchment-analysis.py", line 39, in <module>
     main(args)
@@ -357,8 +373,7 @@ Traceback (most recent call last):
     dataset = pd.read_csv(filename, usecols=['Date', 'Site', 'Rainfall (mm)'])
 ...
 ValueError: Usecols do not match columns, columns expected but not found: ['Rainfall (mm)']
-~~~
-{: .output}
+```
 
 This error message tells us that the pandas `read_csv` function
 has failed to find one of the columns that are listed to be read.
@@ -369,13 +384,14 @@ so that it can read any defined measurement dataset.
 The first step is to add an argument to our command line interface,
 so that users can specify the measurement dataset.
 This can be done by adding the following argument to your `catchment-analysis.py` script:
-~~~
+
+```python
     parser.add_argument(
         '-m', '--measurements',
         help = 'Name of measurement data series to load',
         required = True)
-~~~
-{: .language-python}
+```
+
 Here we have defined the name of the argument (`--measurements`),
 as well as a short name (`-m`) for lazy users to use.
 Note that the short name is preceded by a single dash (`-`),
@@ -385,11 +401,12 @@ and finally we set `required = True`,
 so that the end user must define which data series they want to read.
 
 Once this is added, then your help message should look like this:
-~~~
+
+```bash
 python catchment-analysis.py --help
-~~~
-{: .language-bash} 
-~~~
+```
+
+```output
 usage: catchment-analysis.py [-h] -m MEASUREMENTS infiles [infiles ...]
 
 A basic environmental data management system
@@ -401,64 +418,74 @@ optional arguments:
   -h, --help            show this help message and exit
   -m MEASUREMENTS, --measurements MEASUREMENTS
                         Name of measurement data series to use
-~~~
-{: .output}
+```
 
-> ## Optional vs Required Arguments, and Argument Groups
-> You will note that the `--measurements` argument is still listed as an optional argument.
-> This is because the two basic option groups in `argparse` are
-> positional and optional. 
-> In the usage section the `--measurements` option is listed without `[]` brackets,
-> indicating that it is an expected argument,
-> but still this is not very clear for end users.
-> 
-> To make the help clearer we can add an extra argument group,
-> and assign `--measurements` to this:
-> ~~~
-> ...
->     req_group = parser.add_argument_group('required arguments')
-> ...
->     req_group.add_argument(
->         '-m', '--measurements',
->         help = 'Name of measurement data series to load',
->         required = True)
-> ...
-> ~~~
-> {: .language-python}
-> This will return the following help message:
-> ~~~
-> python catchment-analysis.py --help
-> ~~~
-> {: .language-bash} 
-> ~~~
-> usage: catchment-analysis.py [-h] -m MEASUREMENTS infiles [infiles ...]
-> 
-> A basic environmental data management system
-> 
-> positional arguments:
->   infiles               Input CSV(s) containing measurement data
-> 
-> optional arguments:
->   -h, --help            show this help message and exit
-> 
-> required arguments:
->   -m MEASUREMENTS, --measurements MEASUREMENTS
->                         Name of measurement data series to use
-> ~~~
-> {: .output}
-> This solution is not perfect, because the positional arguments are also required,
-> but it will at least help end users distinguish between optional and required flagged arguments.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
 
-> ## Default Argument Number and Type
-> `argparse` will, by default, assume that each argument added will take a single value, 
-> and will be a string (`type = str`). If you want to change this for any argument you 
-> should explicitly set `type` and `nargs`.
->
-> Note also, that the returned object will be a single item unless `nargs` has been set,
-> in which case a list of items is returned (even if `nargs = 1` is used).
-{: .callout}
+## Optional vs Required Arguments, and Argument Groups
 
+You will note that the `--measurements` argument is still listed as an optional argument.
+This is because the two basic option groups in `argparse` are
+positional and optional.
+In the usage section the `--measurements` option is listed without `[]` brackets,
+indicating that it is an expected argument,
+but still this is not very clear for end users.
+
+To make the help clearer we can add an extra argument group,
+and assign `--measurements` to this:
+
+```python
+...
+    req_group = parser.add_argument_group('required arguments')
+...
+    req_group.add_argument(
+        '-m', '--measurements',
+        help = 'Name of measurement data series to load',
+        required = True)
+...
+```
+
+This will return the following help message:
+
+```bash
+python catchment-analysis.py --help
+```
+
+```output
+usage: catchment-analysis.py [-h] -m MEASUREMENTS infiles [infiles ...]
+
+A basic environmental data management system
+
+positional arguments:
+  infiles               Input CSV(s) containing measurement data
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+required arguments:
+  -m MEASUREMENTS, --measurements MEASUREMENTS
+                        Name of measurement data series to use
+```
+
+This solution is not perfect, because the positional arguments are also required,
+but it will at least help end users distinguish between optional and required flagged arguments.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Default Argument Number and Type
+
+`argparse` will, by default, assume that each argument added will take a single value,
+and will be a string (`type = str`). If you want to change this for any argument you
+should explicitly set `type` and `nargs`.
+
+Note also, that the returned object will be a single item unless `nargs` has been set,
+in which case a list of items is returned (even if `nargs = 1` is used).
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 #### Controller and Model Adaption
 
@@ -466,7 +493,8 @@ The new measurement string needs to be passed to the `read_variable_from_csv` fu
 and applied appropriately within that function.
 First we add a `measurements` argument to the `read_variable_from_csv` function in `catchment/models.py`
 (remembering to update the function docstring at the same time):
-~~~
+
+```python
 # catchment/models.py
 ...
 def read_variable_from_csv(filename, measurement):
@@ -481,12 +509,13 @@ def read_variable_from_csv(filename, measurement):
              Columns will be the individual sites
     """
 ...
-~~~
-{: .language-python}
+```
+
 Following this we need to change two lines of code,
 the first being the CSV reading code,
 and the second being the code which reorganises the dataset before it is returned:
-~~~
+
+```python
 # catchment/models.py
 ...
 def read_variable_from_csv(filename, measurement):
@@ -496,12 +525,11 @@ def read_variable_from_csv(filename, measurement):
     for site in dataset['Site'].unique():
         newdataset[site] = dataset[dataset['Site'] == site].set_index('Date')[measurement]
 ...
-~~~
-{: .language-python}
-
+```
 
 Finally, within the `main` function of the controller we should add `args.measurements` as an argument:
-~~~
+
+```python
 # catchment-analysis.py
 ...
 def main(args):
@@ -509,42 +537,43 @@ def main(args):
     for filename in in_files:
         measurement_data = models.read_variable_from_csv(filename, args.measurements)
 ...
-~~~
-{: .language-python}
+```
 
 You can now test your new code, to ensure it works as expected:
-~~~
-python catchment-analysis.py -m 'Rainfall (mm)' data/rain_data_2015-12.csv
-~~~
-{: .language-bash}
-![Rainfall daily metrics](../fig/rainfall_daily_metrics.png){: .image-with-shadow width="800px" }
 
-~~~
+```bash
+python catchment-analysis.py -m 'Rainfall (mm)' data/rain_data_2015-12.csv
+```
+
+![](fig/rainfall_daily_metrics.png){alt='Rainfall daily metrics' .image-with-shadow width="800px" }
+
+```bash
 python catchment-analysis.py -m 'pH continuous' data/river_data_2015-12.csv
-~~~
-{: .language-bash}
-![River pH daily metrics](../fig/pH_daily_metrics.png){: .image-with-shadow width="800px" }
+```
+
+![](fig/pH_daily_metrics.png){alt='River pH daily metrics' .image-with-shadow width="800px" }
 
 Note that we have to use quotation marks to
 pass any strings which contain spaces or special characters,
 so that they are properly read by the parser.
 
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Additional Material
+
+Now that we've covered the basics of different programming paradigms
+and how we can integrate them into our multi-layer architecture,
+there are two optional extra episodes which you may find interesting.
+
+Both episodes cover the persistence layer of software architectures
+and methods of persistently storing data, but take different approaches.
+The episode on [persistence with JSON](../instructors/persistence.md) covers
+some more advanced concepts in Object Oriented Programming, while
+the episode on [databases](../instructors/databases.md) starts to build towards a true multilayer architecture,
+which would allow our software to handle much larger quantities of data.
 
 
-> ## Additional Material
->
-> Now that we've covered the basics of different programming paradigms
-> and how we can integrate them into our multi-layer architecture,
-> there are two optional extra episodes which you may find interesting.
->
-> Both episodes cover the persistence layer of software architectures
-> and methods of persistently storing data, but take different approaches.
-> The episode on [persistence with JSON](../persistence) covers
-> some more advanced concepts in Object Oriented Programming, while
-> the episode on [databases](../databases) starts to build towards a true multilayer architecture,
-> which would allow our software to handle much larger quantities of data.
-{: .callout}
-
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Towards Collaborative Software Development
 
@@ -568,3 +597,5 @@ have a look and comment on key code changes to see how they fit within the codeb
 Such reviews check the correctness of the new code, test coverage, functionality changes,
 and confirm that they follow the coding guides and best practices.
 In the following episodes we will have a look at some code review techniques available to us.
+
+

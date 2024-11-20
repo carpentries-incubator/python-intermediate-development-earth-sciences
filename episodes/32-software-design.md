@@ -1,20 +1,22 @@
 ---
-title: "Software Architecture and Design"
+title: Software Architecture and Design
 teaching: 15
 exercises: 30
-questions:
-- "What should we consider when designing software?"
-- "How can we make sure the components of our software are reusable?"
-objectives:
-- "Understand the use of common design patterns to improve the extensibility, reusability and overall quality of software."
-- "Understand the components of multi-layer software architectures."
-keypoints:
-- "Planning software projects in advance can save a lot of effort and reduce 'technical debt' later - even a partial plan is better than no plan at all."
-- "By breaking down our software into components with a single responsibility, we avoid having to rewrite it all when requirements change.
-Such components can be as small as a single function, or be a software package in their own right."
-- "When writing software used for research, requirements will almost *always* change."
-- "*'Good code is written so that is readable, understandable, covered by automated tests, not over complicated and does well what is intended to do.'*"
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Understand the use of common design patterns to improve the extensibility, reusability and overall quality of software.
+- Understand the components of multi-layer software architectures.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- What should we consider when designing software?
+- How can we make sure the components of our software are reusable?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
@@ -45,14 +47,12 @@ So we should think about the design of our software from the very beginning,
 ideally even before we start writing code -
 but if you didn't, it's never too late to start.
 
-
 The answers to these questions will provide us with some **design constraints**
 which any software we write must satisfy.
 For example, a design constraint when writing a mobile app would be
 that it needs to work with a touch screen interface -
 we might have some software that works really well from the command line,
 but on a typical mobile phone there isn't a command line interface that people can access.
-
 
 ## Software Architecture
 
@@ -90,7 +90,6 @@ after we learn a bit more about Object Oriented Programming.
 There are many online sources of information about design and architecture patterns,
 often giving concrete examples of cases where they may be useful.
 One particularly good source is [Refactoring Guru](https://refactoring.guru/design-patterns).
-
 
 ### Multilayer Architecture
 
@@ -176,45 +175,50 @@ The key is to think about which kind of testing should be used
 to check if the code satisfies a requirement,
 but also what you can do to make that code amenable to that type of testing.
 
-> ## Exercise: Implementing Requirements
-> Pick one of the requirements SR1.1.1 or SR1.2.1 above to implement
-> and create an appropriate feature branch -
-> e.g. `add-std-dev` or `add-view` from your most up-to-date `develop` branch.
->
-> One aspect you should consider first is
-> whether the new requirement can be implemented within the existing design.
-> If not, how does the design need to be changed to accommodate the inclusion of this new feature?
-> Also try to ensure that the changes you make are amenable to unit testing:
-> is the code suitably modularised
-> such that the aspect under test can be easily invoked
-> with test input data and its output tested?
->
-> If you have time, feel free to implement the other requirement, or invent your own!
->
-> Also make sure you push changes to your new feature branch remotely
-> to your software repository on GitHub.
->
-> ***Note:** do not add the tests for the new feature just yet -
-> even though you would normally add the tests along with the new code,
-> we will do this in a later episode.
-> Equally, do not merge your changes to the `develop` branch just yet.*
->
-> ***Note 2:** we have intentionally left this exercise without a solution
-> to give you more freedom in implementing it how you see fit.
-> If you are struggling with adding a new view and command line parameter,
-> you may find adding the daily standard deviation requirement easier.
-> A later episode in this section will look at
-> how to handle command line parameters in a scalable way.*
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Implementing Requirements
+
+Pick one of the requirements SR1.1.1 or SR1.2.1 above to implement
+and create an appropriate feature branch -
+e.g. `add-std-dev` or `add-view` from your most up-to-date `develop` branch.
+
+One aspect you should consider first is
+whether the new requirement can be implemented within the existing design.
+If not, how does the design need to be changed to accommodate the inclusion of this new feature?
+Also try to ensure that the changes you make are amenable to unit testing:
+is the code suitably modularised
+such that the aspect under test can be easily invoked
+with test input data and its output tested?
+
+If you have time, feel free to implement the other requirement, or invent your own!
+
+Also make sure you push changes to your new feature branch remotely
+to your software repository on GitHub.
+
+***Note:** do not add the tests for the new feature just yet -
+even though you would normally add the tests along with the new code,
+we will do this in a later episode.
+Equally, do not merge your changes to the `develop` branch just yet.*
+
+***Note 2:** we have intentionally left this exercise without a solution
+to give you more freedom in implementing it how you see fit.
+If you are struggling with adding a new view and command line parameter,
+you may find adding the daily standard deviation requirement easier.
+A later episode in this section will look at
+how to handle command line parameters in a scalable way.*
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Best Practices for 'Good' Software Design
 
 Aspirationally, what makes good code can be summarised in the following quote from the
 [Intent HG blog](https://intenthq.com/blog/it-audience/what-is-good-code-a-scientific-definition/):
 
-> *“Good code is written so that is readable, understandable,
+> *"Good code is written so that is readable, understandable,
 > covered by automated tests, not over complicated
-> and does well what is intended to do.”*
+> and does well what is intended to do."*
 
 By taking time to design our software to be easily modifiable and extensible,
 we can save ourselves a lot of time later when requirements change.
@@ -250,7 +254,7 @@ How much effort should we spend on designing our code properly
 and using good development practices?
 The following [XKCD comic](https://xkcd.com/844/) summarises this tension:
 
-![Writing good code comic](../fig/xkcd-good-code-comic.png){: .image-with-shadow width="400px" }
+![](fig/xkcd-good-code-comic.png){alt='Writing good code comic' .image-with-shadow width="400px" }
 
 At an intermediate level there are a wealth of practices that *could* be used,
 and applying suitable design and coding practices is what separates
@@ -261,4 +265,15 @@ and employ design and development practices *enough* so that progress can be mad
 It's very easy to under-design software,
 but remember it's also possible to over-design software too.
 
-{% include links.md %}
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- Planning software projects in advance can save a lot of effort and reduce 'technical debt' later - even a partial plan is better than no plan at all.
+- By breaking down our software into components with a single responsibility, we avoid having to rewrite it all when requirements change. Such components can be as small as a single function, or be a software package in their own right.
+- When writing software used for research, requirements will almost *always* change.
+- *'Good code is written so that is readable, understandable, covered by automated tests, not over complicated and does well what is intended to do.'*
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

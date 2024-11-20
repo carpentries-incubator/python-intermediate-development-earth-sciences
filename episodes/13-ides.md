@@ -1,22 +1,26 @@
 ---
-title: "Integrated Software Development Environments"
-start: false
+title: Integrated Software Development Environments
+start: no
 teaching: 25
 exercises: 15
-questions:
-- "What are Integrated Development Environments (IDEs)?"
-- "What are the advantages of using IDEs for software development?"
-objectives:
-- "Set up a (virtual) development environment in Visual Studio Code (VS Code)"
-- "Use VS Code to run a Python script"
-
-keypoints:
-- "An IDE is an application that provides a comprehensive set of facilities for software development, including
-syntax highlighting, code search and completion, version control, testing and debugging."
-- "VS Code recognises virtual environments configured from the command line using `venv` and `pip`."
 ---
 
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Set up a (virtual) development environment in Visual Studio Code (VS Code)
+- Use VS Code to run a Python script
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- What are Integrated Development Environments (IDEs)?
+- What are the advantages of using IDEs for software development?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Introduction
+
 As we have seen in the previous episode -
 even a simple software project is typically split into smaller functional units and modules,
 which are kept in separate files and subdirectories.
@@ -29,6 +33,7 @@ Such clever and useful graphical software development applications are called
 Integrated Development Environments (IDEs).
 
 ## Integrated Development Environments
+
 An IDE normally consists of at least a source code editor,
 build automation tools
 and a debugger.
@@ -72,18 +77,24 @@ Some popular alternatives for Python include
 free and open source IDE [Spyder](https://www.spyder-ide.org/)
 and JetBrain's free and open source [PyCharm](https://www.jetbrains.com/pycharm/).
 
-> ## Using PyCharm for This Course
-> If you want to use PyCharm as your IDE for this course, you can use the
-> [IDE episode of the original course](https://carpentries-incubator.github.io/python-intermediate-development/13-ides/index.html)
-> to help you set up. The instructions for VS Code in the course will not apply to you verbatim but there 
-> is an equivalent functionality in PyCharm for each of the actions we ask you to do in VS Code.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Using PyCharm for This Course
+
+If you want to use PyCharm as your IDE for this course, you can use the
+[IDE episode of the original course](https://carpentries-incubator.github.io/python-intermediate-development/13-ides/index.html)
+to help you set up. The instructions for VS Code in the course will not apply to you verbatim but there
+is an equivalent functionality in PyCharm for each of the actions we ask you to do in VS Code.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Using the VS Code IDE
 
 Let's open our project in VS Code now and familiarise ourselves with some commonly used features.
 
 ### Opening a Software Project
+
 If you don't have VS Code running yet, start it up now.
 An interactive **Welcome** page will appear,
 which allows you to configure your development environment's themes and other aspects,
@@ -111,7 +122,7 @@ Click on the `Extensions` tab and, in the search text box,
 type Python. Select the `Python` extension, as shown in the following figure,
 and click the blue `install` button.
 
-![View of selecting the Python Extension for VS Code](../fig/vs-code-python-extension.png){: .image-with-shadow width="1000px" }
+![](fig/vs-code-python-extension.png){alt='View of selecting the Python Extension for VS Code' .image-with-shadow width="1000px" }
 
 At the bottom of the screen, you have a status bar which shows the current Git branch,
 and typically the Virtual Environment being used by our project.
@@ -125,7 +136,7 @@ Now click on the `Explorer` tab on the left hand side.
 Use this view to navigate to the `catchment-analysis.py` file and select it,
 so that its contents are displayed in the editor window.
 
-![View of an opened project in VS Code](../fig/vs-code-open-project.png){: .image-with-shadow width="1000px" }
+![](fig/vs-code-open-project.png){alt='View of an opened project in VS Code' .image-with-shadow width="1000px" }
 
 You may have noticed that the virtual environment (`venv`) that we created previously
 (held in the `./venv` folder in our project directory)
@@ -135,12 +146,13 @@ In many cases, VS Code will have been able to locate this environment automatica
 and add it as the most likely option (as it is located within the current project directory).
 But it is better to explicitly select an interpeter for your project,
 to do this follow these steps:
+
 1. Press `Command-Shift-P` (on Mac) or `Control-Shift-P` (on Windows or Linux) to bring up the VS Code Command Palette
 2. Search for `Python: select interpreter` and select it
 3. This will display a drop-down list of options, select `+ Enter interpreter path...`
-4. Click on `Find...` and browse in the pop-up window to select the path to the `python` binary file held in the `./venv/bin/` directory. 
+4. Click on `Find...` and browse in the pop-up window to select the path to the `python` binary file held in the `./venv/bin/` directory.
 
-![Updating the virtual environment in VS Code](../fig/vs-code-select-virtual-env.png){: .image-with-shadow width="800px" }
+![](fig/vs-code-select-virtual-env.png){alt='Updating the virtual environment in VS Code' .image-with-shadow width="800px" }
 
 To make working with Python virtual environments easier in VS Code
 we will install another extension called `Python Environment Manager`.
@@ -148,7 +160,7 @@ Click on the Extensions tab and in the search edit box, type `Python Environment
 select the correct extension, and click the blue `install` button.
 A new tab will appear at the bottom of the Activity Bar, as shown below:
 
-![Using the Python Environment Manager in VS Code](../fig/vs-code-virtual-env-mgr.png){: .image-with-shadow width="800px" } 
+![](fig/vs-code-virtual-env-mgr.png){alt='Using the Python Environment Manager in VS Code' .image-with-shadow width="800px" }
 
 You can navigate around the current venv environment or look at alternatives environments,
 either within the current workspace or elsewhere on your computer (listed under "Global Environments").
@@ -162,127 +174,142 @@ and changes made to it in VS Code will be accessible from the command line and v
 Let's see this in action through the following exercise.
 
 > ## Exercise: Compare External Libraries in the Command Line and VS Code
+> 
 > Can you recall two places where information about our project's dependencies
 > can be found from the command line?
 > Compare that information with the equivalent configuration in VS Code.
->
+> 
 > Hint: We can use an argument to `pip`,
 > or find the packages directly in a subdirectory of our virtual environment directory "venv".
->
->> ## Solution
->> From the previous episode,
->> you may remember that we can get the list of packages in the current virtual environment
->> using `pip`:
->> ~~~
->> (venv) $ python3 -m pip list
->> ~~~
->> {: .language-bash}
->> ~~~
->> Package         Version
->> --------------- -------
->> contourpy       1.0.5
->> cycler          0.11.0
->> fonttools       4.37.4
->> kiwisolver      1.4.4
->> matplotlib      3.6.1
->> numpy           1.23.4
->> packaging       21.3
->> pandas          1.5.0
->> Pillow          9.2.0
->> pip             21.3.1
->> pyparsing       3.0.9
->> python-dateutil 2.8.2
->> pytz            2022.5
->> setuptools      60.2.0
->> six             1.16.0
->> wheel           0.37.1
->> ~~~
->> {: .output}
->> However, `python3 -m pip list` shows all the packages in the virtual environment -
->> if we want to see only the list of packages that we installed,
->> we can use the `python3 -m pip freeze` command instead:
->> ~~~
->> (venv) $ python3 -m pip freeze
->> ~~~
->> {: .language-bash}
->> ~~~
->> contourpy==1.0.5
->> cycler==0.11.0
->> fonttools==4.37.4
->> kiwisolver==1.4.4
->> matplotlib==3.6.1
->> numpy==1.23.4
->> packaging==21.3
->> pandas==1.5.0
->> Pillow==9.2.0
->> pyparsing==3.0.9
->> python-dateutil==2.8.2
->> pytz==2022.5
->> six==1.16.0
->> ~~~
->> {: .output}
->> We see the `pip` package in `python3 -m pip list` but not in `python3 -m pip freeze` 
->> as we did not install it using `pip`.
->> Remember that we use `python3 -m pip freeze` to update our `requirements.txt` file,
->> to keep a list of the packages our virtual environment includes.
->> Python will not do this automatically;
->> we have to manually update the file when our requirements change using:
->> ~~~
->> python3 -m pip freeze > requirements.txt
->> ~~~
->> {: .language-bash}
->>
->> If we want, we can also see the list of packages directly in the following subdirectory of `venv`:
->> ~~~
->> (venv) $ ls -l venv/lib/python3.11/site-packages
->> ~~~
->> {: .language-bash}
->>
->> ~~~
+> 
+> > ## Solution
+> > 
+> > From the previous episode,
+> > you may remember that we can get the list of packages in the current virtual environment
+> > using `pip`:
+> > 
+> > ```bash
+> > (venv) $ python3 -m pip list
+> > ```
+> > 
+> > ```output
+> > Package         Version
+> > --------------- -------
+> > contourpy       1.0.5
+> > cycler          0.11.0
+> > fonttools       4.37.4
+> > kiwisolver      1.4.4
+> > matplotlib      3.6.1
+> > numpy           1.23.4
+> > packaging       21.3
+> > pandas          1.5.0
+> > Pillow          9.2.0
+> > pip             21.3.1
+> > pyparsing       3.0.9
+> > python-dateutil 2.8.2
+> > pytz            2022.5
+> > setuptools      60.2.0
+> > six             1.16.0
+> > wheel           0.37.1
+> > ```
+> > 
+> > However, `python3 -m pip list` shows all the packages in the virtual environment -
+> > if we want to see only the list of packages that we installed,
+> > we can use the `python3 -m pip freeze` command instead:
+> > 
+> > ```bash
+> > (venv) $ python3 -m pip freeze
+> > ```
+> > 
+> > ```output
+> > contourpy==1.0.5
+> > cycler==0.11.0
+> > fonttools==4.37.4
+> > kiwisolver==1.4.4
+> > matplotlib==3.6.1
+> > numpy==1.23.4
+> > packaging==21.3
+> > pandas==1.5.0
+> > Pillow==9.2.0
+> > pyparsing==3.0.9
+> > python-dateutil==2.8.2
+> > pytz==2022.5
+> > six==1.16.0
+> > ```
+> > 
+> > We see the `pip` package in `python3 -m pip list` but not in `python3 -m pip freeze`
+> > as we did not install it using `pip`.
+> > Remember that we use `python3 -m pip freeze` to update our `requirements.txt` file,
+> > to keep a list of the packages our virtual environment includes.
+> > Python will not do this automatically;
+> > we have to manually update the file when our requirements change using:
+> > 
+> > ```bash
+> > python3 -m pip freeze > requirements.txt
+> > ```
+> > 
+> > If we want, we can also see the list of packages directly in the following subdirectory of `venv`:
+> > 
+> > ```bash
+> > (venv) $ ls -l venv/lib/python3.11/site-packages
+> > ```
+> > 
+> > ```
+> > ```
+
 total 88
 drwxr-xr-x  105 alex  staff   3360 20 Nov 15:34 PIL
 drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 Pillow-10.1.0.dist-info
-drwxr-xr-x    4 alex  staff    128 20 Nov 15:34 __pycache__
-drwxr-xr-x    5 alex  staff    160 20 Nov 15:32 _distutils_hack
+drwxr-xr-x    4 alex  staff    128 20 Nov 15:34 **pycache**
+drwxr-xr-x    5 alex  staff    160 20 Nov 15:32 \_distutils\_hack
 drwxr-xr-x   16 alex  staff    512 20 Nov 15:34 contourpy
 drwxr-xr-x    7 alex  staff    224 20 Nov 15:34 contourpy-1.2.0.dist-info
 drwxr-xr-x    5 alex  staff    160 20 Nov 15:34 cycler
 drwxr-xr-x    8 alex  staff    256 20 Nov 15:34 cycler-0.12.1.dist-info
 drwxr-xr-x   14 alex  staff    448 20 Nov 15:34 dateutil
--rw-r--r--    1 alex  staff    151 20 Nov 15:32 distutils-precedence.pth
+\-rw-r--r--    1 alex  staff    151 20 Nov 15:32 distutils-precedence.pth
 drwxr-xr-x   33 alex  staff   1056 20 Nov 15:34 fontTools
 drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 fonttools-4.45.0.dist-info
 drwxr-xr-x    8 alex  staff    256 20 Nov 15:34 kiwisolver
 drwxr-xr-x    8 alex  staff    256 20 Nov 15:34 kiwisolver-1.4.5.dist-info
 drwxr-xr-x  150 alex  staff   4800 20 Nov 15:34 matplotlib
 drwxr-xr-x   20 alex  staff    640 20 Nov 15:34 matplotlib-3.8.2.dist-info
-drwxr-xr-x    5 alex  staff    160 20 Nov 15:34 mpl_toolkits
+drwxr-xr-x    5 alex  staff    160 20 Nov 15:34 mpl\_toolkits
 drwxr-xr-x   43 alex  staff   1376 20 Nov 15:34 numpy
 drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 numpy-1.26.2.dist-info
 drwxr-xr-x   18 alex  staff    576 20 Nov 15:34 packaging
 drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 packaging-23.2.dist-info
 drwxr-xr-x    9 alex  staff    288 20 Nov 15:32 pip
 drwxr-xr-x   10 alex  staff    320 20 Nov 15:33 pip-23.0.1.dist-info
-drwxr-xr-x    6 alex  staff    192 20 Nov 15:32 pkg_resources
--rw-r--r--    1 alex  staff     90 20 Nov 15:34 pylab.py
+drwxr-xr-x    6 alex  staff    192 20 Nov 15:32 pkg\_resources
+\-rw-r--r--    1 alex  staff     90 20 Nov 15:34 pylab.py
 drwxr-xr-x   15 alex  staff    480 20 Nov 15:34 pyparsing
 drwxr-xr-x    7 alex  staff    224 20 Nov 15:34 pyparsing-3.1.1.dist-info
-drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 python_dateutil-2.8.2.dist-info
+drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 python\_dateutil-2.8.2.dist-info
 drwxr-xr-x   49 alex  staff   1568 20 Nov 15:32 setuptools
 drwxr-xr-x   10 alex  staff    320 20 Nov 15:32 setuptools-67.6.1.dist-info
 drwxr-xr-x    8 alex  staff    256 20 Nov 15:34 six-1.16.0.dist-info
--rw-r--r--    1 alex  staff  34549 20 Nov 15:34 six.py
->> ~~~
->> {: .output}
->>
->> Finally, if you look at both the contents of
->> `venv/lib/python3.11/site-packages` and `requirements.txt`
->> and compare that with the packages shown in VS Code's Python Interpreter Configuration -
->> you will see that they all contain equivalent information.
-> {: .solution}
-{: .challenge}
+\-rw-r--r--    1 alex  staff  34549 20 Nov 15:34 six.py
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+:::::::::::::::  solution
+
+```
+{: .output}
+
+Finally, if you look at both the contents of
+`venv/lib/python3.11/site-packages` and `requirements.txt`
+and compare that with the packages shown in VS Code's Python Interpreter Configuration -
+you will see that they all contain equivalent information.
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 #### Adding an External Library
+
 We have already added packages `numpy` and `matplotlib` to our virtual environment
 from the command line in the previous episode,
 so we are up-to-date with all external libraries we require at the moment.
@@ -292,10 +319,10 @@ an alternative way of doing this and how it propagates to the command line.
 
 1. Select the Python tab in the Activity Bar on the left, as we did earlier.
 2. Under our `venv` environment, hover over `Packages`
-3. Select the magnifying glass icon (Install Package) 
+3. Select the magnifying glass icon (Install Package)
 4. In the window that appears, search for the name of the library (`pytest`),
-   then click on this package in the list below to install it.
-   ![Installing a package in VS Code](../fig/vs-code-add-library.png){: .image-with-shadow width="800px" }
+  then click on this package in the list below to install it.
+  ![](fig/vs-code-add-library.png){alt='Installing a package in VS Code' .image-with-shadow width="800px" }
 
 It may take a few minutes for VS Code to install it.
 After it is done, the `pytest` library is added to our virtual environment.
@@ -305,94 +332,108 @@ Note, however, that `requirements.txt` is not updated -
 as we mentioned earlier this is something you have to do manually.
 Let's do this as an exercise.
 
-> ## Exercise: Update `requirements.txt` After Adding a New Dependency
-> Export the newly updated virtual environment into `requirements.txt` file.
->> ## Solution
->> Let's verify first that the newly installed library `pytest` is appearing in our virtual environment
->> but not in `requirements.txt`. First, let's check the list of installed packages:
->> ~~~
->> (venv) $ python3 -m pip list
->> ~~~
->> {: .language-bash}
->> ~~~
->> Package         Version
->> --------------- -------
->> attrs           22.1.0
->> contourpy       1.0.5
->> cycler          0.11.0
->> fonttools       4.37.4
->> iniconfig       1.1.1
->> kiwisolver      1.4.4
->> matplotlib      3.6.1
->> numpy           1.23.4
->> packaging       21.3
->> pandas          1.5.0
->> Pillow          9.2.0
->> pip             21.3.1
->> pluggy          1.0.0
->> py              1.11.0
->> pyparsing       3.0.9
->> pytest          7.1.3
->> python-dateutil 2.8.2
->> pytz            2022.5
->> setuptools      60.2.0
->> six             1.16.0
->> tomli           2.0.1
->> wheel           0.37.1
->> ~~~
->> {: .output}
->> We can see the `pytest` library appearing in the listing above. However, if we do:
->>~~~
->>(venv) $ cat requirements.txt
->>~~~
->>{: .language-bash}
->>~~~
->> contourpy==1.0.5
->> cycler==0.11.0
->> fonttools==4.37.4
->> kiwisolver==1.4.4
->> matplotlib==3.6.1
->> numpy==1.23.4
->> packaging==21.3
->> pandas==1.5.0
->> Pillow==9.2.0
->> pyparsing==3.0.9
->> python-dateutil==2.8.2
->> pytz==2022.5
->> six==1.16.0
->>~~~
->>{: .output}
->> `pytest` is missing from `requirements.txt`. To add it, we need to update the file by repeating the command:
->> ~~~
->> (venv) $ python3 -m pip freeze > requirements.txt
->> ~~~
->> {: .language-bash}
->> `pytest` is now present in `requirements.txt`:
->>~~~
->> attrs==22.1.0
->> contourpy==1.0.5
->> cycler==0.11.0
->> fonttools==4.37.4
->> iniconfig==1.1.1
->> kiwisolver==1.4.4
->> matplotlib==3.6.1
->> numpy==1.23.4
->> packaging==21.3
->> pandas==1.5.0
->> Pillow==9.2.0
->> pluggy==1.0.0
->> py==1.11.0
->> pyparsing==3.0.9
->> pytest==7.1.3
->> python-dateutil==2.8.2
->> pytz==2022.5
->> six==1.16.0
->> tomli==2.0.1
->>~~~
->{: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Update `requirements.txt` After Adding a New Dependency
+
+Export the newly updated virtual environment into `requirements.txt` file.
+
+:::::::::::::::  solution
+
+## Solution
+
+Let's verify first that the newly installed library `pytest` is appearing in our virtual environment
+but not in `requirements.txt`. First, let's check the list of installed packages:
+
+```bash
+(venv) $ python3 -m pip list
+```
+
+```output
+Package         Version
+--------------- -------
+attrs           22.1.0
+contourpy       1.0.5
+cycler          0.11.0
+fonttools       4.37.4
+iniconfig       1.1.1
+kiwisolver      1.4.4
+matplotlib      3.6.1
+numpy           1.23.4
+packaging       21.3
+pandas          1.5.0
+Pillow          9.2.0
+pip             21.3.1
+pluggy          1.0.0
+py              1.11.0
+pyparsing       3.0.9
+pytest          7.1.3
+python-dateutil 2.8.2
+pytz            2022.5
+setuptools      60.2.0
+six             1.16.0
+tomli           2.0.1
+wheel           0.37.1
+```
+
+We can see the `pytest` library appearing in the listing above. However, if we do:
+
+```bash
+(venv) $ cat requirements.txt
+```
+
+```output
+contourpy==1.0.5
+cycler==0.11.0
+fonttools==4.37.4
+kiwisolver==1.4.4
+matplotlib==3.6.1
+numpy==1.23.4
+packaging==21.3
+pandas==1.5.0
+Pillow==9.2.0
+pyparsing==3.0.9
+python-dateutil==2.8.2
+pytz==2022.5
+six==1.16.0
+```
+
+`pytest` is missing from `requirements.txt`. To add it, we need to update the file by repeating the command:
+
+```bash
+(venv) $ python3 -m pip freeze > requirements.txt
+```
+
+`pytest` is now present in `requirements.txt`:
+
+```
+attrs==22.1.0
+contourpy==1.0.5
+cycler==0.11.0
+fonttools==4.37.4
+iniconfig==1.1.1
+kiwisolver==1.4.4
+matplotlib==3.6.1
+numpy==1.23.4
+packaging==21.3
+pandas==1.5.0
+Pillow==9.2.0
+pluggy==1.0.0
+py==1.11.0
+pyparsing==3.0.9
+pytest==7.1.3
+python-dateutil==2.8.2
+pytz==2022.5
+six==1.16.0
+tomli==2.0.1
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 #### Adding a Run Configuration for Our Project
+
 Having configured a virtual environment, we now need to tell VS Code how to use it for our project.
 This is done by creating and adding a **Run Configuration** to a project.
 Run Configurations in VS Code are named sets of startup properties
@@ -406,15 +447,16 @@ At first this file will not exist,
 and clicking on the `Run and Debug` tab in the `Activity Bar` will,
 as shown below, present a dialog box asking you to create one.
 
-![Running single scripts in VS Code](../fig/vs-code-run-script.png){: .image-with-shadow width="1000px" }
+![](fig/vs-code-run-script.png){alt='Running single scripts in VS Code' .image-with-shadow width="1000px" }
 
 We will create two run configurations for the `catchment-analysis` module:
+
 1. Click on the `Run and Debug` tab in the Activity Bar on the left.
 2. In the `Run and Debug` panel click on the `create a launch.json file` link.
 3. This will open a search text box, from which select
-`Python File: Debug the currently active Python File`
+  `Python File: Debug the currently active Python File`
 4. This will create a `launch.json` file, and open it in the editor window,
-with a configuration for just python files
+  with a configuration for just python files
 5. Change the contents of the file, to match the code below.
 6. Save the file.
 
@@ -462,6 +504,7 @@ which is a useful parallel to be aware of.
 Let's have a look at some other features afforded to us by VS Code.
 
 ### Syntax Highlighting
+
 The first thing you may notice is that code is displayed using different colours.
 Syntax highlighting is a feature that displays source code terms
 in different colours and fonts according to the syntax category the highlighted term belongs to.
@@ -469,9 +512,10 @@ It also makes syntax errors visually distinct.
 Highlighting does not affect the meaning of the code itself -
 it's intended only for humans to make reading code and finding errors easier.
 
-![Syntax Highlighting Functionality in VS Code](../fig/vs-code-syntax-highlighting.png){: .image-with-shadow width="1000px" }
+![](fig/vs-code-syntax-highlighting.png){alt='Syntax Highlighting Functionality in VS Code' .image-with-shadow width="1000px" }
 
 ### Code Completion
+
 As you start typing code,
 VS Code will offer to complete some of the code for you in the form of an auto completion popup.
 This is a context-aware code completion feature
@@ -483,20 +527,22 @@ parameters of functions,
 hints related to syntax errors,
 etc.
 
-![Code Completion Functionality in VS Code](../fig/vs-code-code-completion.png){: .image-with-shadow width="600px" }
+![](fig/vs-code-code-completion.png){alt='Code Completion Functionality in VS Code' .image-with-shadow width="600px" }
 
-### Code Definition & Documentation References
+### Code Definition \& Documentation References
+
 You will often need code reference information to help you code.
 VS Code shows this useful information,
 such as definitions of symbols
 (e.g. functions, parameters, classes, fields, and methods)
-and documentation references ([*docstrings*](../15-coding-conventions/index.html#documentation-strings-aka-docstrings)
+and documentation references ([*docstrings*](15-coding-conventions.md)
 for any symbol created in accordance with [PEP-257](https://peps.python.org/pep-0257/))
 by means of quick popups and inline tooltips.
 
 For a selected piece of code, you can access the original source code using the `Go` menu.
 You can also access various code reference information by right-clicking on the code,
 then selecting the `Peek` submenu. This includes:
+
 - Peek Definition -
   where and how symbols (functions, parameters, classes, fields, and methods) are defined
 - Peek Type Definition -
@@ -504,10 +550,10 @@ then selecting the `Peek` submenu. This includes:
 - Peek References -
   where this code is referenced elsewhere in the program.
 
-![Code References Functionality in VS Code](../fig/vs-code-code-reference.png){: .image-with-shadow width="1000px" }
-
+![](fig/vs-code-code-reference.png){alt='Code References Functionality in VS Code' .image-with-shadow width="1000px" }
 
 ### Code Search
+
 You can search for a text string within a project,
 use different scopes to narrow your search process,
 use regular expressions for complex searches,
@@ -515,28 +561,32 @@ include/exclude certain files from your search, find usages and occurrences.
 To find a search string in the whole project:
 
 1. From the main menu,
-   select `Edit | Find in Files ...`
+  select `Edit | Find in Files ...`
+
 2. Type your search string in the search field of the search panel.
-   Alternatively, in the editor, highlight the string you want to find
-   and press `Command-Shift-F` (on Mac) or `Control-Shift-F` (on Windows).
-   VS Code places the highlighted string into the search field of the search panel.
+  Alternatively, in the editor, highlight the string you want to find
+  and press `Command-Shift-F` (on Mac) or `Control-Shift-F` (on Windows).
+  VS Code places the highlighted string into the search field of the search panel.
+  
+  ![](fig/vs-code-code-search.png){alt='Code Search Functionality in VS Code' .image-with-shadow width="800px" }
+  VS Code will list the search strings and all the files that contain them.
+  You can also group the files by folder/sub-folder names.
 
-    ![Code Search Functionality in VS Code](../fig/vs-code-code-search.png){: .image-with-shadow width="800px" }
-    VS Code will list the search strings and all the files that contain them.
-    You can also group the files by folder/sub-folder names.
 3. Check the results in the preview area of the dialog where you can replace the search string
-   or select another string,
-   or press `Command-Shift-F` (on Mac) or `Control-Shift-F` (on Windows) again
-   to start a new search.
-4. To see the list of occurrences in a separate tab,
-   click the `Open New Search Editor` button at the top of the search panel.
-   The new find panel will appear as a new tab in the editor window;
-   use this panel and its options to group the results, preview them,
-   and work with them further.
+  or select another string,
+  or press `Command-Shift-F` (on Mac) or `Control-Shift-F` (on Windows) again
+  to start a new search.
 
-    ![Code Search Functionality in VS Code, using a seperate tab](../fig/vs-code-find-tab.png){: .image-with-shadow width="1000px" }
+4. To see the list of occurrences in a separate tab,
+  click the `Open New Search Editor` button at the top of the search panel.
+  The new find panel will appear as a new tab in the editor window;
+  use this panel and its options to group the results, preview them,
+  and work with them further.
+  
+  ![](fig/vs-code-find-tab.png){alt='Code Search Functionality in VS Code, using a seperate tab' .image-with-shadow width="1000px" }
 
 ### Version Control
+
 VS Code supports a directory-based versioning model,
 which means that each project directory can be associated with a different version control system.
 Our project was already under Git version control and VS Code recognised it.
@@ -557,9 +607,10 @@ You can get a full
 [documentation on VS Code's built-in version control support](https://code.visualstudio.com/docs/sourcecontrol/overview)
 online.
 
-![Version Control Functionality in VS Code](../fig/vs-code-version-control.png){: .image-with-shadow width="1000px" }
+![](fig/vs-code-version-control.png){alt='Version Control Functionality in VS Code' .image-with-shadow width="1000px" }
 
 ### Running Scripts in VS Code
+
 We have configured our environment and explored some of the most commonly used VS Code features
 and are now ready to run our script from VS Code!
 We could select the `catchment-analysis.py` file
@@ -577,7 +628,7 @@ This time, however, VS Code will helpfully enter debug mode,
 open the module file where that error occurs
 and display the error message below the appropriate line of code.
 
-![River Data Error Message in VS Code](../fig/vs-code-river-data-error.png){: .image-with-shadow width="1000px" }
+![](fig/vs-code-river-data-error.png){alt='River Data Error Message in VS Code' .image-with-shadow width="1000px" }
 
 Note that VS Code has a control bar for the running program at the top of the window,
 you can press the red square to stop the program running, or exit debug mode.
@@ -589,4 +640,13 @@ Before we move on to fixing errors and writing more code,
 let's have a look at the last set of tools for collaborative code development
 which we will be using in this course - Git and GitHub.
 
-{% include links.md %}
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- An IDE is an application that provides a comprehensive set of facilities for software development, including syntax highlighting, code search and completion, version control, testing and debugging.
+- VS Code recognises virtual environments configured from the command line using `venv` and `pip`.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

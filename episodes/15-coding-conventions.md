@@ -1,22 +1,23 @@
 ---
-title: "Python Code Style Conventions"
-start: false
+title: Python Code Style Conventions
+start: no
 teaching: 20
 exercises: 15
-questions:
-- "Why should you follow software code style conventions?"
-- "Who is setting code style conventions?"
-- "What code style conventions exist for Python?"
-objectives:
-- "Understand the benefits of following community coding conventions"
-keypoints:
-- "Always assume that someone else will read your code at a later date, including yourself."
-- "Community coding conventions help you create more readable software projects that are easier to contribute
-to."
-- "Python Enhancement Proposals (or PEPs) describe a recommended convention or specification for how to do something in Python."
-- "Style checking to ensure code conforms to coding conventions is often part of IDEs."
-- "Consistency with the style guide is important - whichever style you choose."
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Understand the benefits of following community coding conventions
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- Why should you follow software code style conventions?
+- Who is setting code style conventions?
+- What code style conventions exist for Python?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
@@ -32,6 +33,7 @@ to make sure that your code is consistently formatted and readable by yourself a
 > British software engineer, author and international speaker on software development
 
 ## Python Coding Style Guide
+
 One of the most important things we can do to make sure our code is readable by others
 (and ourselves a few months down the line)
 is to make sure that it is descriptive,
@@ -53,38 +55,40 @@ PEPs are design documents for the Python community,
 typically specifications or conventions for how to do something in Python,
 a description of a new feature in Python, etc.
 
->## Style consistency
-> One of the
-> [key insights from Guido van Rossum](https://www.python.org/dev/peps/pep-0008/#a-foolish-consistency-is-the-hobgoblin-of-little-minds),
-> one of the PEP 8 authors,
-> is that code is read much more often than it is written.
-> Style guidelines are intended to improve the readability of code
-> and make it consistent across the wide spectrum of Python code.
-> Consistency with the style guide is important.
-> Consistency within a project is more important.
-> Consistency within one module or function is the most important.
-> However, know when to be inconsistent -
-> sometimes style guide recommendations are just not applicable.
-> When in doubt, use your best judgment.
-> Look at other examples and decide what looks best. And don't hesitate to ask!
->
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Style consistency
+
+One of the
+[key insights from Guido van Rossum](https://www.python.org/dev/peps/pep-0008/#a-foolish-consistency-is-the-hobgoblin-of-little-minds),
+one of the PEP 8 authors,
+is that code is read much more often than it is written.
+Style guidelines are intended to improve the readability of code
+and make it consistent across the wide spectrum of Python code.
+Consistency with the style guide is important.
+Consistency within a project is more important.
+Consistency within one module or function is the most important.
+However, know when to be inconsistent -
+sometimes style guide recommendations are just not applicable.
+When in doubt, use your best judgment.
+Look at other examples and decide what looks best. And don't hesitate to ask!
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 As we have already covered in the
-[episode on VS Code IDE](../13-ides/index.html),
+[episode on VS Code IDE](13-ides.md),
 VS Code highlights the language constructs (reserved words)
-and syntax errors to help us with coding. We would also like VS Code to give us recommendations 
-for formatting the code (for example using 
-the PEP 8 style guide above). To do this we will need to install another extension. 
-(See the [episode on VS Code IDE](../13-ides/index.html) if you need a reminder on how to add extensions.)
+and syntax errors to help us with coding. We would also like VS Code to give us recommendations
+for formatting the code (for example using
+the PEP 8 style guide above). To do this we will need to install another extension.
+(See the [episode on VS Code IDE](13-ides.md) if you need a reminder on how to add extensions.)
 On 'Activity Bar', on the left hand side of the VS Code interface, click on the `Extensions` Tab,
 so that we can add the an extension called `Flake8` for VS Code.
 In the search text box, type `Flake8`. Select the `Flake8` extension, as shown in the following figure,
-and click the blue `install` button. Note that other Python style guide extensions are available. 
+and click the blue `install` button. Note that other Python style guide extensions are available.
 Another useful one at the time of writing, is one called `Pylint`.
 
-![View of selecting the Flake8 Extension for VS Code](../fig/vs-code-flake8-extension.png){: .image-with-shadow width="1000px" }
-
+![](fig/vs-code-flake8-extension.png){alt='View of selecting the Flake8 Extension for VS Code' .image-with-shadow width="1000px" }
 
 VS Code will now give us recommendations for formatting the code -
 these recommendations are mostly taken from the PEP 8 style guide.
@@ -94,6 +98,7 @@ A full list of style guidelines for this style is available from the
 here we highlight a few.
 
 ### Indentation
+
 Python is a kind of language that uses indentation as a way of grouping
 statements that belong to a particular block of code.
 Spaces are the recommended indentation method in Python code.
@@ -107,31 +112,36 @@ and do not follow this guideline.
 Whether you decide to follow this guideline or not,
 be consistent and follow the style already used in the project.
 
->## Indentation in Python 2 vs Python 3
-> Python 2 allowed code indented with a mixture of tabs and spaces.
-> Python 3 disallows mixing the use of tabs and spaces for indentation.
-> Whichever you choose, be consistent throughout the project.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Indentation in Python 2 vs Python 3
+
+Python 2 allowed code indented with a mixture of tabs and spaces.
+Python 3 disallows mixing the use of tabs and spaces for indentation.
+Whichever you choose, be consistent throughout the project.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 VS Code has built-in support for converting tab indentation to spaces
 "under the hood" for Python code in order to conform to PEP8.
 So, you can type a tab character and VS Code will automatically convert it to 4 spaces.
 You can control the amount of spaces that VS Code uses to replace one tab character
 or you can decide to keep the tab character altogether and prevent automatic conversion.
-You can modify these settings by selecting `File`>`Preferences`>`Settings` on Windows,
-or `Code`>`Settings...`>`Settings` on Mac,
+You can modify these settings by selecting `File`\>`Preferences`\>`Settings` on Windows,
+or `Code`\>`Settings...`\>`Settings` on Mac,
 and then searching on `editor tab size`, `editor indent size` and `editor insert spaces`
 
-![Python code indentation settings in VS Code](../fig/vs-code-indentation.png){: .image-with-shadow width="1000px"}
+![](fig/vs-code-indentation.png){alt='Python code indentation settings in VS Code' .image-with-shadow width="1000px"}
 
 You can also tell the editor to show non-printable characters
 if you are ever unsure what character exactly is being used
-by again selecting `File`>`Preferences`>`Settings` on Windows,
-or `Code`>`Settings...`>`Settings` on Mac,
+by again selecting `File`\>`Preferences`\>`Settings` on Windows,
+or `Code`\>`Settings...`\>`Settings` on Mac,
 and search on `Render Whitespace`.
 Select `all` from the drop-down editbox menu.
 
-![Python code whitespace settings in VS Code](../fig/vs-code-whitespace.png){: .image-with-shadow width="800px"}
+![](fig/vs-code-whitespace.png){alt='Python code whitespace settings in VS Code' .image-with-shadow width="800px"}
 
 There are more complex rules on indenting single units of code that continue over several lines,
 e.g. function, list or dictionary definitions can all take more than one line.
@@ -142,44 +152,44 @@ brackets (`[]`)
 and braces (`{}`),
 or a hanging indent.
 
- ~~~
+```python
 # Add an extra level of indentation (extra 4 spaces) to distinguish arguments from the rest of the code that follows
 def long_function_name(
-        var_one, var_two, var_three,
-        var_four):
-    print(var_one)
+       var_one, var_two, var_three,
+       var_four):
+   print(var_one)
 
 
 # Aligned with opening delimiter
 foo = long_function_name(var_one, var_two,
-                         var_three, var_four)
+                        var_three, var_four)
 
 # Use hanging indents to add an indentation level like paragraphs of text where all the lines in a paragraph are
 # indented except the first one
 foo = long_function_name(
-    var_one, var_two,
-    var_three, var_four)
+   var_one, var_two,
+   var_three, var_four)
 
 # Using hanging indent again, but closing bracket aligned with the first non-blank character of the previous line
 a_long_list = [
-    [[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[0.33, 0.66, 1], [0.66, 0.83, 1], [0.77, 0.88, 1]]
-    ]
+   [[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[0.33, 0.66, 1], [0.66, 0.83, 1], [0.77, 0.88, 1]]
+   ]
 
 # Using hanging indent again, but closing bracket aligned with the start of the multiline contruct
 a_long_list2 = [
-    1,
-    2,
-    3,
-    # ...
-    79
+   1,
+   2,
+   3,
+   # ...
+   79
 ]
- ~~~
-{: .language-python}
+```
 
 More details on good and bad practices for continuation lines can be found in
 [PEP 8 guideline on indentation](https://www.python.org/dev/peps/pep-0008/#indentation).
 
 ### Maximum Line Length
+
 All lines should be up to 80 characters long;
 for lines containing comments or docstrings (to be covered later)
 the line length limit should be 73 -
@@ -193,132 +203,136 @@ as mentioned above (preferred method),
 or using a backslash (`\`) at the end of the line
 to indicate line continuation (slightly less preferred method).
 
- ~~~
+```python
 # Using delimiters ( ) to wrap a multi-line expression
 if (a == True and
-    b == False):
+   b == False):
 
 # Using a backslash (\) for line continuation
 if a == True and \
-    b == False:
- ~~~
-{: .language-python}
+   b == False:
+```
 
 ### Should a Line Break Before or After a Binary Operator?
+
 Lines should break before binary operators
 so that the operators do not get scattered across different columns on the screen.
 In the example below, the eye does not have to do the extra work to tell
 which items are added and which are subtracted:
 
-~~~
+```python
 # PEP 8 compliant - easy to match operators with operands
 income = (gross_wages
           + taxable_interest
           + (dividends - qualified_dividends)
           - ira_deduction
           - student_loan_interest)
- ~~~
-{: .language-python}
+```
 
 ### Blank Lines
+
 Top-level function and class definitions should be surrounded with two blank lines.
 Method definitions inside a class should be surrounded by a single blank line.
 You can use blank lines in functions, sparingly, to indicate logical sections.
 
 ### Whitespace in Expressions and Statements
+
 Avoid extraneous whitespace in the following situations:
 
 - immediately inside parentheses, brackets or braces
-    ~~~
-    # PEP 8 compliant:
-    my_function(colour[1], {id: 2})
-
-    # Not PEP 8 compliant:
-    my_function( colour[ 1 ], { id: 2 } )
-    ~~~
-    {: .language-python}
+  
+  ```python
+  # PEP 8 compliant:
+  my_function(colour[1], {id: 2})
+  
+  # Not PEP 8 compliant:
+  my_function( colour[ 1 ], { id: 2 } )
+  ```
 
 - Immediately before a comma,
   semicolon,
   or colon
   (unless doing slicing where the colon acts like a binary operator
   in which case it should should have equal amounts of whitespace on either side)
-    ~~~
-    # PEP 8 compliant:
-    if x == 4: print(x, y); x, y = y, x
-
-    # Not PEP 8 compliant:
-    if x == 4 : print(x , y); x , y = y, x
-    ~~~
-    {: .language-python}
+  
+  ```python
+  # PEP 8 compliant:
+  if x == 4: print(x, y); x, y = y, x
+  
+  # Not PEP 8 compliant:
+  if x == 4 : print(x , y); x , y = y, x
+  ```
 
 - Immediately before the open parenthesis that starts the argument list of a function call
-    ~~~
-    # PEP 8 compliant:
-    my_function(1)
-
-    # Not PEP 8 compliant:
-    my_function (1)
-    ~~~
-    {: .language-python}
+  
+  ```python
+  # PEP 8 compliant:
+  my_function(1)
+  
+  # Not PEP 8 compliant:
+  my_function (1)
+  ```
 
 - Immediately before the open parenthesis that starts an indexing or slicing
-     ~~~
-    # PEP 8 compliant:
-    my_dct['key'] = my_lst[id]
-    first_char = my_str[:, 1]
-
-    # Not PEP 8 compliant:
-    my_dct ['key'] = my_lst [id]
-    first_char = my_str [:, 1]
-     ~~~
-     {: .language-python}
+  
+  ```python
+  # PEP 8 compliant:
+  my_dct['key'] = my_lst[id]
+  first_char = my_str[:, 1]
+  
+  # Not PEP 8 compliant:
+  my_dct ['key'] = my_lst [id]
+  first_char = my_str [:, 1]
+  ```
 
 - More than one space around an assignment (or other) operator to align it with another
-     ~~~
-    # PEP 8 compliant:
-    x = 1
-    y = 2
-    student_loan_interest = 3
-
-    # Not PEP 8 compliant:
-    x                     = 1
-    y                     = 2
-    student_loan_interest = 3
-     ~~~
-     {: .language-python}
+  
+  ```python
+  # PEP 8 compliant:
+  x = 1
+  y = 2
+  student_loan_interest = 3
+  
+  # Not PEP 8 compliant:
+  x                     = 1
+  y                     = 2
+  student_loan_interest = 3
+  ```
 
 - Avoid trailing whitespace anywhere - it is not necessary and can cause errors.
   For example, if you use backslash (`\`) for continuation lines
   and have a space after it,
   the continuation line will not be interpreted correctly.
+
 - Surround these binary operators with a single space on either side:
   assignment (=),
   augmented assignment (+=, -= etc.),
-  comparisons (==, <, >, !=, <>, <=, >=, in, not in, is, is not),
+  comparisons (==, \<, >, !=, \<>, \<=, >=, in, not in, is, is not),
   booleans (and, or, not).
+
 - Don't use spaces around the = sign
   when used to indicate a keyword argument assignment
   or to indicate a default value for an unannotated function parameter
-     ~~~
-    # PEP 8 compliant use of spaces around = for variable assignment
-    axis = 'x'
-    angle = 90
-    size = 450
-    name = 'my_graph'
-
-    # PEP 8 compliant use of no spaces around = for keyword argument assignment in a function call
-    my_function(
-        1,
-        2,
-        axis=axis,
-        angle=angle,
-        size=size,
-        name=name)
-     ~~~
-     {: .language-python}
+  
+  ```python
+  # PEP 8 compliant use of spaces around = for variable assignment
+  axis = 'x'
+  angle = 90
+  size = 450
+  name = 'my_graph'
+  
+  # PEP 8 compliant use of no spaces around = for keyword argument assignment in a function call
+  my_function(
+     1,
+     2,
+     axis=axis,
+     angle=angle,
+     size=size,
+     name=name)
+  ```
 
 ### String Quotes
+
 In Python, single-quoted strings and double-quoted strings are the same.
 PEP8 does not make a recommendation for this
 apart from picking one rule and consistently sticking to it.
@@ -326,14 +340,15 @@ When a string contains single or double quote characters,
 use the other one to avoid backslashes in the string as it improves readability.
 
 ### Naming Conventions
+
 There are a lot of different naming styles in use, including:
 
-- lower_case_with_underscores (or snake_case)
-- UPPER_CASE_WITH_UNDERSCORES
+- lower\_case\_with\_underscores (or snake\_case)
+- UPPER\_CASE\_WITH\_UNDERSCORES
 - CapitalisedWords (or PascalCase) (note: when using acronyms in CapitalisedWords, capitalise all the letters of the acronym,
-e.g HTTPServerError)
+  e.g HTTPServerError)
 - camelCase (differs from CapitalisedWords/PascalCase by the initial lowercase character)
-- Capitalised_Words_With_Underscores
+- Capitalised\_Words\_With\_Underscores
 
 As with other style guide recommendations - consistency is key.
 Follow the one already established in the project, if there is one.
@@ -345,34 +360,37 @@ Some things to be wary of when naming things in the code:
 
 - Avoid any names that could cause confusion (e.g. lower case `l` is
   hard to distinguish from a `1` (one), 'O' (uppercase o) from a '0' (zero),
- 'I' (uppercase i) from 'l' (lowercase L)).
+  'I' (uppercase i) from 'l' (lowercase L)).
 - Avoid using non-ASCII (e.g. Unicode) characters for identifiers as these
   can trip up software that does not support Unicode.
 - If your audience is international and English is the common language,
   try to use English words for identifiers and comments whenever possible
   but try to avoid abbreviations/local slang as they may not be understood by everyone.
-  Also consider sticking with either ‘American’ or 'British' English spellings
+  Also consider sticking with either 'American' or 'British' English spellings
   and try not to mix the two.
 
-> ## Function, Variable, Class, Module, Package Naming in Python
->
-> - Function and variable names should use lower_case_with_underscores
-> - Avoid single character names in almost all instances.
-> - Variable names should tell you what they store, and not just the type (e.g. `name_of_patient` is better than `string`)
-> - Function names should tell you what the function does.
-> - Class names should use the CapitalisedWords convention.
-> - Modules should have short, all-lowercase names.
->   Underscores can be used in the module name if it improves readability.
-> - Packages should also have short, all-lowercase names,
->   although the use of underscores is discouraged.
->
-> A more detailed guide on
-> [naming functions, modules, classes and variables](https://www.python.org/dev/peps/pep-0008/#package-and-module-names)
-> is available from PEP8.
->
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Function, Variable, Class, Module, Package Naming in Python
+
+- Function and variable names should use lower\_case\_with\_underscores
+- Avoid single character names in almost all instances.
+- Variable names should tell you what they store, and not just the type (e.g. `name_of_patient` is better than `string`)
+- Function names should tell you what the function does.
+- Class names should use the CapitalisedWords convention.
+- Modules should have short, all-lowercase names.
+  Underscores can be used in the module name if it improves readability.
+- Packages should also have short, all-lowercase names,
+  although the use of underscores is discouraged.
+
+A more detailed guide on
+[naming functions, modules, classes and variables](https://www.python.org/dev/peps/pep-0008/#package-and-module-names)
+is available from PEP8.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Comments
+
 Comments allow us to provide the reader with additional information on what the code does -
 reading and understanding source code is slow, laborious and can lead to misinterpretation,
 plus it is always a good idea to keep others in mind when writing code.
@@ -382,37 +400,40 @@ It can be easy to forget why you did something a particular way in six months' t
 Write comments as complete sentences and in English
 unless you are 100% sure the code will never be read by people who don't speak your language.
 
-> ## The Good, the Bad, and the Ugly Comments
-> As a side reading, check out the
-> ['Putting comments in code: the good, the bad, and the ugly' blogpost](https://www.freecodecamp.org/news/code-comments-the-good-the-bad-and-the-ugly-be9cc65fbf83/).
-> Remember - a comment should answer the ‘why’ question”.
-> Occasionally the “what” question.
-> The “how” question should be answered by the code itself.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## The Good, the Bad, and the Ugly Comments
+
+As a side reading, check out the
+['Putting comments in code: the good, the bad, and the ugly' blogpost](https://www.freecodecamp.org/news/code-comments-the-good-the-bad-and-the-ugly-be9cc65fbf83/).
+Remember - a comment should answer the 'why' question".
+Occasionally the "what" question.
+The "how" question should be answered by the code itself.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Block comments generally apply to some (or all) code that follows them,
 and are indented to the same level as that code.
 Each line of a block comment starts with a `#` and a single space
 (unless it is indented text inside the comment).
 
-~~~
+```python
 def fahr_to_cels(fahr):
     # Block comment example: convert temperature in Fahrenheit to Celsius
     cels = (fahr + 32) * (5 / 9)
     return cels
-~~~
-{: .language-python}
+```
 
 An inline comment is a comment on the same line as a statement.
 Inline comments should be separated by at least two spaces from the statement.
 They should start with a `#` and a single space and should be used sparingly.
 
-~~~
+```python
 def fahr_to_cels(fahr):
     cels = (fahr + 32) * (5 / 9)  # Inline comment example: convert temperature in Fahrenheit to Celsius
     return cels
-~~~
-{: .language-python}
+```
 
 Python doesn't have any multi-line comments,
 like you may have seen in other languages like C++ or Java.
@@ -433,126 +454,134 @@ Comments that simply restate what the code does are redundant,
 and comments must be accurate and updated with the code,
 because an incorrect comment causes more confusion than no comment at all.
 
-> ## Exercise: Improve Code Style of Our Project
-> Let's look at improving the coding style of our project.
-> First, from the project root, use `git switch` to create a new feature branch called `style-fixes`
-> from our develop branch.
-> (Note that at this point `develop` and `main` branches
-> are pointing at the same commit so it does not really matter which one we are branching off - 
-> in real collaborative software development environments, you'd likely be expected to branch off `develop`
-> as it would contain the latest code developed by your team.)
->
-> ~~~
-> $ git switch develop
-> $ git switch -c style-fixes
-> ~~~
->  {: .language-bash}
->
-> Next look at the `catchment-analysis.py` file in VS Code
-> and identify where the above guidelines have not been followed.
-> Fix the discovered inconsistencies and commit them to the feature branch.
->> ## Solution
->> Modify `catchment-analysis.py` from VS Code, 
->> which is helpfully marking inconsistencies with coding guidelines by underlying them.
->> There are a few things to fix in `catchment-analysis.py`, for example:
->>
->>  1. Line 24 in `catchment-analysis.py` is too long and not very readable
->>     A better style would be to use multiple lines and hanging indent, 
->>     with the closing brace `}' aligned either with
->>     the first non-whitespace character of the last line of list
->>     or the first character of the line that starts the multiline construct
->>     or simply moved to the end of the previous line. 
->>     All three acceptable modifications are shown below.
->>
->>      ~~~
->>      # Using hanging indent, with the closing '}' aligned with the first non-blank character of the previous line
->>      view_data = {'daily sum': models.daily_total(measurement_data), 
->>                   'daily average': models.daily_mean(measurement_data), 
->>                   'daily max': models.daily_max(measurement_data), 
->>                   'daily min': models.daily_min(measurement_data)}
->>      ~~~
->>      {: .language-python}
->>
->>      ~~~
->>      # Using hanging indent with the, closing '}' aligned with the start of the multiline contruct
->>      view_data = {
->>          'daily sum': models.daily_total(measurement_data), 
->>          'daily average': models.daily_mean(measurement_data), 
->>          'daily max': models.daily_max(measurement_data), 
->>          'daily min': models.daily_min(measurement_data)
->>      }
->>      ~~~
->>      {: .language-python}
->>
->>      ~~~
->>      # Using hanging indent where all the lines of the multiline contruct are indented except the first one
->>      view_data = {
->>          'daily sum': models.daily_total(measurement_data), 
->>          'daily average': models.daily_mean(measurement_data), 
->>          'daily max': models.daily_max(measurement_data), 
->>          'daily min': models.daily_min(measurement_data)}
->>      ~~~
->>      {: .language-python}
->>
->>  2. Variable 'InFiles' in `catchment-analysis.py` uses CapitalisedWords naming convention
->>     which is recommended for class names but not variable names.
->>     By convention, variable names should be in lowercase with optional underscores
->>     so you should rename the variable 'InFiles' to, e.g., 'infiles' or 'in_files'.
->>
->>  3. There is an extra blank line on line 20 in `catchment-analysis.py`.
->>     Normally, you should not use blank lines in the middle of the code 
->>     unless you want to separate logical units -
->>     in which case only one blank line is used.
->>     Note how VS Code is warning us by underlining the whole line.
->>
->>  4. Only one blank line after the end of definition of function `main`
->>     and the rest of the code on line 30 in `catchment-analysis.py` - 
->>     should be two blank lines (PEP8 recommends surrounding top-level function
->>     (and class) definitions with two blank lines).
->>     Note how VS Code is warning us by underlining the whole line.
->>
->> Finally, let's add and commit our changes to the feature branch.
->> We will check the status of our working directory first.
->>
->> ~~~
->> $ git status
->> ~~~
->> {: .language-bash}
->>
->> ~~~
->> On branch style-fixes
->> Changes not staged for commit:
->> (use "git add <file>..." to update what will be committed)
->> (use "git restore <file>..." to discard changes in working directory)
->> modified:   catchment-analysis.py
->>
->> no changes added to commit (use "git add" and/or "git commit -a")
->> ~~~
->> {: .output}
->>
->> Git tells us we are on branch `style-fixes`
->> and that we have unstaged and uncommited changes to `catchment-analysis.py`.
->> Let's commit them to the local repository.
->> ~~~
->> $ git add catchment-analysis.py
->> $ git commit -m "Code style fixes."
->> ~~~
->> {: .language-bash}
->{: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Improve Code Style of Our Project
+
+Let's look at improving the coding style of our project.
+First, from the project root, use `git switch` to create a new feature branch called `style-fixes`
+from our develop branch.
+(Note that at this point `develop` and `main` branches
+are pointing at the same commit so it does not really matter which one we are branching off -
+in real collaborative software development environments, you'd likely be expected to branch off `develop`
+as it would contain the latest code developed by your team.)
+
+```bash
+$ git switch develop
+$ git switch -c style-fixes
+```
+
+Next look at the `catchment-analysis.py` file in VS Code
+and identify where the above guidelines have not been followed.
+Fix the discovered inconsistencies and commit them to the feature branch.
+
+:::::::::::::::  solution
+
+## Solution
+
+Modify `catchment-analysis.py` from VS Code,
+which is helpfully marking inconsistencies with coding guidelines by underlying them.
+There are a few things to fix in `catchment-analysis.py`, for example:
+
+1. Line 24 in `catchment-analysis.py` is too long and not very readable
+  A better style would be to use multiple lines and hanging indent,
+  with the closing brace \`}' aligned either with
+  the first non-whitespace character of the last line of list
+  or the first character of the line that starts the multiline construct
+  or simply moved to the end of the previous line.
+  All three acceptable modifications are shown below.
+  
+  ```python
+  # Using hanging indent, with the closing '}' aligned with the first non-blank character of the previous line
+  view_data = {'daily sum': models.daily_total(measurement_data), 
+               'daily average': models.daily_mean(measurement_data), 
+               'daily max': models.daily_max(measurement_data), 
+               'daily min': models.daily_min(measurement_data)}
+  ```
+  
+  ```python
+  # Using hanging indent with the, closing '}' aligned with the start of the multiline contruct
+  view_data = {
+      'daily sum': models.daily_total(measurement_data), 
+      'daily average': models.daily_mean(measurement_data), 
+      'daily max': models.daily_max(measurement_data), 
+      'daily min': models.daily_min(measurement_data)
+  }
+  ```
+  
+  ```python
+  # Using hanging indent where all the lines of the multiline contruct are indented except the first one
+  view_data = {
+      'daily sum': models.daily_total(measurement_data), 
+      'daily average': models.daily_mean(measurement_data), 
+      'daily max': models.daily_max(measurement_data), 
+      'daily min': models.daily_min(measurement_data)}
+  ```
+
+2. Variable 'InFiles' in `catchment-analysis.py` uses CapitalisedWords naming convention
+  which is recommended for class names but not variable names.
+  By convention, variable names should be in lowercase with optional underscores
+  so you should rename the variable 'InFiles' to, e.g., 'infiles' or 'in\_files'.
+
+3. There is an extra blank line on line 20 in `catchment-analysis.py`.
+  Normally, you should not use blank lines in the middle of the code
+  unless you want to separate logical units -
+  in which case only one blank line is used.
+  Note how VS Code is warning us by underlining the whole line.
+
+4. Only one blank line after the end of definition of function `main`
+  and the rest of the code on line 30 in `catchment-analysis.py` -
+  should be two blank lines (PEP8 recommends surrounding top-level function
+  (and class) definitions with two blank lines).
+  Note how VS Code is warning us by underlining the whole line.
+
+Finally, let's add and commit our changes to the feature branch.
+We will check the status of our working directory first.
+
+```bash
+$ git status
+```
+
+```output
+On branch style-fixes
+Changes not staged for commit:
+(use "git add <file>..." to update what will be committed)
+(use "git restore <file>..." to discard changes in working directory)
+modified:   catchment-analysis.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+Git tells us we are on branch `style-fixes`
+and that we have unstaged and uncommited changes to `catchment-analysis.py`.
+Let's commit them to the local repository.
+
+```bash
+$ git add catchment-analysis.py
+$ git commit -m "Code style fixes."
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Optional Exercise: Improve Code Style of Your Other Python Projects
+
+If you have another Python project, check to which extent it conforms to PEP8 coding style.
 
 
-> ## Optional Exercise: Improve Code Style of Your Other Python Projects
-> If you have another Python project, check to which extent it conforms to PEP8 coding style.
-{: .challenge}
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Documentation Strings aka Docstrings
+
 If the first thing in a function is a string that is not assigned to a variable,
 that string is attached to the function as its documentation.
 Consider the following code implementing function
 for calculating the nth Fibonacci number:
 
-~~~
+```python
 def fibonacci(n):
     """Calculate the nth Fibonacci number.
 
@@ -570,8 +599,7 @@ def fibonacci(n):
         return 1
 
     return fibonacci(n - 1) + fibonacci(n - 2)
-~~~
-{: .language-python}
+```
 
 Note here we are explicitly documenting our input variables,
 what is returned by the function,
@@ -601,37 +629,42 @@ In our example case, we used the
 [Sphynx/ReadTheDocs docstring style](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html)
 formatting for the `param`, `raises` and `returns` - other docstring formats exist as well.
 
-> ## Python PEP 257 - Recommendations for Docstrings
-> [PEP 257](https://peps.python.org/pep-0257/)
-> is another one of Python Enhancement Proposals
-> and this one deals with docstring conventions to standardise how they are used.
-> For example, on the subject of module-level docstrings, PEP 257 says:
->
-> ~~~
-> The docstring for a module should generally list
-> the classes,
-> exceptions
-> and functions
-> (and any other objects)
-> that are exported by the module, with a one-line summary of each.
-> (These summaries generally give less detail than the summary line in the object's docstring.)
-> The docstring for a package
-> (i.e., the docstring of the package's `__init__.py` module)
-> should also list the modules and subpackages exported by the package.
-> ~~~
->
-> Note that `__init__.py` file used to be a required part of a package
-> (pre Python 3.3)
-> where a package was typically implemented as a directory containing
-> an `__init__.py` file which got implicitly executed when a package was imported.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Python PEP 257 - Recommendations for Docstrings
+
+[PEP 257](https://peps.python.org/pep-0257/)
+is another one of Python Enhancement Proposals
+and this one deals with docstring conventions to standardise how they are used.
+For example, on the subject of module-level docstrings, PEP 257 says:
+
+```
+The docstring for a module should generally list
+the classes,
+exceptions
+and functions
+(and any other objects)
+that are exported by the module, with a one-line summary of each.
+(These summaries generally give less detail than the summary line in the object's docstring.)
+The docstring for a package
+(i.e., the docstring of the package's `__init__.py` module)
+should also list the modules and subpackages exported by the package.
+```
+
+Note that `__init__.py` file used to be a required part of a package
+(pre Python 3.3)
+where a package was typically implemented as a directory containing
+an `__init__.py` file which got implicitly executed when a package was imported.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 So, at the beginning of a module file we can just add
 a docstring explaining the nature of a module.
 For example, if `fibonacci()` was included in a module with other functions,
 our module could have at the start of it:
 
-~~~
+```python
 """A module for generating numerical sequences of numbers that occur in nature.
 
 Functions:
@@ -640,8 +673,7 @@ Functions:
   ...
 """
 ...
-~~~
-{: .language-python}
+```
 
 The docstring for a function or a module
 is returned when calling the `help` function and passing its name -
@@ -651,96 +683,102 @@ or when rendering code documentation online
 VS Code also displays the docstring for a function/module
 in a little help popup window when using tab-completion.
 
-~~~
+```python
 help(fibonacci)
- ~~~
- {: .language-python}
+```
 
-> ## Exercise: Fix the Docstrings
-> Look into `models.py` in VS Code and improve docstrings for functions
-> `daily_mean` ,
-> `daily_min`,
-> `daily_max`.
-> Commit those changes to feature branch `style-fixes`.
-> > ## Solution
-> > For example,
-> > the improved docstrings for the above functions would contain explanations
-> > for parameters and return values.
-> >
-> > ~~~
-> > def daily_total(data):
-> >     """Calculate the daily total of a 2D data array.
-> > 
-> >     :param data: A 2D Pandas data frame with measurement data. 
-> >                  Index must be np.datetime64 compatible format. Columns are measurement sites.
-> >     :returns: A 2D Pandas data frame with total values of the measurements for each day.
-> >     """
-> >     return data.groupby(data.index.date).sum()
-> > ~~~
-> > {: .language-python}
-> >
-> > ~~~
-> > def daily_mean(data):
-> >     """Calculate the daily mean of a 2D data array.
-> >
-> >     :param data: A 2D Pandas data frame with measurement data. 
-> >                  Index must be np.datetime64 compatible format. Columns are measurement sites.
-> >     :returns: A 2D Pandas data frame with mean values of the measurements for each day.
-> >     """
-> >     return data.groupby(data.index.date).mean()
-> > ~~~
-> > {: .language-python}
-> >
-> > ~~~
-> > def daily_min(data):
-> >     """Calculate the daily minimum of a 2D data array.
-> >
-> >     :param data: A 2D Pandas data frame with measurement data. 
-> >                  Index must be np.datetime64 compatible format. Columns are measurement sites.
-> >     :returns: A 2D Pandas data frame with minimum values of the measurements for each day.
-> >     """
-> >     return data.groupby(data.index.date).min()
-> >~~~
-> > {: .language-python}
-> > ~~~
-> > def daily_max(data):
-> >     """Calculate the daily maximum of a 2D data array.
-> >
-> >     :param data: A 2D Pandas data frame with measurement data. 
-> >                  Index must be np.datetime64 compatible format. Columns are measurement sites.
-> >     :returns: A 2D Pandas data frame with maximum values of the measurements for each day.
-> >     """
-> >     return data.groupby(data.index.date).max()
-> >~~~
-> > {: .language-python}
->> Once we are happy with modifications,
->> as usual before staging and commit our changes,
->> we check the status of our working directory:
->> ~~~
->> $ git status
->> ~~~
->> {: .language-bash}
->> ~~~
->> On branch style-fixes
->> Changes not staged for commit:
->> (use "git add <file>..." to update what will be committed)
->> (use "git restore <file>..." to discard changes in working directory)
->> modified:   catchment/models.py
->>
->> no changes added to commit (use "git add" and/or "git commit -a")
->> ~~~
->> {: .output}
->>
->> As expected, Git tells us we are on branch `style-fixes`
->> and that we have unstaged and uncommited changes to `catchment/models.py`.
->> Let's commit them to the local repository.
->> ~~~
->> $ git add catchment/models.py
->> $ git commit -m "Docstring improvements."
->> ~~~
->> {: .language-bash}
-> {: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Fix the Docstrings
+
+Look into `models.py` in VS Code and improve docstrings for functions
+`daily_mean` ,
+`daily_min`,
+`daily_max`.
+Commit those changes to feature branch `style-fixes`.
+
+:::::::::::::::  solution
+
+## Solution
+
+For example,
+the improved docstrings for the above functions would contain explanations
+for parameters and return values.
+
+```python
+def daily_total(data):
+    """Calculate the daily total of a 2D data array.
+
+    :param data: A 2D Pandas data frame with measurement data. 
+                 Index must be np.datetime64 compatible format. Columns are measurement sites.
+    :returns: A 2D Pandas data frame with total values of the measurements for each day.
+    """
+    return data.groupby(data.index.date).sum()
+```
+
+```python
+def daily_mean(data):
+    """Calculate the daily mean of a 2D data array.
+
+    :param data: A 2D Pandas data frame with measurement data. 
+                 Index must be np.datetime64 compatible format. Columns are measurement sites.
+    :returns: A 2D Pandas data frame with mean values of the measurements for each day.
+    """
+    return data.groupby(data.index.date).mean()
+```
+
+```python
+def daily_min(data):
+    """Calculate the daily minimum of a 2D data array.
+
+    :param data: A 2D Pandas data frame with measurement data. 
+                 Index must be np.datetime64 compatible format. Columns are measurement sites.
+    :returns: A 2D Pandas data frame with minimum values of the measurements for each day.
+    """
+    return data.groupby(data.index.date).min()
+```
+
+```python
+def daily_max(data):
+    """Calculate the daily maximum of a 2D data array.
+
+    :param data: A 2D Pandas data frame with measurement data. 
+                 Index must be np.datetime64 compatible format. Columns are measurement sites.
+    :returns: A 2D Pandas data frame with maximum values of the measurements for each day.
+    """
+    return data.groupby(data.index.date).max()
+```
+
+Once we are happy with modifications,
+as usual before staging and commit our changes,
+we check the status of our working directory:
+
+```bash
+$ git status
+```
+
+```output
+On branch style-fixes
+Changes not staged for commit:
+(use "git add <file>..." to update what will be committed)
+(use "git restore <file>..." to discard changes in working directory)
+modified:   catchment/models.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+As expected, Git tells us we are on branch `style-fixes`
+and that we have unstaged and uncommited changes to `catchment/models.py`.
+Let's commit them to the local repository.
+
+```bash
+$ git add catchment/models.py
+$ git commit -m "Docstring improvements."
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 In the previous exercises, we made some code improvements on feature branch `style-fixes`.
 We have committed our changes locally but
@@ -757,7 +795,7 @@ Here is a set commands that will achieve the above set of actions
 (remember to use `git status` often in between other Git commands
 to double check which branch you are on and its status):
 
-~~~
+```bash
 $ git push -u origin style-fixes
 $ git switch develop
 $ git merge style-fixes
@@ -765,22 +803,38 @@ $ git push origin develop
 $ git switch main
 $ git merge develop
 $ git push origin main
-~~~
-{: .language-bash}
+```
 
-> ## Typical Code Development Cycle
-> What you've done in the exercises in this episode mimics a typical software development workflow -
-> you work locally on code on a feature branch,
-> test it to make sure it works correctly and as expected,
-> then record your changes using version control
-> and share your work with others via a centrally backed-up repository.
-> Other team members work on their feature branches in parallel
-> and similarly share their work with colleagues for discussions.
-> Different feature branches from around the team get merged onto the development branch,
-> often in small and quick development cycles.
-> After further testing and verifying that no code has been broken by the new features -
-> the development branch gets merged onto the stable main branch,
-> where new features finally resurface to end-users in bigger "software release" cycles.
-{: .testimonial}
+:::::::::::::::::::::::::::::::::::::  testimonial
 
-{% include links.md %}
+## Typical Code Development Cycle
+
+What you've done in the exercises in this episode mimics a typical software development workflow -
+you work locally on code on a feature branch,
+test it to make sure it works correctly and as expected,
+then record your changes using version control
+and share your work with others via a centrally backed-up repository.
+Other team members work on their feature branches in parallel
+and similarly share their work with colleagues for discussions.
+Different feature branches from around the team get merged onto the development branch,
+often in small and quick development cycles.
+After further testing and verifying that no code has been broken by the new features -
+the development branch gets merged onto the stable main branch,
+where new features finally resurface to end-users in bigger "software release" cycles.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- Always assume that someone else will read your code at a later date, including yourself.
+- Community coding conventions help you create more readable software projects that are easier to contribute to.
+- Python Enhancement Proposals (or PEPs) describe a recommended convention or specification for how to do something in Python.
+- Style checking to ensure code conforms to coding conventions is often part of IDEs.
+- Consistency with the style guide is important - whichever style you choose.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

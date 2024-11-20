@@ -1,22 +1,26 @@
 ---
-title: "Developing Software In a Team: Code Review"
+title: 'Developing Software In a Team: Code Review'
 teaching: 15
 exercises: 30
-questions:
-- "How do we develop software in a team?"
-- "What is code review and how it can improve the quality of code?"
-objectives:
-- "Describe commonly used code review techniques."
-- "Understand how to do a pull request via GitHub to engage in code review with a team and contribute to a shared code repository."
-keypoints:
-- "Code review is a team software quality assurance practice where team members look at parts of the codebase in order to improve their code's readability, understandability, quality and maintainability."
-- "It is important to agree on a set of best practices and establish a code review process in a team to help to
-sustain a good, stable and maintainable code for many years."
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Describe commonly used code review techniques.
+- Understand how to do a pull request via GitHub to engage in code review with a team and contribute to a shared code repository.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How do we develop software in a team?
+- What is code review and how it can improve the quality of code?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
-So far in this course we’ve focused on learning software design
+So far in this course we've focused on learning software design
 and (some) technical practices, tools and infrastructure that
 help the development of software in a team environment, but in an individual setting.
 Despite developing tests to check our code - no one else from the team had a look at our code
@@ -25,41 +29,46 @@ Software is often designed and built as part of a team,
 so in this episode we'll be looking at how to manage the process of team software development
 and improve our code by engaging in code review process with other team members.
 
-> ## Collaborative Code Development Models
-> The way your team provides contributions to the shared codebase depends on
-> the type of development model you use in your project.
-> Two commonly used models are:
->
->  * Fork and pull model
->  * Shared repository model
->
-> **Fork and Pull Model**
->
-> In this model, anyone can **fork** an existing repository
-> (to create their copy of the project linked to the source)
-> and push changes to their personal fork.
-> A contributor can work independently on their own fork as they do not need
-> permissions on the source repository to push modifications to a fork they own.
-> The changes from contributors can then be **pulled** into the source repository
-> by the project maintainer on request and after a code review process.
-> This model is popular with open source projects as it
-> reduces the start up costs for new contributors
-> and allows them to work independently without upfront coordination
-> with source project maintainers.
-> So, for example, you may use this model when you are an external collaborator on a project
-> rather than a core team member.
->
-> **Shared Repository Model**
->
-> In this model, collaborators are granted push access to a single shared code repository.
-> By default, collaborators have write access to the main branch.
-> However, it is best practice to create feature branches for new developments,
-> and protect the main branch. See the extra on [protecting the main branch](../protect-main-branch)
-> for how to do this.
-> While it requires more upfront coordination, it is easier to share each others
-> work, so it works well for more stable teams.
-> This model is more prevalent with teams and organizations collaborating on private projects.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Collaborative Code Development Models
+
+The way your team provides contributions to the shared codebase depends on
+the type of development model you use in your project.
+Two commonly used models are:
+
+- Fork and pull model
+- Shared repository model
+
+**Fork and Pull Model**
+
+In this model, anyone can **fork** an existing repository
+(to create their copy of the project linked to the source)
+and push changes to their personal fork.
+A contributor can work independently on their own fork as they do not need
+permissions on the source repository to push modifications to a fork they own.
+The changes from contributors can then be **pulled** into the source repository
+by the project maintainer on request and after a code review process.
+This model is popular with open source projects as it
+reduces the start up costs for new contributors
+and allows them to work independently without upfront coordination
+with source project maintainers.
+So, for example, you may use this model when you are an external collaborator on a project
+rather than a core team member.
+
+**Shared Repository Model**
+
+In this model, collaborators are granted push access to a single shared code repository.
+By default, collaborators have write access to the main branch.
+However, it is best practice to create feature branches for new developments,
+and protect the main branch. See the extra on [protecting the main branch](../instructors/protect-main-branch.md)
+for how to do this.
+While it requires more upfront coordination, it is easier to share each others
+work, so it works well for more stable teams.
+This model is more prevalent with teams and organizations collaborating on private projects.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Regardless of the collaborative code development model you and your collaborators use -
 code reviews are one of the widely accepted best practices for software development in teams
@@ -71,31 +80,43 @@ and something you should adopt in your development process too.
 where one or several people from the team (different from the code's author)
 check the software by viewing parts of its source code.
 
-> ## Group Exercise: Advantages of Code Review
-> Discuss as a group: what do you think are the reasons behind, and advantages of, code review?
-> > ## Solution
-> > The purposes of code review include:
-> > - improving internal code readability, understandability, quality and maintainability
-> > - checking for coding standards compliance, code uniformity and consistency
-> > - checking for test coverage and detecting bugs and code defects early
-> > - detecting performance problems and identifying code optimisation points
-> > - finding alternative/better solutions.
-> >
-> > An effective code review prevents errors from creeping into your software
-> > by improving code quality at an early stage of the software development process.
-> > It helps with learning, i.e. sharing knowledge about the codebase,
-> > solution approaches,
-> > expectations regarding quality,
-> > coding standards, etc.
-> > Developers use code review feedback from more senior developers
-> > to improve their own coding practices and expertise.
-> > Finally, it helps increase the sense of collective code ownership and responsibility,
-> > which in turn helps increase the "bus factor"
-> > and reduce the risk resulting from information and capabilities
-> > being held by a single person "responsible" for a certain part of the codebase
-> > and not being shared among team members.
-> {: .solution}
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Group Exercise: Advantages of Code Review
+
+Discuss as a group: what do you think are the reasons behind, and advantages of, code review?
+
+:::::::::::::::  solution
+
+## Solution
+
+The purposes of code review include:
+
+- improving internal code readability, understandability, quality and maintainability
+- checking for coding standards compliance, code uniformity and consistency
+- checking for test coverage and detecting bugs and code defects early
+- detecting performance problems and identifying code optimisation points
+- finding alternative/better solutions.
+
+An effective code review prevents errors from creeping into your software
+by improving code quality at an early stage of the software development process.
+It helps with learning, i.e. sharing knowledge about the codebase,
+solution approaches,
+expectations regarding quality,
+coding standards, etc.
+Developers use code review feedback from more senior developers
+to improve their own coding practices and expertise.
+Finally, it helps increase the sense of collective code ownership and responsibility,
+which in turn helps increase the "bus factor"
+and reduce the risk resulting from information and capabilities
+being held by a single person "responsible" for a certain part of the codebase
+and not being shared among team members.
+
+
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Code review is one of the most useful team code development practices -
 someone checks your design or code for errors, they get to learn from your solution,
@@ -231,7 +252,7 @@ and receives a pull request on their repository from the third team member).
 If you are going through the material on your own and do not have a collaborator,
 you can do pull requests on your own repository from one to another branch.
 
-Recall [solution requirements SR1.1.1 and SR1.2.1](../31-software-requirements/index.html#solution-requirements)
+Recall [solution requirements SR1.1.1 and SR1.2.1](31-software-requirements.md)
 from an earlier episode.
 Your team member has implemented one of them according to the specification
 (let's call it `feature-x`)
@@ -246,7 +267,8 @@ Similarly, you will receive a pull request on your repository from another team 
 in which case the roles will be reversed.
 The following diagram depicts the branches that you should have in the repository.
 
-![Branches for a feature and its tests](../fig/exercise-feature-branch.svg){: .image-with-shadow width="800px"}
+![](fig/exercise-feature-branch.svg){alt='Branches for a feature and its tests' .image-with-shadow width="800px"}
+
 <p style="text-align: center;">
 Adapted from <a href="https://sillevl.gitbooks.io/git/content/collaboration/workflows/gitflow/" target="_blank">Git Tutorial by sillevl</a> (Creative Commons Attribution 4.0 International License)
 </p>
@@ -260,15 +282,15 @@ to enable them to create branches and pull requests.
 To do so, each repository owner needs to:
 
 1. Head over to Settings section of your software project's repository in GitHub.
-   ![Accessing settings for a repository in GitHub](../fig/github-settings.png){: .image-with-shadow width="900px"}
+  ![](fig/github-settings.png){alt='Accessing settings for a repository in GitHub' .image-with-shadow width="900px"}
 2. Select the **vertical** tab 'Collaborators' from the left and click the 'Add people' button.
-   ![Managing access to a repository in GitHub](../fig/github-manage-access.png){: .image-with-shadow width="900px"}
+  ![](fig/github-manage-access.png){alt='Managing access to a repository in GitHub' .image-with-shadow width="900px"}
 3. Add your collaborator(s) by their GitHub username(s), full name(s) or email address(es).
-   ![Adding collaborators to a repository in GitHub](../fig/github-add-collaborators.png){: .image-with-shadow width="900px"}
+  ![](fig/github-add-collaborators.png){alt='Adding collaborators to a repository in GitHub' .image-with-shadow width="900px"}
 4. Collaborator(s) will be notified of your invitation to join your repository
-   based on their notification preferences.
+  based on their notification preferences.
 5. Once they accept the invitation, they will have the collaborator-level access to your repository
-   and will show up in the list of your collaborators.
+  and will show up in the list of your collaborators.
 
 See the full details on
 [collaborator permissions for personal repositories](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-user-account-settings/permission-levels-for-a-user-account-repository)
@@ -280,75 +302,86 @@ compared to that of personal repositories.
 #### Step 2: Preparing Your Local Environment for a Pull Request
 
 1. Obtain the GitHub URL of the shared repository you will be working on and clone it locally
-   (make sure you do it outside your software repository's folder you have been working on so far).
-   This will create a copy of the repository locally on your machine
-   along with all of its (remote) branches.
-   ~~~
-   $ git clone <remote-repo-url>
-   $ cd <remote-repo-name>
-   ~~~
-   {: .language-bash}
+  (make sure you do it outside your software repository's folder you have been working on so far).
+  This will create a copy of the repository locally on your machine
+  along with all of its (remote) branches.
+  
+  ```bash
+  $ git clone <remote-repo-url>
+  $ cd <remote-repo-name>
+  ```
+
 2. Check with the repository owner (your team member)
-   which feature (SR1.1.1 or SR1.2.1) they implemented in the
-   [previous exercise](/32-software-design/index.html#implement-requirements)
-   and what is the name of the branch they worked on.
-   Let's assume the name of the branch was `feature-x`
-   (you should amend the branch name for your case accordingly).
+  which feature (SR1.1.1 or SR1.2.1) they implemented in the
+  [previous exercise](32-software-design.md)
+  and what is the name of the branch they worked on.
+  Let's assume the name of the branch was `feature-x`
+  (you should amend the branch name for your case accordingly).
+
 3. Your task is to add tests for the code on `feature-x` branch.
-   You should do so on a separate branch called `feature-x-tests`,
-   which will branch off `feature-x`.
-   This is to enable you later on to create a pull request
-   from your `feature-x-tests` branch with your changes
-   that can then easily be reviewed and compared with `feature-x`
-   by the team member who created it.
-
-   To do so, branch off a new local branch `feature-x-tests` from the remote `feature-x` branch
-   (making sure you use the branch names that match your case).
-   Also note that, while we say "remote" branch `feature-x` -
-   you have actually obtained it locally on your machine when you cloned the remote repository.
-   ~~~
-   $ git switch -c feature-x-tests origin/feature-x
-   ~~~
-   {: .language-bash}
-
-   You are now located in the new (local) `feature-x-tests` branch
-   and are ready to start adding your code.
+  You should do so on a separate branch called `feature-x-tests`,
+  which will branch off `feature-x`.
+  This is to enable you later on to create a pull request
+  from your `feature-x-tests` branch with your changes
+  that can then easily be reviewed and compared with `feature-x`
+  by the team member who created it.
+  
+  To do so, branch off a new local branch `feature-x-tests` from the remote `feature-x` branch
+  (making sure you use the branch names that match your case).
+  Also note that, while we say "remote" branch `feature-x` -
+  you have actually obtained it locally on your machine when you cloned the remote repository.
+  
+  ```bash
+  $ git switch -c feature-x-tests origin/feature-x
+  ```
+  
+  You are now located in the new (local) `feature-x-tests` branch
+  and are ready to start adding your code.
 
 #### Step 3: Adding New Code
 
-> ## Exercise: Implement Tests for the New Feature
-> Look back at the
-> [solution requirements](/31-software-requirements/index.html#solution-requirements)
-> (SR1.1.1 or SR1.2.1)
-> for the feature that was implemented in your shared repository.
-> Implement tests against the appropriate specification in your local feature branch.
->
-> ***Note:** Try not to not fall into the trap of
-> writing the tests to test the existing code/implementation -
-> you should write the tests to make sure the code satisfies the requirements
-> regardless of the actual implementation.
-> You can treat the implementation as a
-> [black box](https://en.wikipedia.org/wiki/Black-box_testing) -
-> a typical approach to software testing -
-> as a way to make sure it is properly tested against its requirements
-> without introducing assumptions into the tests about its implementation.*
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
 
-> ## Testing Based on Requirements
-> Tests should test functionality,
-> which stem from the software requirements,
-> rather than an implementation.
-> Tests can be seen as a reflection of those requirements -
-> checking if the requirements are satisfied.
-{: .callout}
+## Exercise: Implement Tests for the New Feature
+
+Look back at the
+[solution requirements](31-software-requirements.md)
+(SR1.1.1 or SR1.2.1)
+for the feature that was implemented in your shared repository.
+Implement tests against the appropriate specification in your local feature branch.
+
+***Note:** Try not to not fall into the trap of
+writing the tests to test the existing code/implementation -
+you should write the tests to make sure the code satisfies the requirements
+regardless of the actual implementation.
+You can treat the implementation as a
+[black box](https://en.wikipedia.org/wiki/Black-box_testing) -
+a typical approach to software testing -
+as a way to make sure it is properly tested against its requirements
+without introducing assumptions into the tests about its implementation.*
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Testing Based on Requirements
+
+Tests should test functionality,
+which stem from the software requirements,
+rather than an implementation.
+Tests can be seen as a reflection of those requirements -
+checking if the requirements are satisfied.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Remember to commit your new code to your branch `feature-x-tests`.
 
-~~~
+```bash
 $ git add -A
 $ git commit -m "Added tests for feature-x."
-~~~
-{: .language-bash}
+```
 
 #### Step 4: Submitting a Pull Request
 
@@ -358,23 +391,22 @@ and are ready for the others in the team to review them,
 you have to do the following:
 
 1. Push your local feature branch `feature-x-tests` remotely to the shared repository.
-   ~~~
-   $ git push -u origin feature-x-tests
-   ~~~
-   {: .language-bash}
+  ```bash
+  $ git push -u origin feature-x-tests
+  ```
 2. Head over to the remote repository in GitHub
-   and locate your new (`feature-x-tests`) branch from the dropdown box on the Code tab
-   (you can search for your branch or use the "View all branches" option).
-   ![All repository branches in GitHub](../fig/github-branches.png){: .image-with-shadow width="600px"}
-3. Open a pull request by clicking "Compare & pull request" button.
-   ![Submitting a pull request in GitHub](../fig/github-create-pull-request.png){: .image-with-shadow width="900px"}
+  and locate your new (`feature-x-tests`) branch from the dropdown box on the Code tab
+  (you can search for your branch or use the "View all branches" option).
+  ![](fig/github-branches.png){alt='All repository branches in GitHub' .image-with-shadow width="600px"}
+3. Open a pull request by clicking "Compare \& pull request" button.
+  ![](fig/github-create-pull-request.png){alt='Submitting a pull request in GitHub' .image-with-shadow width="900px"}
 4. Select the base and the head branch, e.g. `feature-x` and `feature-x-tests`, respectively.
-   Recall that the base branch is where you want your changes to be merged
-   and the head branch contains your changes.
+  Recall that the base branch is where you want your changes to be merged
+  and the head branch contains your changes.
 5. Add a comment describing the nature of the changes,
-   and then submit the pull request.
+  and then submit the pull request.
 6. Repository moderator and other collaborators on the repository (code reviewers)
-   will be notified of your pull request by GitHub.
+  will be notified of your pull request by GitHub.
 7. At this point, the code review process is initiated.
 
 You should receive a similar pull request from other team members on your repository.
@@ -382,11 +414,11 @@ You should receive a similar pull request from other team members on your reposi
 #### Step 5: Code Review
 
 1. The repository moderator/code reviewers reviews your changes
-   and provides feedback to you in the form of comments.
+  and provides feedback to you in the form of comments.
 2. Respond to their comments and do any subsequent commits,
-   as requested by reviewers.
+  as requested by reviewers.
 3. It may take a few rounds of exchanging comments and discussions until
-   the team is ready to accept your changes.
+  the team is ready to accept your changes.
 
 Perform the above actions on the pull request you received,
 this time acting as the moderator/code reviewer.
@@ -394,9 +426,9 @@ this time acting as the moderator/code reviewer.
 #### Step 6: Closing a Pull Request
 
 1. Once the moderator approves your changes, either one of you can merge onto the base branch.
-   Typically, it is the responsibility of the code's author to do the merge
-   but this may differ from team to team.
-   ![Merging a pull request in GitHub](../fig/github-merge-pull-request.png){: .image-with-shadow width="900px"}
+  Typically, it is the responsibility of the code's author to do the merge
+  but this may differ from team to team.
+  ![](fig/github-merge-pull-request.png){alt='Merging a pull request in GitHub' .image-with-shadow width="900px"}
 2. Delete the merged branch to reduce the clutter in the repository.
 
 Repeat the above actions for the pull request you received.
@@ -416,84 +448,97 @@ Swarmia](https://www.swarmia.com/blog/a-complete-guide-to-code-reviews/?utm_term
 and [Smartbear](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/)):
 
 1. Decide the focus of your code review process, e.g., consider some of the following:
-   - code design and functionality -
-     does the code fit in the overall design and does it do what was intended?
-   - code understandability and complexity -
-     is the code readable and would another developer be able to understand it?
-   - tests - does the code have automated tests?
-   - naming - are names used for variables and functions descriptive,
-     do they follow naming conventions?
-   - comments and documentation -
-     are there clear and useful comments that explain complex designs well
-     and focus on the "why/because" rather than the "what/how"?
+  - code design and functionality -
+    does the code fit in the overall design and does it do what was intended?
+  - code understandability and complexity -
+    is the code readable and would another developer be able to understand it?
+  - tests - does the code have automated tests?
+  - naming - are names used for variables and functions descriptive,
+    do they follow naming conventions?
+  - comments and documentation -
+    are there clear and useful comments that explain complex designs well
+    and focus on the "why/because" rather than the "what/how"?
 2. Do not review code too quickly and do not review for too long in one sitting.
-   According to
-   [“Best Kept Secrets of Peer Code Review” (Cohen, 2006)](https://www.amazon.co.uk/Best-Kept-Secrets-Peer-Review/dp/1599160676) -
-   the first hour of review matters the most as
-   detection of defects significantly drops after this period.
-   [Studies into code review](https://smartbear.com/resources/ebooks/the-state-of-code-review-2020-report/)
-   also show that you should not review more than 400 lines of code at a time.
-   Conducting more frequent shorter reviews seems to be more effective.
+  According to
+  ["Best Kept Secrets of Peer Code Review" (Cohen, 2006)](https://www.amazon.co.uk/Best-Kept-Secrets-Peer-Review/dp/1599160676) -
+  the first hour of review matters the most as
+  detection of defects significantly drops after this period.
+  [Studies into code review](https://smartbear.com/resources/ebooks/the-state-of-code-review-2020-report/)
+  also show that you should not review more than 400 lines of code at a time.
+  Conducting more frequent shorter reviews seems to be more effective.
 3. Decide on the level of depth for code reviews
-   to maintain the balance between the creation time and time spent reviewing code -
-   e.g. reserve them for critical portions of code and avoid nit-picking on small details.
-   Try using automated checks and linters when possible,
-   e.g. for consistent usage of certain terminology across the code and code styles.
+  to maintain the balance between the creation time and time spent reviewing code -
+  e.g. reserve them for critical portions of code and avoid nit-picking on small details.
+  Try using automated checks and linters when possible,
+  e.g. for consistent usage of certain terminology across the code and code styles.
 4. Communicate clearly and effectively -
-   when reviewing code, be explicit about the action you request from the author.
+  when reviewing code, be explicit about the action you request from the author.
 5. Foster a positive feedback culture:
-   - give feedback about the code, not about the author
-   - accept that there are multiple correct solutions to a problem
-   - sandwich criticism with positive comments and praise
-7. Utilise multiple code review techniques -
-   use email,
-   pair programming,
-   over-the-shoulder,
-   team discussions and
-   tool-assisted or
-   any combination that works for your team.
-   However, for the most effective and efficient code reviews,
-   tool-assisted process is recommended.
-9. From a more technical perspective:
-   - use a feature branch for pull requests as you can push follow-up commits
-     if you need to update your proposed changes
-   - avoid large pull requests as they are more difficult to review.
-     You can refer to some [studies](https://jserd.springeropen.com/articles/10.1186/s40411-018-0058-0)
-     and [Google recommendations](https://google.github.io/eng-practices/review/developer/small-cls.html)
-     as to what a "large pull request" is but be aware that it is not exact science.
-   - don't force push to a pull request as it changes the repository history
-     and can corrupt your pull request for other collaborators
-   - use pull request states in GitHub effectively (based on your team's code review process) -
-     e.g. in GitHub you can open a pull request in a `DRAFT` state
-     to show progress or request early feedback;
-     `READY FOR REVIEW` when you are ready for feedback;
-     `CHANGES REQUESTED` to let the author know
-     they need to fix the requested changes or discuss more;
-     `APPROVED` to let the author they can merge their pull request.
+  - give feedback about the code, not about the author
+  - accept that there are multiple correct solutions to a problem
+  - sandwich criticism with positive comments and praise
+6. Utilise multiple code review techniques -
+  use email,
+  pair programming,
+  over-the-shoulder,
+  team discussions and
+  tool-assisted or
+  any combination that works for your team.
+  However, for the most effective and efficient code reviews,
+  tool-assisted process is recommended.
+7. From a more technical perspective:
+  - use a feature branch for pull requests as you can push follow-up commits
+    if you need to update your proposed changes
+  - avoid large pull requests as they are more difficult to review.
+    You can refer to some [studies](https://jserd.springeropen.com/articles/10.1186/s40411-018-0058-0)
+    and [Google recommendations](https://google.github.io/eng-practices/review/developer/small-cls.html)
+    as to what a "large pull request" is but be aware that it is not exact science.
+  - don't force push to a pull request as it changes the repository history
+    and can corrupt your pull request for other collaborators
+  - use pull request states in GitHub effectively (based on your team's code review process) -
+    e.g. in GitHub you can open a pull request in a `DRAFT` state
+    to show progress or request early feedback;
+    `READY FOR REVIEW` when you are ready for feedback;
+    `CHANGES REQUESTED` to let the author know
+    they need to fix the requested changes or discuss more;
+    `APPROVED` to let the author they can merge their pull request.
 
-> ## Exercise: Code Review in Your Own Working Environment
->
-> At the start of this episode we briefly looked at a number of techniques for doing code review,
-> and as an example,
-> went on to see how we can use GitHub Pull Requests to review team member code changes.
-> Finally, we also looked at some best practices for doing code reviews in general.
->
-> Now think about how you typically develop code,
-> and how you might institute code review practices within your own working environment.
-> Write down briefly for your own reference (perhaps using bullet points)
-> some answers to the following questions:
->
-> - Which 2 or 3 key circumstances would code review be most useful for you and your colleagues?
-> - Referring to the first section of this episode above,
->   which type of code review would be most useful for each circumstance
->   (and would work best within your own working environment)?
-> - Taking one of these circumstances where code review would be most beneficial,
->   how would you organise such a code review, e.g.:
->   - Which aspects of the codebase would be the most useful to cover?
->   - How often would you do them?
->   - How long would the activity take?
->   - Who would ideally be involved?
->   - Any particular practices you would use?
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
 
-{% include links.md %}
+## Exercise: Code Review in Your Own Working Environment
+
+At the start of this episode we briefly looked at a number of techniques for doing code review,
+and as an example,
+went on to see how we can use GitHub Pull Requests to review team member code changes.
+Finally, we also looked at some best practices for doing code reviews in general.
+
+Now think about how you typically develop code,
+and how you might institute code review practices within your own working environment.
+Write down briefly for your own reference (perhaps using bullet points)
+some answers to the following questions:
+
+- Which 2 or 3 key circumstances would code review be most useful for you and your colleagues?
+- Referring to the first section of this episode above,
+  which type of code review would be most useful for each circumstance
+  (and would work best within your own working environment)?
+- Taking one of these circumstances where code review would be most beneficial,
+  how would you organise such a code review, e.g.:
+  - Which aspects of the codebase would be the most useful to cover?
+  - How often would you do them?
+  - How long would the activity take?
+  - Who would ideally be involved?
+  - Any particular practices you would use?
+    
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- Code review is a team software quality assurance practice where team members look at parts of the codebase in order to improve their code's readability, understandability, quality and maintainability.
+- It is important to agree on a set of best practices and establish a code review process in a team to help to sustain a good, stable and maintainable code for many years.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

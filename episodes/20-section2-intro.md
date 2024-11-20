@@ -1,18 +1,22 @@
 ---
-title: "Section 2: Ensuring Correctness of Software at Scale"
-colour: "#fafac8"
-start: true
+title: 'Section 2: Ensuring Correctness of Software at Scale'
+colour: '#fafac8'
+start: yes
 teaching: 5
 exercises: 0
-questions:
-- "What should we do to ensure our code is correct?"
-objectives:
-- "Introduce the testing tools, techniques, and infrastructure that will be used in this section."
-keypoints:
-- "Using testing requires us to change our practice of code development, but saves time in the long run by
-allowing us to more comprehensively and rapidly find faults in code, as well as giving us greater confidence in the correctness of our code."
-- "The use of test techniques and infrastructures such as **parameterisation** and **Continuous Integration** can help scale and further automate our testing process."
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Introduce the testing tools, techniques, and infrastructure that will be used in this section.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- What should we do to ensure our code is correct?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 We've just set up a suitable environment for the development of our software project
 and are ready to start coding.
@@ -31,7 +35,7 @@ so we should try and employ such practices early on.
 We will also make use of techniques and infrastructure that allow us to do this
 in a scalable, automated and more performant way as our codebase grows.
 
-![Tools for scaled software testing](../fig/section2-overview.png){: .image-with-shadow width="800px" }
+![](fig/section2-overview.png){alt='Tools for scaled software testing' .image-with-shadow width="800px" }
 
 In this section we will:
 
@@ -48,4 +52,13 @@ In this section we will:
 - Use VS Code's integrated **debugger** to
   help us locate a fault in our code while it is running, and then fix it.
 
-{% include links.md %}
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- Using testing requires us to change our practice of code development, but saves time in the long run by allowing us to more comprehensively and rapidly find faults in code, as well as giving us greater confidence in the correctness of our code.
+- The use of test techniques and infrastructures such as **parameterisation** and **Continuous Integration** can help scale and further automate our testing process.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

@@ -1,5 +1,5 @@
 ---
-title: "Additional Material: Protecting the Main Branch on a Shared GitHub Repository"
+title: 'Additional Material: Protecting the Main Branch on a Shared GitHub Repository'
 ---
 
 ## Introduction
@@ -9,10 +9,10 @@ It is possible to prevent this by "protecting" the main branch.
 
 This has a number of advantages:
 
-* Avoids someone accidentally pushing work-in-progress changes to the branch
+- Avoids someone accidentally pushing work-in-progress changes to the branch
   that everyone else downloads.
-* Ensures everyone follows a code review process.
-* Ensures all changes are checked by continuous integration.
+- Ensures everyone follows a code review process.
+- Ensures all changes are checked by continuous integration.
 
 ## How to protect the main branch
 
@@ -21,7 +21,7 @@ Click `Add Rule`. Type in the name of your main branch (e.g. `main` and/or `deve
 Tick the check box saying require pull requests. This will ensure all changes to the
 branch are done via a pull request.
 
-![GitHub add a branch protection rule settings screen with recommended settings enabled for a branch called main](../fig/github-branch-protection-settings.png)
+![](fig/github-branch-protection-settings.png){alt='GitHub add a branch protection rule settings screen with recommended settings enabled for a branch called main'}
 
 It is recommended to also tick `Require approvals`.
 
@@ -39,3 +39,5 @@ by administrators to allow this, setting this means that administrators cannot p
 during the normal course of their work.
 
 See [GitHubs documentation for more information about protecting branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule).
+
+

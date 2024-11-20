@@ -1,24 +1,24 @@
 ---
-title: "Diagnosing Issues and Improving Robustness"
+title: Diagnosing Issues and Improving Robustness
 teaching: 30
 exercises: 20
-questions:
-- "Once we know our program has errors, how can we locate them in the code?"
-- "How can we make our programs more resilient to failure?"
-objectives:
-- "Use a debugger to explore behaviour of a running program"
-- "Describe and identify edge and corner test cases and explain why they are important"
-- "Apply error handling and defensive programming techniques to improve robustness of a program"
-- "Integrate linting tool style checking into a continuous integration job"
-keypoints:
-- "Unit testing can show us what does not work, but does not help us locate problems in code."
-- "Use a **debugger** to help you locate problems in code."
-- "A **debugger** allows us to pause code execution and examine its state by adding **breakpoints** to lines in code."
-- "Use **preconditions** to ensure correct behaviour of code."
-- "Ensure that unit tests check for **edge** and **corner cases** too."
-- "Using linting tools to automatically flag suspicious programming language constructs and stylistic errors
-can help improve code robustness."
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Use a debugger to explore behaviour of a running program
+- Describe and identify edge and corner test cases and explain why they are important
+- Apply error handling and defensive programming techniques to improve robustness of a program
+- Integrate linting tool style checking into a continuous integration job
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- Once we know our program has errors, how can we locate them in the code?
+- How can we make our programs more resilient to failure?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
@@ -29,8 +29,8 @@ But it does not tell us exactly where the problem is (i.e. what line of code),
 or how it came about.
 To give us a better idea of what is going on, we can:
 
- - output program state at various points,
-   e.g. by using print statements to output the contents of variables,
+- output program state at various points,
+  e.g. by using print statements to output the contents of variables,
 - use a logging capability to output
   the state of everything as the program progresses, or
 - look at intermediately generated files.
@@ -45,20 +45,19 @@ This is where using a **debugger** can be useful.
 
 Let us add a new function called `data_normalise()` to our catchment example
 to normalise a given measurement data array so that all entries fall between 0 and 1.
-(Make sure you create a new feature branch for this work off your `develop` branch.) 
+(Make sure you create a new feature branch for this work off your `develop` branch.)
 To normalise each set of measurement data
 we need to divide it by the maximum measurement value taken.
 To do so, we can add the following code to `catchment/models.py`:
 
-~~~
+```python
 import numpy as np
 ...
 def data_normalise(data):
     """Normalise any given 2D data array"""
     max = np.array(np.max(data, axis=1))
     return data / max[np.newaxis, :]
-~~~
-{: .language-python}
+```
 
 ***Note:** there are intentional mistakes in the above code,
 which will be detected by further testing and code style checking below
@@ -66,7 +65,7 @@ so bear with us for the moment.*
 
 For this work we will make use of the NumPy library.
 Pandas dataframes are built on top of NumPy arrays,
-which means that we can make use of the NumPy toolkit for 
+which means that we can make use of the NumPy toolkit for
 manipulating Pandas data if we find that this would be
 more appropriate than using a Pandas tool.
 
@@ -82,14 +81,14 @@ as `data` is a 2D array (of shape `(2976, 2)`)
 and `max` is a 1D array (of shape `(, 2)`),
 which means that their shapes are not compatible.
 
-![NumPy arrays of incompatible shapes](../fig/numpy-incompatible-shapes.png){: .image-with-shadow width="800px"}
+![](fig/numpy-incompatible-shapes.png){alt='NumPy arrays of incompatible shapes' .image-with-shadow width="800px"}
 
 Hence, to make sure that we can perform this division and get the expected result,
-we need to convert `max` to be a 2D array 
+we need to convert `max` to be a 2D array
 by using the `newaxis` index operator to insert a new axis into `max`,
 making it a 2D array of shape `(1, 2)`.
 
-![NumPy arrays' shapes after adding a new_axis](../fig/numpy-shapes-after-new-axis.png){: .image-with-shadow width="800px"}
+![](fig/numpy-shapes-after-new-axis.png){alt="NumPy arrays' shapes after adding a new\_axis" .image-with-shadow width="800px"}
 
 Now the division will give us the expected result.
 Even though the shapes are not identical,
@@ -98,18 +97,22 @@ the shape of the 2D `max` array is now "stretched" ("broadcast")
 to match that of `data` - i.e. `(2976, 2)`,
 and element-wise division can be performed.
 
-![NumPy arrays' shapes after broadcasting](../fig/numpy-shapes-after-broadcasting.png){: .image-with-shadow width="800px"}
+![](fig/numpy-shapes-after-broadcasting.png){alt="NumPy arrays' shapes after broadcasting" .image-with-shadow width="800px"}
 
-> ## Broadcasting
->
-> The term broadcasting describes how NumPy treats arrays with different shapes
-> during arithmetic operations.
-> Subject to certain constraints,
-> the smaller array is “broadcast” across the larger array
-> so that they have compatible shapes.
-> Be careful, though, to understand how the arrays get stretched
-> to avoid getting unexpected results.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Broadcasting
+
+The term broadcasting describes how NumPy treats arrays with different shapes
+during arithmetic operations.
+Subject to certain constraints,
+the smaller array is "broadcast" across the larger array
+so that they have compatible shapes.
+Be careful, though, to understand how the arrays get stretched
+to avoid getting unexpected results.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Note there is an assumption in this calculation
 that the minimum value we want is always zero.
@@ -120,7 +123,7 @@ experienced no inflammation on a particular day.
 Let us now add a new test in `tests/test_models.py`
 to check that the normalisation function is correct for some test data.
 
-~~~
+```python
 @pytest.mark.parametrize(
     "test_data, test_index, test_columns, expected_data, expected_index, expected_columns",
     [
@@ -144,8 +147,7 @@ def test_normalise(test_data, test_index, test_columns, expected_data, expected_
     pdt.assert_frame_equal(data_normalise(pd.DataFrame(data=test_data, index=test_index, columns=test_columns)),
                            pd.DataFrame(data=expected_data, index=expected_index, columns=expected_columns),
                            atol=1e-2)
-~~~
-{: .language-python}
+```
 
 Note another assumption made here that a test accuracy of two decimal places is sufficient -
 so we state this explicitly by setting the absolute tolerance of the tests using `atol=1e-2`,
@@ -161,7 +163,7 @@ Run the tests again using `python -m pytest tests/test_models.py`
 and you will note that the new test is failing,
 with an error message that does not give many clues as to what went wrong.
 
-~~~
+```output
 tests/test_models.py:142: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 pandas/_libs/testing.pyx:52: in pandas._libs.testing.assert_almost_equal
@@ -175,8 +177,7 @@ E   DataFrame.iloc[:, 0] (column name="A") values are different (100.0 %)
 E   [index]: [2000-01-01T01:00:00.000000000, 2000-01-01T02:00:00.000000000, 2000-01-01T03:00:00.000000000]
 E   [left]:  [0.3333333333333333, 1.3333333333333333, 2.3333333333333335]
 E   [right]: [0.14, 0.57, 1.0]
-~~~
-{: .output}
+```
 
 Let us use a debugger at this point to see what is going on and why the function failed.
 
@@ -197,21 +198,21 @@ you will first need to enable the Pytest framework in VS Code.
 You can do this by:
 
 1. In VS Code, select the 'Testing' tab on the Activity Bar on the left side of the window
-   (icon resembles a chemistry flask/beaker).
-   If you have not yet configured any tests,
-   you will see a blue `Configure Python Tests` button.
-   If tests have already been configured and are incorrect,
-   or you wish to review this process,
-   open the Command Palette (Command+Shift+P for Mac, Control+Shift+P for Windows)
-   and search for `Python: Configure Tests`
-   (keeping the `>` character at the start of the search string).   
+  (icon resembles a chemistry flask/beaker).
+  If you have not yet configured any tests,
+  you will see a blue `Configure Python Tests` button.
+  If tests have already been configured and are incorrect,
+  or you wish to review this process,
+  open the Command Palette (Command+Shift+P for Mac, Control+Shift+P for Windows)
+  and search for `Python: Configure Tests`
+  (keeping the `>` character at the start of the search string).
 2. Then, in the text search box that appears at the top of the edit window,
-   type `pytest` and select `pytest pytest framework` from the drop-down list.
+  type `pytest` and select `pytest pytest framework` from the drop-down list.
 3. You will be asked for the root directory of your tests.
-   Select the `tests` folder in our project folder.
+  Select the `tests` folder in our project folder.
 4. The left hand panel will then display the `tests` folder with each of the files it contains.
 
-![Setting up test framework in VS Code](../fig/vs-code-test-framework.png){: .image-with-shadow width="1000px"}
+![](fig/vs-code-test-framework.png){alt='Setting up test framework in VS Code' .image-with-shadow width="1000px"}
 
 We can now run `pytest` over our tests in VS Code,
 similarly to how we ran our `catchment-analysis.py` script before.
@@ -223,7 +224,7 @@ If you scroll down in that panel you should see
 the failed `test_normalise()` test result
 looking something like the following:
 
-![Running pytest in VS Code](../fig/vs-code-run-pytests.png){: .image-with-shadow width="1000px"}
+![](fig/vs-code-run-pytests.png){alt='Running pytest in VS Code' .image-with-shadow width="1000px"}
 
 We can also run our test functions individually.
 Click on a green check next to a test function
@@ -231,7 +232,7 @@ in our `test_models.py` script in VS Code,
 (or right click it and select `Run test`),
 we can run just that test:
 
-![Running a single test in VS Code](../fig/vs-code-run-single-test.png){: .image-with-shadow width="800px"}
+![](fig/vs-code-run-single-test.png){alt='Running a single test in VS Code' .image-with-shadow width="800px"}
 
 Click on the `Run Test` button next to `test_normalise`,
 and you will be able to see that VS Code runs just that test function,
@@ -250,12 +251,12 @@ Click on just to the right of the line number for that line
 and a small red dot will appear,
 indicating that you have placed a breakpoint on that line.
 
-![Setting a breakpoint in VS Code](../fig/vs-code-set-breakpoint.png){: .image-with-shadow width="600px"}
+![](fig/vs-code-set-breakpoint.png){alt='Setting a breakpoint in VS Code' .image-with-shadow width="600px"}
 
-Now if you find test_models.py in the `Testing` panel, and locate the green play/right-arrow marker 
-for the test_normalise function 
-(in VS Code this appears next to the decorator function 
-@pytest.mark.parameterize that we recently added to test_normalise).
+Now if you find test\_models.py in the `Testing` panel, and locate the green play/right-arrow marker
+for the test\_normalise function
+(in VS Code this appears next to the decorator function
+@pytest.mark.parameterize that we recently added to test\_normalise).
 Right click on that arrow and select `Debug Test` from the drop down menu.
 You will notice that execution will be paused
 at the `return` statement of `data_normalise`,
@@ -268,7 +269,7 @@ In the debug panel on the left hand side,
 you will be able to see
 three sections that looks something like the following:
 
-![Debugging in VS Code](../fig/vs-code-pytest-debug.png){: .image-with-shadow width="1000px"}
+![](fig/vs-code-pytest-debug.png){alt='Debugging in VS Code' .image-with-shadow width="1000px"}
 
 - The `Variables` section at the top,
   which displays the local and global variables currently in memory.
@@ -281,7 +282,7 @@ three sections that looks something like the following:
   which shows the chain of functions that have been executed to lead to this point.
   We can traverse this chain of functions if we wish,
   to observe the state of each function.
-  
+
 We also have the ability run any Python code we wish at this point
 to explore the state of the program even further!
 This is useful if you want to view a particular combination of variables,
@@ -293,19 +294,18 @@ Try putting in the expression `max[np.newaxis, :]` into the console,
 and you will be able to see the row vector that we are dividing `data` by
 in the return line of the function.
 
-![Debugging in VS Code](../fig/vs-code-debug-console.png){: .image-with-shadow width="1000px"}
+![](fig/vs-code-debug-console.png){alt='Debugging in VS Code' .image-with-shadow width="1000px"}
 
 Now, looking at the `max` variable,
 we can see that something looks wrong,
 as the maximum values for each patient do not correspond to the `data` array.
 Recall that the input `data` array we are using for the function is
 
-~~~
+```python
   [[1, 2, 3],
    [4, 5, 6],
    [7, 8, 9]]
-~~~
-{: .language-python}
+```
 
 So the maximum value for each measurement set (column) should be `[7, 8, 9]`,
 whereas the debugger shows `[3, 6, 9]`.
@@ -324,28 +324,34 @@ Navigate back to the `Testing` tab (chemistry flask/beaker icon) on the left han
 the arrow next to `test_models.py`
 You should be rewarded with:
 
-![All tests in VS Code are successful](../fig/vs-code-all-tests-pass.png){: .image-with-shadow width="1000px"}
+![](fig/vs-code-all-tests-pass.png){alt='All tests in VS Code are successful' .image-with-shadow width="1000px"}
 
-> ## NumPy Axis
-> Getting the axes right in NumPy is not trivial -
-> the [following tutorial](https://www.sharpsightlabs.com/blog/numpy-axes-explained/#:~:text=NumPy%20axes%20are%20the%20directions,along%20the%20rows%20and%20columns)
-> offers a good explanation on how axes work when applying NumPy functions to arrays.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## NumPy Axis
+
+Getting the axes right in NumPy is not trivial -
+the [following tutorial](https://www.sharpsightlabs.com/blog/numpy-axes-explained/#:~:text=NumPy%20axes%20are%20the%20directions,along%20the%20rows%20and%20columns)
+offers a good explanation on how axes work when applying NumPy functions to arrays.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## NumPy vs Pandas: Reducing Test Complexity
 
 So far we have used Pandas testing functions, because the functions we have been testing
-make use of Pandas Dataframe functionality. However, even though we will be using the 
-`data_normalise` function on Pandas dataframes, the function itself does not actually 
-require Pandas functionality. The test above demonstrates that the `data_normalise` 
-function does not change the input dataframe in any unexpected way; the returned Dataframe 
-has the same indices and columns as the input Dataframe. Because we know this, we can 
-simplify the rest of our tests for this function, by using NumPy arrays and testing 
-functions, instead of the Pandas equivalents. Reducing complexity like this, where you 
+make use of Pandas Dataframe functionality. However, even though we will be using the
+`data_normalise` function on Pandas dataframes, the function itself does not actually
+require Pandas functionality. The test above demonstrates that the `data_normalise`
+function does not change the input dataframe in any unexpected way; the returned Dataframe
+has the same indices and columns as the input Dataframe. Because we know this, we can
+simplify the rest of our tests for this function, by using NumPy arrays and testing
+functions, instead of the Pandas equivalents. Reducing complexity like this, where you
 can, helps you understand what is being tested, and avoid possible confusions.
 
 Before we carry on with new tests, we will reproduce the test above using NumPy, so that you can compare the two testing frameworks. Add an `import` statement for `numpy.testing`, and the test `test_numpy_normalise`, as shown below, to your `test_models.py` script. Then run the test to confirm it works as expected.
-~~~
+
+```python
 import numpy.testing as npt
 ...
 @pytest.mark.parametrize(
@@ -360,12 +366,9 @@ def test_numpy_normalise(test, expected):
     """Test normalisation works for numpy arrays"""
     from catchment.models import data_normalise
     npt.assert_almost_equal(data_normalise(np.array(test)), np.array(expected), decimal=2)
-~~~
-{: .language-python}
+```
 
-Note here that we are using the Numpy testing function `npt.assert_almost_equal`, which allows us to set a relevant test accuracy, using `decimal=2`. This is equivalent to the `atol=1e-2` tolerance setting that we used for the equivalent Pandas test `pdt.assert_frame_equal`. Numpy also has a testing function `npt.assert_array_equal`, which tests for exact array matches. The functionality of this test is closely replicated by the default tolerance settings in `pd.assert_frame_equal` (`atol=1e-8` and `rtol=1e-5`), and can be fully replicated by setting the option `check_exact=True` when using this function.  
-
-
+Note here that we are using the Numpy testing function `npt.assert_almost_equal`, which allows us to set a relevant test accuracy, using `decimal=2`. This is equivalent to the `atol=1e-2` tolerance setting that we used for the equivalent Pandas test `pdt.assert_frame_equal`. Numpy also has a testing function `npt.assert_array_equal`, which tests for exact array matches. The functionality of this test is closely replicated by the default tolerance settings in `pd.assert_frame_equal` (`atol=1e-8` and `rtol=1e-5`), and can be fully replicated by setting the option `check_exact=True` when using this function.
 
 ## Corner or Edge Cases
 
@@ -406,7 +409,7 @@ We will add two extra tests,
 corresponding to an input array of all 0,
 and an input array of all 1.
 
-~~~
+```python
 @pytest.mark.parametrize(
     "test, expected",
     [
@@ -427,13 +430,12 @@ def test_numpy_normalise(test, expected):
     """Test normalisation works for numpy arrays"""
     from catchment.models import data_normalise
     npt.assert_almost_equal(data_normalise(np.array(test)), np.array(expected), decimal=2)
-~~~
-{: .language-python}
+```
 
 Running the tests now from the command line results in the following assertion error,
 due to the division by zero as we predicted.
 
-~~~
+```output
 E       AssertionError: 
 E       Arrays are not almost equal to 2 decimals
 E       
@@ -446,8 +448,7 @@ E              [0., 0., 0.],
 E              [0., 0., 0.]])
 
 tests/test_models.py:160: AssertionError
-~~~
-{: .output}
+```
 
 How can we fix this?
 Luckily, there is a NumPy function that is useful here,
@@ -457,7 +458,7 @@ which is 0.
 We can also silence the run-time warning using
 [`np.errstate`](https://numpy.org/doc/stable/reference/generated/numpy.errstate.html):
 
-~~~
+```python
 ...
 def data_normalise(data):
     """
@@ -471,59 +472,64 @@ def data_normalise(data):
     normalised[np.isnan(normalised)] = 0.0
     return normalised
 ...
-~~~
-{: .language-python}
+```
 
-> ## Exercise: Exploring Tests for Edge Cases
->
-> Think of some more suitable edge cases to test our `data_normalise()` function
-> and add them to the parametrised tests.
-> Remember to build tests for the functionality we want from the function -
-> it does not matter at the moment if some of the tests fail.
-> After you have finished remember to commit your changes.
->
-> > ## Possible Solution
-> > ~~~
-> > @pytest.mark.parametrize(
-> >     "test, expected",
-> >     [
-> >         (
-> >             [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
-> >             [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
-> >         ),
-> >         (
-> >             [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
-> >             [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
-> >         ),
-> >         (
-> >             [[float('nan'), 1, 1], [1, 1, 1], [1, 1, 1]],
-> >             [[0, 1, 1], [1, 1, 1], [1, 1, 1]],
-> >         ),
-> >         (
-> >             [[1, 2, 3], [4, 5, float('nan')], [7, 8, 9]],
-> >             [[0.14, 0.25, 0.33], [0.57, 0.63, 0.0], [1.0, 1.0, 1.0]],
-> >         ),
-> >         (
-> >             [[-1, 2, 3], [4, 5, 6], [7, 8, 9]],
-> >             [[0.0, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
-> >         ),
-> >         (
-> >             [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
-> >             [[0.33, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
-> >         )
-> >     ])
-> > def test_numpy_normalise(test, expected):
-> >     """Test normalisation works for numpy arrays of one and positive integers."""
-> >     from catchment.models import data_normalise
-> >     npt.assert_almost_equal(data_normalise(np.array(test)), np.array(expected), decimal=2)
-> > ...
-> > ~~~
-> > {: .language-python}
-> >
-> > You could also, for example, test and handle the case of a whole row of NaNs.
-> {: .solution}
->
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Exploring Tests for Edge Cases
+
+Think of some more suitable edge cases to test our `data_normalise()` function
+and add them to the parametrised tests.
+Remember to build tests for the functionality we want from the function -
+it does not matter at the moment if some of the tests fail.
+After you have finished remember to commit your changes.
+
+:::::::::::::::  solution
+
+## Possible Solution
+
+```python
+@pytest.mark.parametrize(
+    "test, expected",
+    [
+        (
+            [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+            [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+        ),
+        (
+            [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
+            [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
+        ),
+        (
+            [[float('nan'), 1, 1], [1, 1, 1], [1, 1, 1]],
+            [[0, 1, 1], [1, 1, 1], [1, 1, 1]],
+        ),
+        (
+            [[1, 2, 3], [4, 5, float('nan')], [7, 8, 9]],
+            [[0.14, 0.25, 0.33], [0.57, 0.63, 0.0], [1.0, 1.0, 1.0]],
+        ),
+        (
+            [[-1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            [[0.0, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
+        ),
+        (
+            [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            [[0.33, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
+        )
+    ])
+def test_numpy_normalise(test, expected):
+    """Test normalisation works for numpy arrays of one and positive integers."""
+    from catchment.models import data_normalise
+    npt.assert_almost_equal(data_normalise(np.array(test)), np.array(expected), decimal=2)
+...
+```
+
+You could also, for example, test and handle the case of a whole row of NaNs.
+
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Defensive Programming
 
@@ -558,13 +564,12 @@ to raise an error on negative inflammation values.
 Edit the `catchment/models.py` file,
 and add a precondition check to the beginning of the `data_normalise()` function like so:
 
-~~~
+```python
 ...
     if np.any(data < 0):
         raise ValueError('Measurement values should not be negative')
 ...
-~~~
-{: .language-python}
+```
 
 We can then modify our test function in `tests/test_models.py`
 to check that the function raises the correct exception - a `ValueError` -
@@ -575,7 +580,7 @@ is part of the standard Python library
 and is used to indicate that the function received an argument of the right type,
 but of an inappropriate value.
 
-~~~
+```python
 @pytest.mark.parametrize(
     "test, expected, expect_raises",
     [
@@ -600,99 +605,101 @@ def test_normalise(test, expected, expect_raises):
             npt.assert_almost_equal(data_normalise(np.array(test)), np.array(expected), decimal=2)
     else:
         npt.assert_almost_equal(data_normalise(np.array(test)), np.array(expected), decimal=2)
-~~~
-{: .language-python}
+```
 
 Be sure to commit your changes so far and push them to GitHub.
 
-> ## Optional Exercise: Add a Precondition to Check the Correct Type and Shape of Data
->
-> Add preconditions to check that data is a `DataFrame` or `ndarray` object and that it is of the correct shape.
-> Add corresponding tests to check that the function raises the correct exception.
-> You will find the Python function
-> [`isinstance`](https://docs.python.org/3/library/functions.html#isinstance)
-> useful here, as well as the Python exception
-> [`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError).
-> Once you are done, commit your new files,
-> and push the new commits to your remote repository on GitHub.
->
-> > ## Solution
-> >
-> > In `inflammation/models.py`:
-> >
-> > ~~~
-> > ...
-> > def data_normalise(data):
-> >     """
-> >     Normalise any given 2D data array
-> >     
-> >     NaN values are replaced with a value of 0
-> >     
-> >     :param data: 2D array of inflammation data
-> >     :type data: ndarray
-> >
-> >     """
-> >     if not isinstance(data, np.ndarray) or not isinstance(data, pd.DataFrame):
-> >         raise TypeError('data input should be DataFrame or ndarray')
-> >     if len(data.shape) != 2:
-> >         raise ValueError('data array should be 2-dimensional')
-> >     if np.any(data < 0):
-> >         raise ValueError('Measurement values should be non-negative')
-> >     max = np.nanmax(data, axis=0)
-> >     with np.errstate(invalid='ignore', divide='ignore'):
-> >         normalised = data / max[np.newaxis, :]
-> >     normalised[np.isnan(normalised)] = 0
-> >     return normalised
-> > ...
-> > ~~~
-> >
-> > In `test/test_models.py`:
-> >
-> > ~~~
-> > ...
-> > @pytest.mark.parametrize(
-> >     "test, expected, expect_raises",
-> >     [
-> >         ...
-> >         (
-> >             'hello',
-> >             None,
-> >             TypeError,
-> >         ),
-> >         (
-> >             3,
-> >             None,
-> >             TypeError,
-> >         ),
-> >         (
-> >             [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
-> >             [[0.33, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
-> >             None,
-> >         )
-> >     ])
-> > def test_data_normalise(test, expected, expect_raises):
-> >     """Test normalisation works for arrays of one and positive integers."""
-> >     from catchment.models import data_normalise
-> >     if isinstance(test, list):
-> >         test = np.array(test)
-> >     if expect_raises is not None:
-> >         with pytest.raises(expect_raises):
-> >             npt.assert_almost_equal(data_normalise(test), np.array(expected), decimal=2)
-> >     else:
-> >         npt.assert_almost_equal(data_normalise(test), np.array(expected), decimal=2)
-> > ...
-> > ~~~
-> >
-> > Note the conversion from `list` to `np.array` has been moved
-> > out of the call to `npt.assert_almost_equal()` within the test function,
-> > and is now only applied to list items (rather than all items).
-> > This allows for greater flexibility with our test inputs,
-> > since this wouldn't work in the test case that uses a string.
-> >
-> > {: .language-python}
-> {: .solution}
->
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Optional Exercise: Add a Precondition to Check the Correct Type and Shape of Data
+
+Add preconditions to check that data is a `DataFrame` or `ndarray` object and that it is of the correct shape.
+Add corresponding tests to check that the function raises the correct exception.
+You will find the Python function
+[`isinstance`](https://docs.python.org/3/library/functions.html#isinstance)
+useful here, as well as the Python exception
+[`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError).
+Once you are done, commit your new files,
+and push the new commits to your remote repository on GitHub.
+
+:::::::::::::::  solution
+
+## Solution
+
+In `inflammation/models.py`:
+
+```
+...
+def data_normalise(data):
+    """
+    Normalise any given 2D data array
+    
+    NaN values are replaced with a value of 0
+    
+    :param data: 2D array of inflammation data
+    :type data: ndarray
+
+    """
+    if not isinstance(data, np.ndarray) or not isinstance(data, pd.DataFrame):
+        raise TypeError('data input should be DataFrame or ndarray')
+    if len(data.shape) != 2:
+        raise ValueError('data array should be 2-dimensional')
+    if np.any(data < 0):
+        raise ValueError('Measurement values should be non-negative')
+    max = np.nanmax(data, axis=0)
+    with np.errstate(invalid='ignore', divide='ignore'):
+        normalised = data / max[np.newaxis, :]
+    normalised[np.isnan(normalised)] = 0
+    return normalised
+...
+```
+
+In `test/test_models.py`:
+
+```python
+...
+@pytest.mark.parametrize(
+    "test, expected, expect_raises",
+    [
+        ...
+        (
+            'hello',
+            None,
+            TypeError,
+        ),
+        (
+            3,
+            None,
+            TypeError,
+        ),
+        (
+            [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            [[0.33, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
+            None,
+        )
+    ])
+def test_data_normalise(test, expected, expect_raises):
+    """Test normalisation works for arrays of one and positive integers."""
+    from catchment.models import data_normalise
+    if isinstance(test, list):
+        test = np.array(test)
+    if expect_raises is not None:
+        with pytest.raises(expect_raises):
+            npt.assert_almost_equal(data_normalise(test), np.array(expected), decimal=2)
+    else:
+        npt.assert_almost_equal(data_normalise(test), np.array(expected), decimal=2)
+...
+```
+
+Note the conversion from `list` to `np.array` has been moved
+out of the call to `npt.assert_almost_equal()` within the test function,
+and is now only applied to list items (rather than all items).
+This allows for greater flexibility with our test inputs,
+since this wouldn't work in the test case that uses a string.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 If you do the challenge, again, be sure to commit your changes and push them to GitHub.
 
@@ -715,34 +722,36 @@ This approach is useful when explicitly checking the precondition is too costly.
 Let's re-run Pylint over our project after having added some more code to it.
 From the project root do:
 
-~~~
+```bash
 $ pylint catchment
-~~~
-{: .language-bash}
+```
 
 You may see something like the following in Pylint's output:
 
-~~~
+```bash
 ************* Module catchment.models
 ...
 catchment/models.py:60:4: W0622: Redefining built-in 'max' (redefined-builtin)
 ...
-~~~
-{: .language-bash}
+```
 
 The above output indicates that by using the local variable called `max`
-in the `data_normalise` function, 
+in the `data_normalise` function,
 we have redefined a built-in Python function called `max`.
 This isn't a good idea and may have some undesired effects
 (e.g. if you redefine a built-in name in a global scope
 you may cause yourself some trouble which may be difficult to trace).
 
-> ## Exercise: Fix Code Style Errors
->
-> Rename our local variable `max` to something else (e.g. call it `max`), then rerun your tests and 
-> commit these latest changes and 
-> push them to GitHub using our usual feature branch workflow. Make sure your `develop` and `main` branches are up to date.
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Fix Code Style Errors
+
+Rename our local variable `max` to something else (e.g. call it `max`), then rerun your tests and
+commit these latest changes and
+push them to GitHub using our usual feature branch workflow. Make sure your `develop` and `main` branches are up to date.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 It may be hard to remember to run linter tools every now and then.
 Luckily, we can now add this Pylint execution to our continuous integration builds
@@ -750,22 +759,20 @@ as one of the extra tasks.
 Since we're adding an extra feature to our CI workflow,
 let's start this from a new feature branch from the `develop` branch:
 
-~~~
+```bash
 $ git switch -c pylint-ci develop # note a shorthand for creating a branch from another and switching to it
-~~~
-{: .language-bash}
+```
 
 Then to add Pylint to our CI workflow,
 we can add the following step to our `steps` in `.github/workflows/main.yml`:
 
-~~~
+```bash
 ...
     - name: Check style with Pylint
       run: |
         python3 -m pylint --fail-under=0 --reports=y catchment
 ...
-~~~
-{: .language-bash}
+```
 
 Note we need to add `--fail-under=0` otherwise
 the builds will fail if we don't get a 'perfect' score of 10!
@@ -774,12 +781,11 @@ We've also added `--reports=y` which will give us a more detailed report of the 
 
 Then we can just add this to our repo and trigger a build:
 
-~~~
+```bash
 $ git add .github/workflows/main.yml
 $ git commit -m "Add Pylint run to build"
 $ git push
-~~~
-{: .language-bash}
+```
 
 Then once complete, under the build(s) reports you should see
 an entry with the output from Pylint as before,
@@ -798,10 +804,9 @@ We can specify overrides to Pylint's rules in a file called `.pylintrc`
 which Pylint can helpfully generate for us.
 In our repository root directory:
 
-~~~
+```bash
 $ pylint --generate-rcfile > .pylintrc
-~~~
-{: .language-bash}
+```
 
 Looking at this file, you'll see it's already pre-populated.
 No behaviour is currently changed from the default by generating this file,
@@ -811,7 +816,7 @@ is the one involving line length.
 You'll see it's set to 100, so let's set that to a more reasonable 120.
 While we're at it, let's also set our `fail-under` in this file:
 
-~~~
+```bash
 ...
 # Specify a score threshold to be exceeded before program exits with error.
 fail-under=0
@@ -819,8 +824,7 @@ fail-under=0
 # Maximum number of characters on a single line.
 max-line-length=120
 ...
-~~~
-{: .language-bash}
+```
 
 Don't forget to remove the `--fail-under` argument to Pytest
 in our GitHub Actions configuration file too,
@@ -834,4 +838,17 @@ Before moving on, be sure to commit all your changes
 and then merge to the `develop` and `main` branches in the usual manner,
 and push them all to GitHub.
 
-{% include links.md %}
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- Unit testing can show us what does not work, but does not help us locate problems in code.
+- Use a **debugger** to help you locate problems in code.
+- A **debugger** allows us to pause code execution and examine its state by adding **breakpoints** to lines in code.
+- Use **preconditions** to ensure correct behaviour of code.
+- Ensure that unit tests check for **edge** and **corner cases** too.
+- Using linting tools to automatically flag suspicious programming language constructs and stylistic errors can help improve code robustness.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

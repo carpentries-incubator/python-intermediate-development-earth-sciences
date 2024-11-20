@@ -1,18 +1,22 @@
 ---
-title: "Scaling Up Unit Testing"
+title: Scaling Up Unit Testing
 teaching: 10
 exercises: 5
-questions:
-- "How can we make it easier to write lots of tests?"
-- "How can we know how much of our code is being tested?"
-objectives:
-- "Use parameterisation to automatically run tests over a set of inputs"
-- "Use code coverage to understand how much of our code is being tested using unit tests"
-keypoints:
-- "We can assign multiple inputs to tests using parametrisation."
-- "It's important to understand the **coverage** of our tests across our code."
-- "Writing unit tests takes time, so apply them where it makes the most sense."
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Use parameterisation to automatically run tests over a set of inputs
+- Use code coverage to understand how much of our code is being tested using unit tests
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How can we make it easier to write lots of tests?
+- How can we know how much of our code is being tested?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
@@ -37,7 +41,7 @@ For example, in `tests/test_models.py` let us rewrite
 the `test_daily_mean_zeros()` and `test_daily_mean_integers()`
 into a single test function:
 
-~~~
+```python
 @pytest.mark.parametrize(
     "test_input, expected_output",
     [
@@ -74,8 +78,7 @@ def test_daily_mean(test_input, expected_output):
     """Test mean function works for array of zeroes and positive integers."""
     from catchment.models import daily_mean
     pdt.assert_frame_equal(daily_mean(test_input), expected_output)
-~~~
-{: .language-python}
+```
 
 Here, we use Pytest's **mark** capability to add metadata to this specific test -
 in this case, marking that it's a parameterised test.
@@ -103,139 +106,144 @@ The big plus here is that we don't need to write separate functions for each of 
 our test code can remain compact and readable as we write more tests
 and adding more tests scales better as our code becomes more complex.
 
-> ## Exercise: Write Parameterised Unit Tests
->
-> Rewrite your test functions for `daily_max()` and `daily_min()` to be parameterised,
-> adding in new test cases for each of them.
->
-> > ## Solution
-> > Test function for `daily_max()`
-> > ~~~
-> > ...
-> > @pytest.mark.parametrize(
-> >     "test_input, expected_output",
-> >     [
-> >         (
-> >             pd.DataFrame(
-> >                 data = [ [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0] ],
-> >                 index = [ pd.to_datetime('2000-01-01 01:00'),
-> >                         pd.to_datetime('2000-01-01 02:00'),
-> >                         pd.to_datetime('2000-01-01 03:00') ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             ),
-> >             pd.DataFrame(
-> >                 data = [ [0.0, 0.0, 0.0] ],
-> >                 index = [ datetime.date(2000, 1, 1) ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             )
-> >         ),
-> >         (
-> >             pd.DataFrame(
-> >                 data = [ [4, 2, 5], [1, 6, 2], [4, 1, 9] ],
-> >                 index = [ pd.to_datetime('2000-01-01 01:00'),
-> >                         pd.to_datetime('2000-01-01 02:00'),
-> >                         pd.to_datetime('2000-01-01 03:00') ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             ),
-> >             pd.DataFrame(
-> >                 data = [ [4, 6, 9] ],
-> >                 index = [ datetime.date(2000, 1, 1) ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             )
-> >         ),
-> >         (
-> >             pd.DataFrame(
-> >                 data = [ [4, -2, 5], [1, -6, 2], [-4, -1, 9] ],
-> >                 index = [ pd.to_datetime('2000-01-01 01:00'),
-> >                          pd.to_datetime('2000-01-01 02:00'),
-> >                          pd.to_datetime('2000-01-01 03:00') ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             ),
-> >             pd.DataFrame(
-> >                 data = [ [4, -1, 9] ],
-> >                 index = [ datetime.date(2000, 1, 1) ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             )
-> >         ),
-> >     ])
-> > def test_daily_max(test_input, expected_output):
-> >     """Test max function works for array of zeroes and positive integers."""
-> >     from catchment.models import daily_max
-> >     pdt.assert_frame_equal(daily_max(test_input), expected_output)
-> > ...
-> > ~~~
-> > {: .language-python}
-> > and for `daily_min()`
-> > ~~~
-> > ...
-> > @pytest.mark.parametrize(
-> >     "test_input, expected_output",
-> >     [
-> >         (
-> >             pd.DataFrame(
-> >                 data = [ [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0] ],
-> >                 index = [ pd.to_datetime('2000-01-01 01:00'),
-> >                         pd.to_datetime('2000-01-01 02:00'),
-> >                         pd.to_datetime('2000-01-01 03:00') ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             ),
-> >             pd.DataFrame(
-> >                 data = [ [0.0, 0.0, 0.0] ],
-> >                 index = [ datetime.date(2000, 1, 1) ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             )
-> >         ),
-> >         (
-> >             pd.DataFrame(
-> >                 data = [ [4, 2, 5], [1, 6, 2], [4, 1, 9] ],
-> >                 index = [ pd.to_datetime('2000-01-01 01:00'),
-> >                         pd.to_datetime('2000-01-01 02:00'),
-> >                         pd.to_datetime('2000-01-01 03:00') ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             ),
-> >             pd.DataFrame(
-> >                 data = [ [1, 1, 2] ],
-> >                 index = [ datetime.date(2000, 1, 1) ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             )
-> >         ),
-> >         (
-> >             pd.DataFrame(
-> >                 data = [ [4, -2, 5], [1, -6, 2], [-4, -1, 9] ],
-> >                 index = [ pd.to_datetime('2000-01-01 01:00'),
-> >                          pd.to_datetime('2000-01-01 02:00'),
-> >                          pd.to_datetime('2000-01-01 03:00') ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             ),
-> >             pd.DataFrame(
-> >                 data = [ [-4, -6, 2] ],
-> >                 index = [ datetime.date(2000, 1, 1) ],
-> >                 columns = [ 'A', 'B', 'C' ]
-> >             )
-> >         ),
-> >     ])
-> > def test_daily_min(test_input, expected_output):
-> >     """Test min function works for array of zeroes and positive integers."""
-> >     from catchment.models import daily_min
-> >     pdt.assert_frame_equal(daily_min(test_input), expected_output)
-> > ...
-> > ~~~
-> > {: .language-python}
-> {: .solution}
->
-{: .challenge}
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Exercise: Write Parameterised Unit Tests
+
+Rewrite your test functions for `daily_max()` and `daily_min()` to be parameterised,
+adding in new test cases for each of them.
+
+:::::::::::::::  solution
+
+## Solution
+
+Test function for `daily_max()`
+
+```python
+...
+@pytest.mark.parametrize(
+    "test_input, expected_output",
+    [
+        (
+            pd.DataFrame(
+                data = [ [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0] ],
+                index = [ pd.to_datetime('2000-01-01 01:00'),
+                        pd.to_datetime('2000-01-01 02:00'),
+                        pd.to_datetime('2000-01-01 03:00') ],
+                columns = [ 'A', 'B', 'C' ]
+            ),
+            pd.DataFrame(
+                data = [ [0.0, 0.0, 0.0] ],
+                index = [ datetime.date(2000, 1, 1) ],
+                columns = [ 'A', 'B', 'C' ]
+            )
+        ),
+        (
+            pd.DataFrame(
+                data = [ [4, 2, 5], [1, 6, 2], [4, 1, 9] ],
+                index = [ pd.to_datetime('2000-01-01 01:00'),
+                        pd.to_datetime('2000-01-01 02:00'),
+                        pd.to_datetime('2000-01-01 03:00') ],
+                columns = [ 'A', 'B', 'C' ]
+            ),
+            pd.DataFrame(
+                data = [ [4, 6, 9] ],
+                index = [ datetime.date(2000, 1, 1) ],
+                columns = [ 'A', 'B', 'C' ]
+            )
+        ),
+        (
+            pd.DataFrame(
+                data = [ [4, -2, 5], [1, -6, 2], [-4, -1, 9] ],
+                index = [ pd.to_datetime('2000-01-01 01:00'),
+                         pd.to_datetime('2000-01-01 02:00'),
+                         pd.to_datetime('2000-01-01 03:00') ],
+                columns = [ 'A', 'B', 'C' ]
+            ),
+            pd.DataFrame(
+                data = [ [4, -1, 9] ],
+                index = [ datetime.date(2000, 1, 1) ],
+                columns = [ 'A', 'B', 'C' ]
+            )
+        ),
+    ])
+def test_daily_max(test_input, expected_output):
+    """Test max function works for array of zeroes and positive integers."""
+    from catchment.models import daily_max
+    pdt.assert_frame_equal(daily_max(test_input), expected_output)
+...
+```
+
+and for `daily_min()`
+
+```python
+...
+@pytest.mark.parametrize(
+    "test_input, expected_output",
+    [
+        (
+            pd.DataFrame(
+                data = [ [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0] ],
+                index = [ pd.to_datetime('2000-01-01 01:00'),
+                        pd.to_datetime('2000-01-01 02:00'),
+                        pd.to_datetime('2000-01-01 03:00') ],
+                columns = [ 'A', 'B', 'C' ]
+            ),
+            pd.DataFrame(
+                data = [ [0.0, 0.0, 0.0] ],
+                index = [ datetime.date(2000, 1, 1) ],
+                columns = [ 'A', 'B', 'C' ]
+            )
+        ),
+        (
+            pd.DataFrame(
+                data = [ [4, 2, 5], [1, 6, 2], [4, 1, 9] ],
+                index = [ pd.to_datetime('2000-01-01 01:00'),
+                        pd.to_datetime('2000-01-01 02:00'),
+                        pd.to_datetime('2000-01-01 03:00') ],
+                columns = [ 'A', 'B', 'C' ]
+            ),
+            pd.DataFrame(
+                data = [ [1, 1, 2] ],
+                index = [ datetime.date(2000, 1, 1) ],
+                columns = [ 'A', 'B', 'C' ]
+            )
+        ),
+        (
+            pd.DataFrame(
+                data = [ [4, -2, 5], [1, -6, 2], [-4, -1, 9] ],
+                index = [ pd.to_datetime('2000-01-01 01:00'),
+                         pd.to_datetime('2000-01-01 02:00'),
+                         pd.to_datetime('2000-01-01 03:00') ],
+                columns = [ 'A', 'B', 'C' ]
+            ),
+            pd.DataFrame(
+                data = [ [-4, -6, 2] ],
+                index = [ datetime.date(2000, 1, 1) ],
+                columns = [ 'A', 'B', 'C' ]
+            )
+        ),
+    ])
+def test_daily_min(test_input, expected_output):
+    """Test min function works for array of zeroes and positive integers."""
+    from catchment.models import daily_min
+    pdt.assert_frame_equal(daily_min(test_input), expected_output)
+...
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Try them out!
 
 Let's commit our revised `test_models.py` file and test cases to our `test-suite` branch
 (but don't push them to the remote repository just yet!):
 
-~~~
+```bash
 $ git add tests/test_models.py
 $ git commit -m "Add parameterisation mean, min, max test cases"
-~~~
-{: .language-bash}
-
+```
 
 ## Code Coverage - How Much of Our Code is Tested?
 
@@ -252,19 +260,18 @@ so that we force the code we're testing to execute in all the different ways it 
 to ensure our tests have a high degree of **code coverage**.
 
 A simple way to check the code coverage for a set of tests is
-to install an additional package `pytest-cov` to our virtual environment, 
+to install an additional package `pytest-cov` to our virtual environment,
 which is used by `pytest` to tell us how many statements in our code are being tested.
 
-~~~
+```bash
 $ python3 -m pip install pytest-cov
 $ python3 -m pytest --cov=catchment.models tests/test_models.py
-~~~
-{: .language-bash}
+```
 
 So here, we specify the additional named argument `--cov` to `pytest`
 specifying the code to analyse for test coverage.
 
-~~~
+```output
 ...
 tests/test_models.py .........                                            [100%]
 
@@ -276,20 +283,18 @@ catchment/models.py      19     10    47%
 TOTAL                    19     10    47%
 
 ============================== 9 passed in 0.26s ===============================
-~~~
-{: .output}
+```
 
 Here we can see that our tests are doing okay -
 47% of statements in `catchment/models.py` have been executed.
 But which statements are not being tested?
 The additional argument `--cov-report term-missing` can tell us:
 
-~~~
+```bash
 $ python3 -m pytest --cov=catchment.models --cov-report term-missing tests/test_models.py
-~~~
-{: .language-bash}
+```
 
-~~~
+```output
 ...
 Name                  Stmts   Miss  Cover   Missing
 ---------------------------------------------------
@@ -297,8 +302,7 @@ catchment/models.py      19     10    47%   22-35, 44
 ---------------------------------------------------
 TOTAL                    19     10    47%
 ...
-~~~
-{: .output}
+```
 
 So there's two groups of statements not being tested.
 The last is at line 44,
@@ -318,90 +322,90 @@ and importantly, the extent to which they affect our program's results.
 Again, we should also update our `requirements.txt` file with our latest package environment,
 which now also includes `pytest-cov`, and commit it:
 
-~~~
+```bash
 $ python3 -m pip freeze > requirements.txt
 $ cat requirements.txt
-~~~
-{: .language-bash}
+```
 
 You'll notice `pytest-cov` and `coverage` have been added.
 Let's commit this file and push our new branch to GitHub:
 
-~~~
+```bash
 $ git add requirements.txt
 $ git commit -m "Add coverage support"
 $ git push origin test-suite
-~~~
-{: .language-bash}
+```
 
-> ## What about Testing Against Indeterminate Output?
->
-> What if your implementation depends on a degree of random behaviour?
-> This can be desired within a number of applications,
-> particularly in simulations (for example, molecular simulations)
-> or other stochastic behavioural models of complex systems.
-> So how can you test against such systems if the outputs are different when given the same inputs?
->
-> One way is to *remove the randomness* during testing.
-> For those portions of your code that
-> use a language feature or library to generate a random number,
-> you can instead produce a known sequence of numbers instead when testing,
-> to make the results deterministic and hence easier to test against.
-> You could encapsulate this different behaviour in separate functions, methods, or classes
-> and call the appropriate one depending on whether you are testing or not.
-> This is essentially a type of **mocking**,
-> where you are creating a "mock" version that mimics some behaviour for the purposes of testing.
->
-> Another way is to *control the randomness* during testing
-> to provide results that are deterministic - the same each time.
-> Implementations of randomness in computing languages, including Python,
-> are actually never truly random - they are **pseudorandom**:
-> the sequence of 'random' numbers are typically generated using a mathematical algorithm.
-> A **seed** value is used to initialise an implementation's random number generator,
-> and from that point, the sequence of numbers is actually deterministic.
-> Many implementations just use the system time as the default seed,
-> but you can set your own.
-> By doing so, the generated sequence of numbers is the same,
-> e.g. using Python's `random` library to randomly select a sample
-> of ten numbers from a sequence between 0-99:
->
-> ~~~
-> import random
->
-> random.seed(1)
-> print(random.sample(range(0, 100), 10))
-> random.seed(1)
-> print(random.sample(range(0, 100), 10))
-> ~~~
-> {: .language-python}
->
-> Will produce:
->
-> ~~~
-> [17, 72, 97, 8, 32, 15, 63, 57, 60, 83]
-> [17, 72, 97, 8, 32, 15, 63, 57, 60, 83]
-> ~~~
-> {: .output}
->
-> So since your program's randomness is essentially eliminated,
-> your tests can be written to test against the known output.
-> The trick of course, is to ensure that the output being testing against is definitively correct!
->
-> The other thing you can do while keeping the random behaviour,
-> is to *test the output data against expected constraints* of that output.
-> For example, if you know that all data should be within particular ranges,
-> or within a particular statistical distribution type (e.g. normal distribution over time),
-> you can test against that,
-> conducting multiple test runs that take advantage of the randomness
-> to fill the known "space" of expected results.
-> Note that this isn't as precise or complete,
-> and bear in mind this could mean you need to run *a lot* of tests
-> which may take considerable time.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## What about Testing Against Indeterminate Output?
+
+What if your implementation depends on a degree of random behaviour?
+This can be desired within a number of applications,
+particularly in simulations (for example, molecular simulations)
+or other stochastic behavioural models of complex systems.
+So how can you test against such systems if the outputs are different when given the same inputs?
+
+One way is to *remove the randomness* during testing.
+For those portions of your code that
+use a language feature or library to generate a random number,
+you can instead produce a known sequence of numbers instead when testing,
+to make the results deterministic and hence easier to test against.
+You could encapsulate this different behaviour in separate functions, methods, or classes
+and call the appropriate one depending on whether you are testing or not.
+This is essentially a type of **mocking**,
+where you are creating a "mock" version that mimics some behaviour for the purposes of testing.
+
+Another way is to *control the randomness* during testing
+to provide results that are deterministic - the same each time.
+Implementations of randomness in computing languages, including Python,
+are actually never truly random - they are **pseudorandom**:
+the sequence of 'random' numbers are typically generated using a mathematical algorithm.
+A **seed** value is used to initialise an implementation's random number generator,
+and from that point, the sequence of numbers is actually deterministic.
+Many implementations just use the system time as the default seed,
+but you can set your own.
+By doing so, the generated sequence of numbers is the same,
+e.g. using Python's `random` library to randomly select a sample
+of ten numbers from a sequence between 0-99:
+
+```python
+import random
+
+random.seed(1)
+print(random.sample(range(0, 100), 10))
+random.seed(1)
+print(random.sample(range(0, 100), 10))
+```
+
+Will produce:
+
+```output
+[17, 72, 97, 8, 32, 15, 63, 57, 60, 83]
+[17, 72, 97, 8, 32, 15, 63, 57, 60, 83]
+```
+
+So since your program's randomness is essentially eliminated,
+your tests can be written to test against the known output.
+The trick of course, is to ensure that the output being testing against is definitively correct!
+
+The other thing you can do while keeping the random behaviour,
+is to *test the output data against expected constraints* of that output.
+For example, if you know that all data should be within particular ranges,
+or within a particular statistical distribution type (e.g. normal distribution over time),
+you can test against that,
+conducting multiple test runs that take advantage of the randomness
+to fill the known "space" of expected results.
+Note that this isn't as precise or complete,
+and bear in mind this could mean you need to run *a lot* of tests
+which may take considerable time.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Test Driven Development
 
-In the [previous episode](../21-automatically-testing-software/index.html#what-is-software-testing)
+In the [previous episode](21-automatically-testing-software.md)
 we learnt how to create *unit tests* to make sure our code is behaving as we intended.
 **Test Driven Development** (TDD) is an extension of this.
 If we can define a set of tests for everything our code needs to do,
@@ -417,8 +421,8 @@ The main advantages are:
 
 - It forces us to think about how our code will be used before we write it
 - It prevents us from doing work that we don't need to do, e.g. "I might need this later..."
-- It forces us to test that the tests _fail_ before we've implemented the code, meaning we
-   don't inadvertently forget to add the correct asserts.
+- It forces us to test that the tests *fail* before we've implemented the code, meaning we
+  don't inadvertently forget to add the correct asserts.
 
 You may also see this process called **Red, Green, Refactor**:
 'Red' for the failing tests,
@@ -457,4 +461,14 @@ Using automated testing where appropriate can save us considerable time,
 especially in the long term,
 and allows others to verify against correct behaviour.
 
-{% include links.md %}
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- We can assign multiple inputs to tests using parametrisation.
+- It's important to understand the **coverage** of our tests across our code.
+- Writing unit tests takes time, so apply them where it makes the most sense.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

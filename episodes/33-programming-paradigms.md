@@ -1,19 +1,22 @@
 ---
-title: "Programming Paradigms"
-start: false
+title: Programming Paradigms
+start: no
 teaching: 10
 exercises: 0
-questions:
-- "How does the structure of a problem affect the structure of our code?"
-- "How can we use common software paradigms to improve the quality of our software?"
-objectives:
-- "Describe some of the major software paradigms we can use to classify programming languages."
-keypoints:
-- "A software paradigm describes a way of structuring or reasoning about code."
-- "Different programming languages are suited to different paradigms."
-- "Different paradigms are suited to solving different classes of problems."
-- "A single piece of software will often contain instances of multiple paradigms."
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Describe some of the major software paradigms we can use to classify programming languages.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How does the structure of a problem affect the structure of our code?
+- How can we use common software paradigms to improve the quality of our software?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
@@ -145,22 +148,27 @@ Most people would classify Object Oriented Programming as an
 (with the extra feature being the objects), but
 [others disagree](https://stackoverflow.com/questions/38527078/what-is-the-difference-between-imperative-and-object-oriented-programming).
 
-> ## So Which one is Python?
-> Python is a multi-paradigm and multi-purpose programming language.
-> You can use it as a procedural language and you can use it in a more object oriented way.
-> It does tend to land more on the object oriented side as all its core data types
-> (strings, integers, floats, booleans, lists,
-> sets, arrays, tuples, dictionaries, files)
-> as well as functions, modules and classes are objects.
->
-> Since functions in Python are also objects that can be passed around like any other object,
-> Python is also well suited to functional programming.
-> One of the most popular Python libraries for data manipulation,
-> [Pandas](https://pandas.pydata.org/) (built on top of NumPy),
-> supports a functional programming style
-> as most of its functions on data are not changing the data (no side effects)
-> but producing a new data to reflect the result of the function.
-{: .callout}
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## So Which one is Python?
+
+Python is a multi-paradigm and multi-purpose programming language.
+You can use it as a procedural language and you can use it in a more object oriented way.
+It does tend to land more on the object oriented side as all its core data types
+(strings, integers, floats, booleans, lists,
+sets, arrays, tuples, dictionaries, files)
+as well as functions, modules and classes are objects.
+
+Since functions in Python are also objects that can be passed around like any other object,
+Python is also well suited to functional programming.
+One of the most popular Python libraries for data manipulation,
+[Pandas](https://pandas.pydata.org/) (built on top of NumPy),
+supports a functional programming style
+as most of its functions on data are not changing the data (no side effects)
+but producing a new data to reflect the result of the function.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Other Paradigms
 
@@ -172,4 +180,15 @@ Having mainly used Procedural Programming so far,
 we will now have a closer look at Functional and Object Oriented Programming paradigms
 and how they can affect our architectural design choices.
 
-{% include links.md %}
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- A software paradigm describes a way of structuring or reasoning about code.
+- Different programming languages are suited to different paradigms.
+- Different paradigms are suited to solving different classes of problems.
+- A single piece of software will often contain instances of multiple paradigms.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+

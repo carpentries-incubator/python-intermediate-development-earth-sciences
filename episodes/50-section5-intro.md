@@ -1,20 +1,25 @@
 ---
-title: "Section 5: Managing and Improving Software Over Its Lifetime"
-colour: "#fafac8"
-start: true
+title: 'Section 5: Managing and Improving Software Over Its Lifetime'
+colour: '#fafac8'
+start: yes
 teaching: 5
 exercises: 0
-questions:
-- "How do we manage the process of developing and improving our software?"
-- "How do we ensure we reuse other people's code while maintaining the sustainability of our own software?"
-objectives:
-- "Use established tools to track and manage software problems and enhancements in a team."
-- "Understand the importance of critical reflection to improving software quality and reusability."
-- "Improve software through feedback, work estimation, prioritisation and agile development."
-keypoints:
-- "For software to succeed it needs to be managed as well as developed."
-- "Estimating the effort to deliver work items is a foundational tool for prioritising that work."
 ---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Use established tools to track and manage software problems and enhancements in a team.
+- Understand the importance of critical reflection to improving software quality and reusability.
+- Improve software through feedback, work estimation, prioritisation and agile development.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How do we manage the process of developing and improving our software?
+- How do we ensure we reuse other people's code while maintaining the sustainability of our own software?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 In this section of the course we look at managing the **development and evolution** of software -
 how to keep track of the tasks the team has to do,
@@ -27,7 +32,7 @@ how the outside world interacts with and makes use of our software,
 how others can interact with ourselves to report issues,
 and the ways we can successfully manage software improvement in response to feedback.
 
-![Managing software](../fig/section5-overview.png){: .image-with-shadow width="800px" }
+![](fig/section5-overview.png){alt='Managing software' .image-with-shadow width="800px" }
 
 In this section we will:
 
@@ -45,11 +50,21 @@ In this section we will:
   as well as the effort required to deliver those work items.
 - Learn how to employ a critical mindset when reviewing software for reuse.
 
-{% include links.md %}
+
 
 {% comment %}
 Managing Software Development
+
 - **Improving and managing** software post-release
 - **Tracking user and developer feedback** via software issues
 - **Improving software** through estimation, prioritisation and agile development
-{% endcomment %}
+  {% endcomment %}
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- For software to succeed it needs to be managed as well as developed.
+- Estimating the effort to deliver work items is a foundational tool for prioritising that work.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
