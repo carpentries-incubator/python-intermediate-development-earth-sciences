@@ -100,6 +100,9 @@
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/aio.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/common-issues.html</loc>
   </url>
   <url>
@@ -107,6 +110,9 @@
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/geopandas.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/images.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/index.html</loc>
@@ -211,6 +217,9 @@
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/aio.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/common-issues.html</loc>
   </url>
   <url>
@@ -220,7 +229,16 @@
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/geopandas.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/persistence.html</loc>
@@ -251,6 +269,12 @@
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor/vscode.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/key-points.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/persistence.html</loc>
