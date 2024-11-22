@@ -1,5 +1,5 @@
 ---
-title: Collaborative Software Development Using Git and GitHub
+title: 1.4 Collaborative Software Development Using Git and GitHub
 start: no
 teaching: 35
 exercises: 0

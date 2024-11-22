@@ -1,7 +1,5 @@
 ---
 title: 'Section 5: Managing and Improving Software Over Its Lifetime'
-colour: '#fafac8'
-start: yes
 teaching: 5
 exercises: 0
 ---

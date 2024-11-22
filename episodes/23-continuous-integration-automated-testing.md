@@ -1,5 +1,5 @@
 ---
-title: Continuous Integration for Automated Testing
+title: 2.3 Continuous Integration for Automated Testing
 teaching: 45
 exercises: 0
 ---

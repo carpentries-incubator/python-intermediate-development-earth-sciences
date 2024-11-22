@@ -1,8 +1,6 @@
 ---
 title: 'Section 3: Software Development as a Process'
-colour: '#fafac8'
-start: yes
-teaching: 5
+teaching: 10
 exercises: 0
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Architecture Revisited: Extending Software'
+title: '3.6 Architecture Revisited: Extending Software'
 teaching: 15
 exercises: 0
 ---

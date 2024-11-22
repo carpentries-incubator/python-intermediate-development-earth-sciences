@@ -1,5 +1,5 @@
 ---
-title: Python Code Style Conventions
+title: 1.5 Python Code Style Conventions
 start: no
 teaching: 20
 exercises: 15

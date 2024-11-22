@@ -1,8 +1,5 @@
 ---
-title: Wrap-up
-start: yes
-type: wrap-up
-colour: '#FBED65'
+title: 'Wrap-up'
 teaching: 15
 exercises: 0
 ---

@@ -1,6 +1,5 @@
 ---
-title: Programming Paradigms
-start: no
+title: 3.3 Programming Paradigms
 teaching: 10
 exercises: 0
 ---

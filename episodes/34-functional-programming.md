@@ -1,5 +1,5 @@
 ---
-title: Functional Programming
+title: 3.4 Functional Programming
 teaching: 30
 exercises: 30
 ---

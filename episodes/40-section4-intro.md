@@ -1,7 +1,5 @@
 ---
 title: 'Section 4: Collaborative Software Development for Reuse'
-colour: '#fafac8'
-start: yes
 teaching: 5
 exercises: 0
 ---
