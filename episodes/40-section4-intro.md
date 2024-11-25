@@ -50,14 +50,14 @@ to illustrate these principles.
 
 
 
-{% comment %}
+<!--
 Designing and Developing "Good" Software in Teams
 
 - **Software paradigms and design architectures** for solving different problems based on clear requirements
 - **Writing "good" software** that is understandable, modular, extensible and tested
 - **Publishing and releasing software** for reuse by others
 - **Collaborative code development and review** to improve software sustainability and avoid the accumulation of 'technical debt'.
-  {% endcomment %}
+-->
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 

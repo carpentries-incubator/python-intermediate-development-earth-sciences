@@ -372,7 +372,7 @@ So, our `.github/workflows/main.yml` should look like the following:
         os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: ["3.10", "3.11"]
 
-    runs-on: {% raw %}${{ matrix.os }}{% endraw %}
+    runs-on: ${{ matrix.os }}
 
 ...
 
@@ -387,11 +387,11 @@ So, our `.github/workflows/main.yml` should look like the following:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
+        python-version: ${{ matrix.python-version }}
 ...
 ```
 
-The `{% raw %}${{ }}{% endraw %}` are used
+The `{{ }}` are used
 as a means to reference configuration values from the matrix.
 This way, every possible permutation of Python versions 3.10 and 3.11
 with the latest versions of Ubuntu, Mac OS and Windows operating systems

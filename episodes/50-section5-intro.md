@@ -50,13 +50,13 @@ In this section we will:
 
 
 
-{% comment %}
+<!--
 Managing Software Development
 
 - **Improving and managing** software post-release
 - **Tracking user and developer feedback** via software issues
 - **Improving software** through estimation, prioritisation and agile development
-  {% endcomment %}
+-->
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 

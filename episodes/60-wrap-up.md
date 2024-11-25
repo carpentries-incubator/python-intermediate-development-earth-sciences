@@ -17,7 +17,7 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-{% comment %}
+<!--
 Examples of 'good' code best practices (from Steve's slides):
 Correct – does what it's intended to do
 Readable – remember WORM (Write Once Read Many)
@@ -35,7 +35,7 @@ e.g. trade off between time, efficiency and performance,
 the levels of software reusability - this will dictate practices and the level of development.
 This can lead to a discussion.
 Reiterate some of the key messages.
-{% endcomment %}
+-->
 
 ## Summary
 

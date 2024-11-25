@@ -237,8 +237,8 @@ Time: 10 mins
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-{% comment %}
 
+<!--
 :::::::::::::::::::::::::::::::::::::::::  callout
 
 ## Milestones in Project Boards
@@ -251,9 +251,8 @@ and filter your project cards by milestones using the search bar.
 
 ![](fig/github-milestone-in-project-board.png){alt='Milestones in Project Boards' .image-with-shadow width="900px"}
 
-{% endcomment %}
-
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+-->
 
 ## Using Sprints to Organise and Work on Issues
 
