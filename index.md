@@ -124,19 +124,6 @@ Before joining this training, participants should meet the following criteria.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Setup
-
-Please make sure that you have all the necessary software and accounts setup ahead of the workshop
-as described in the [Setup](learners/setup.md) section.
-Also check the list of [common issues, fixes \& tips](instructors/common-issues.md)
-if you experience any problems running any of the tools you installed -
-your issue may be solved there.
-
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 
 
