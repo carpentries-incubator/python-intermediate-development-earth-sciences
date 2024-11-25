@@ -486,7 +486,7 @@ After you have finished remember to commit your changes.
 
 :::::::::::::::  solution
 
-## Possible Solution
+One possible solution is presented below. 
 
 ```python
 @pytest.mark.parametrize(
@@ -746,7 +746,7 @@ you may cause yourself some trouble which may be difficult to trace).
 
 ## Exercise: Fix Code Style Errors
 
-Rename our local variable `max` to something else (e.g. call it `max`), then rerun your tests and
+Rename our local variable `max` to something else (e.g. call it `max_data`), then rerun your tests and
 commit these latest changes and
 push them to GitHub using our usual feature branch workflow. Make sure your `develop` and `main` branches are up to date.
 

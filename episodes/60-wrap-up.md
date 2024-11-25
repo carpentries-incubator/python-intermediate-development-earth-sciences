@@ -138,9 +138,8 @@ Below are some additional resources to help you continue learning:
 
 - [Additional episode on persisting data](../instructors/persistence.md)
 - [Additional episode on databases](../instructors/databases.md)
-- [CodeRefinery courses on FAIR
-  (Findable, Accessible, Interoperable, and Reusable)
-  software practices][coderefinery-lessons]
+- [A course on FAIR (Findable, Accessible, Interoperable, and Reusable) research software practices in the Carpentries Incubator][ssi-fair-lesson]
+- [CodeRefinery resources on FAIR (Findable, Accessible, Interoperable, and Reusable) research software practices][coderefinery-lessons]
 - [Python documentation][python-documentation]
 - [GitHub Actions documentation][github-actions]
 

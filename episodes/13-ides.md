@@ -173,90 +173,90 @@ this is one and the same virtual environment
 and changes made to it in VS Code will be accessible from the command line and vice versa.
 Let's see this in action through the following exercise.
 
-> ## Exercise: Compare External Libraries in the Command Line and VS Code
-> 
-> Can you recall two places where information about our project's dependencies
-> can be found from the command line?
-> Compare that information with the equivalent configuration in VS Code.
-> 
-> Hint: We can use an argument to `pip`,
-> or find the packages directly in a subdirectory of our virtual environment directory "venv".
-> 
-> > ## Solution
-> > 
-> > From the previous episode,
-> > you may remember that we can get the list of packages in the current virtual environment
-> > using `pip`:
-> > 
-> > ```bash
-> > (venv) $ python3 -m pip list
-> > ```
-> > 
-> > ```output
-> > Package         Version
-> > --------------- -------
-> > contourpy       1.0.5
-> > cycler          0.11.0
-> > fonttools       4.37.4
-> > kiwisolver      1.4.4
-> > matplotlib      3.6.1
-> > numpy           1.23.4
-> > packaging       21.3
-> > pandas          1.5.0
-> > Pillow          9.2.0
-> > pip             21.3.1
-> > pyparsing       3.0.9
-> > python-dateutil 2.8.2
-> > pytz            2022.5
-> > setuptools      60.2.0
-> > six             1.16.0
-> > wheel           0.37.1
-> > ```
-> > 
-> > However, `python3 -m pip list` shows all the packages in the virtual environment -
-> > if we want to see only the list of packages that we installed,
-> > we can use the `python3 -m pip freeze` command instead:
-> > 
-> > ```bash
-> > (venv) $ python3 -m pip freeze
-> > ```
-> > 
-> > ```output
-> > contourpy==1.0.5
-> > cycler==0.11.0
-> > fonttools==4.37.4
-> > kiwisolver==1.4.4
-> > matplotlib==3.6.1
-> > numpy==1.23.4
-> > packaging==21.3
-> > pandas==1.5.0
-> > Pillow==9.2.0
-> > pyparsing==3.0.9
-> > python-dateutil==2.8.2
-> > pytz==2022.5
-> > six==1.16.0
-> > ```
-> > 
-> > We see the `pip` package in `python3 -m pip list` but not in `python3 -m pip freeze`
-> > as we did not install it using `pip`.
-> > Remember that we use `python3 -m pip freeze` to update our `requirements.txt` file,
-> > to keep a list of the packages our virtual environment includes.
-> > Python will not do this automatically;
-> > we have to manually update the file when our requirements change using:
-> > 
-> > ```bash
-> > python3 -m pip freeze > requirements.txt
-> > ```
-> > 
-> > If we want, we can also see the list of packages directly in the following subdirectory of `venv`:
-> > 
-> > ```bash
-> > (venv) $ ls -l venv/lib/python3.11/site-packages
-> > ```
-> > 
-> > ```
-> > ```
+::::: challenge
 
+## Comparing External Libraries in the Command Line and VS Code
+ 
+Can you recall two places where information about our project's dependencies
+can be found from the command line?
+Compare that information with the equivalent configuration in VS Code.
+ 
+Hint: We can use an argument to `pip`,
+or find the packages directly in a subdirectory of our virtual environment directory "venv".
+ 
+::: solution
+ 
+From the previous episode,
+you may remember that we can get the list of packages in the current virtual environment
+using `pip`:
+ 
+```bash
+(venv) $ python3 -m pip list
+```
+ 
+```output
+Package         Version
+--------------- -------
+contourpy       1.0.5
+cycler          0.11.0
+fonttools       4.37.4
+kiwisolver      1.4.4
+matplotlib      3.6.1
+numpy           1.23.4
+packaging       21.3
+pandas          1.5.0
+Pillow          9.2.0
+pip             21.3.1
+pyparsing       3.0.9
+python-dateutil 2.8.2
+pytz            2022.5
+setuptools      60.2.0
+six             1.16.0
+wheel           0.37.1
+```
+ 
+However, `python3 -m pip list` shows all the packages in the virtual environment -
+if we want to see only the list of packages that we installed,
+we can use the `python3 -m pip freeze` command instead:
+ 
+```bash
+(venv) $ python3 -m pip freeze
+```
+ 
+```output
+contourpy==1.0.5
+cycler==0.11.0
+fonttools==4.37.4
+kiwisolver==1.4.4
+matplotlib==3.6.1
+numpy==1.23.4
+packaging==21.3
+pandas==1.5.0
+Pillow==9.2.0
+pyparsing==3.0.9
+python-dateutil==2.8.2
+pytz==2022.5
+six==1.16.0
+```
+ 
+We see the `pip` package in `python3 -m pip list` but not in `python3 -m pip freeze`
+as we did not install it using `pip`.
+Remember that we use `python3 -m pip freeze` to update our `requirements.txt` file,
+to keep a list of the packages our virtual environment includes.
+Python will not do this automatically;
+we have to manually update the file when our requirements change using:
+ 
+```bash
+python3 -m pip freeze > requirements.txt
+```
+ 
+If we want, we can also see the list of packages directly in the following subdirectory of `venv`:
+ 
+```bash
+(venv) $ ls -l venv/lib/python3.11/site-packages
+```
+ 
+```output
 total 88
 drwxr-xr-x  105 alex  staff   3360 20 Nov 15:34 PIL
 drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 Pillow-10.1.0.dist-info
@@ -290,23 +290,15 @@ drwxr-xr-x   49 alex  staff   1568 20 Nov 15:32 setuptools
 drwxr-xr-x   10 alex  staff    320 20 Nov 15:32 setuptools-67.6.1.dist-info
 drwxr-xr-x    8 alex  staff    256 20 Nov 15:34 six-1.16.0.dist-info
 \-rw-r--r--    1 alex  staff  34549 20 Nov 15:34 six.py
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-:::::::::::::::  solution
-
 ```
-{: .output}
 
 Finally, if you look at both the contents of
 `venv/lib/python3.11/site-packages` and `requirements.txt`
 and compare that with the packages shown in VS Code's Python Interpreter Configuration -
 you will see that they all contain equivalent information.
-```
 
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
+:::::::
 
 #### Adding an External Library
 
@@ -460,7 +452,7 @@ We will create two run configurations for the `catchment-analysis` module:
 5. Change the contents of the file, to match the code below.
 6. Save the file.
 
-```
+```yaml
 {
     "version": "0.2.0",
     "configurations": [

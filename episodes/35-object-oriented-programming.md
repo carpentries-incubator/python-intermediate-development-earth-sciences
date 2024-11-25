@@ -116,7 +116,7 @@ measurement_data = [
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Exercise: Structuring Data
+### Structuring Data
 
 Write a function, called `attach_sites`,
 which can be used to attach IDs to our measurement dataset.
@@ -152,8 +152,6 @@ print(output)
 
 :::::::::::::::  solution
 
-## Solution
-
 One possible solution, perhaps the most obvious,
 is to use the `range` function to index into all three lists at the same location:
 
@@ -176,9 +174,7 @@ depending on the input.
 What might go wrong with this solution?
 How could we fix it?
 
-:::::::::::::::  solution
-
-## A Better Solution
+### A Better Solution
 
 What would happen if the `data`, `measurements`, and/or `sites` inputs were different lengths?
 
@@ -203,7 +199,7 @@ If you've not previously come across the `zip` function,
 read [this section](https://docs.python.org/3/library/functions.html#zip)
 of the Python documentation.
 
-```python, python
+```python
 def attach_names(data, sites, measurements):
     """Create datastructure containing measurement data from a range of sites."""
     assert len(data) == len(sites)
@@ -218,11 +214,10 @@ def attach_names(data, sites, measurements):
     return output
 ```
 
-:::::::::::::::::::::::::
+:::::::::::::::
 
 :::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Classes in Python
 
@@ -514,7 +509,7 @@ section of the Python documentation.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Exercise: A Basic Class
+### A Basic Class
 
 Implement a class to represent a book.
 Your class should:

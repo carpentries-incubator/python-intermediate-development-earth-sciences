@@ -442,7 +442,7 @@ including the ability to pass a list of measurements to the `__init__` method.
 Note that your Site class may look very different now,
 so adapt this example to fit what you have.
 
-```python, python
+```python
 # file: catchment/views.py
 
 ...
@@ -454,7 +454,7 @@ def display_measurement_record(site):
         print(site.measurements[measurement].series)
 ```
 
-```python, python
+```python
 # file: catchment/models.py
 
 ...
