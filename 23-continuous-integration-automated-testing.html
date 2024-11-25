@@ -537,7 +537,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>2.3 Continuous Integration for Automated Testing</h1>
-        <p>Last updated on 2024-11-22 |
+        <p>Last updated on 2024-11-25 |
 
         <a href="https://github.com/carpentries-incubator/python-intermediate-development-earth-sciences/edit/main/episodes/23-continuous-integration-automated-testing.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -917,7 +917,7 @@ the following:</p>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">        os: [ubuntu-latest, macos-latest, windows-latest]</span></span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">        python-version: ["3.10", "3.11"]</span></span>
 <span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">    runs-on: {% raw %}${{ matrix.os }}{% endraw %}</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">    runs-on: ${{ matrix.os }}</span></span>
 <span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a></span>
 <span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">...</span></span>
 <span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a></span>
@@ -932,14 +932,14 @@ the following:</p>
 <span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">    - name: Set up Python</span></span>
 <span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">      uses: actions/setup-python@v2</span></span>
 <span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">      with:</span></span>
-<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}</span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">        python-version: ${{ matrix.python-version }}</span></span>
 <span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">...</span></span></code></pre>
 </div>
-<p>The <code>{% raw %}${{ }}{% endraw %}</code> are used as a means to
-reference configuration values from the matrix. This way, every possible
-permutation of Python versions 3.10 and 3.11 with the latest versions of
-Ubuntu, Mac OS and Windows operating systems will be tested and we can
-expect 6 build jobs in total.</p>
+<p>The <code>{{ }}</code> are used as a means to reference configuration
+values from the matrix. This way, every possible permutation of Python
+versions 3.10 and 3.11 with the latest versions of Ubuntu, Mac OS and
+Windows operating systems will be tested and we can expect 6 build jobs
+in total.</p>
 <p>Let’s commit and push this change and see what happens:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1063,7 +1063,7 @@ builds simultaneously.</li>
   "url": "https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/23-continuous-integration-automated-testing.html",
   "identifier": "https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/23-continuous-integration-automated-testing.html",
   "dateCreated": "2020-04-23",
-  "dateModified": "2024-11-22",
+  "dateModified": "2024-11-25",
   "datePublished": "2024-11-25"
 }
 
