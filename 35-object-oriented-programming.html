@@ -380,9 +380,7 @@
       <div class="accordion-body">
         <ul><li><a href="#introduction">Introduction</a></li>
 <li><a href="#structuring-data">Structuring Data</a></li>
-<li><a href="#exercise-structuring-data">Exercise: Structuring Data</a></li>
-<li><a href="#solution">Solution</a></li>
-<li><a href="#a-better-solution">A Better Solution</a></li>
+<li><a href="#classes-in-python">Classes in Python</a></li>
 <li><a href="#encapsulating-data">Encapsulating Data</a></li>
 <li><a href="#encapsulating-behaviour">Encapsulating Behaviour</a></li>
 <li><a href="#relationships-between-classes">Relationships Between Classes</a></li>
@@ -540,7 +538,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>3.5 Object Oriented Programming</h1>
-        <p>Last updated on 2024-11-22 |
+        <p>Last updated on 2024-11-25 |
 
         <a href="https://github.com/carpentries-incubator/python-intermediate-development-earth-sciences/edit/main/episodes/35-object-oriented-programming.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -666,9 +664,14 @@ attach an identifier to the measurements from each site:</p>
 <span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>    },</span>
 <span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>]</span></code></pre>
 </div>
-<p>::::::::::::::::::::::::::::::::::::::: challenge</p>
-</section><section><h2 class="section-heading" id="exercise-structuring-data">Exercise: Structuring Data<a class="anchor" aria-label="anchor" href="#exercise-structuring-data"></a></h2>
-<hr class="half-width"><p>Write a function, called <code>attach_sites</code>, which can be used
+<div id="structuring-data-1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="structuring-data-1" class="callout-inner">
+<h3 class="callout-title">Structuring Data</h3>
+<div class="callout-content">
+<p>Write a function, called <code>attach_sites</code>, which can be used
 to attach IDs to our measurement dataset. When used as below, it should
 produce the expected output.</p>
 <p>If you’re not sure where to begin, think about ways you might be able
@@ -700,9 +703,17 @@ Python list, a NumPy array, or a Pandas DataFrame - any is fine.</p>
     },
 ]</code></pre>
 </div>
-<p>::::::::::::::: solution</p>
-</section><section><h2 class="section-heading" id="solution">Solution<a class="anchor" aria-label="anchor" href="#solution"></a></h2>
-<hr class="half-width"><p>One possible solution, perhaps the most obvious, is to use the
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>One possible solution, perhaps the most obvious, is to use the
 <code>range</code> function to index into all three lists at the same
 location:</p>
 <div class="codewrapper sourceCode" id="cb7">
@@ -723,9 +734,9 @@ location:</p>
 <p>However, this solution has a potential problem that can occur
 sometimes, depending on the input. What might go wrong with this
 solution? How could we fix it?</p>
-<p>::::::::::::::: solution</p>
-</section><section><h2 class="section-heading" id="a-better-solution">A Better Solution<a class="anchor" aria-label="anchor" href="#a-better-solution"></a></h2>
-<hr class="half-width"><p>What would happen if the <code>data</code>,
+<div class="section level3">
+<h3 id="a-better-solution">A Better Solution<a class="anchor" aria-label="anchor" href="#a-better-solution"></a></h3>
+<p>What would happen if the <code>data</code>,
 <code>measurements</code>, and/or <code>sites</code> inputs were
 different lengths?</p>
 <p>If <code>sites</code> or <code>measurements</code> is longer, we’ll
@@ -746,61 +757,61 @@ episode.</p>
 <p>If you’ve not previously come across the <code>zip</code> function,
 read <a href="https://docs.python.org/3/library/functions.html#zip" class="external-link">this
 section</a> of the Python documentation.</p>
-<p>```python, python def attach_names(data, sites, measurements):
-“““Create datastructure containing measurement data from a range of
-sites.”“” assert len(data) == len(sites) assert len(data) ==
-len(measurements) output = []</p>
 <div class="codewrapper sourceCode" id="cb8">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="cf">for</span> data_row<span class="ex">,</span> measurement, site in zip<span class="er">(</span><span class="ex">data,</span> measurements, sites<span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="ex">output.append</span><span class="er">(</span><span class="ex">{</span><span class="st">'site'</span><span class="ex">:</span> site,</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                   <span class="st">'measurement'</span><span class="ex">:</span> measurement,</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                   <span class="st">'data'</span><span class="ex">:</span> data_row}<span class="kw">)</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="cf">return</span> <span class="ex">output</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="kw">def</span> attach_names(data, sites, measurements):</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="co">"""Create datastructure containing measurement data from a range of sites."""</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(data) <span class="op">==</span> <span class="bu">len</span>(sites)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(data) <span class="op">==</span> <span class="bu">len</span>(measurements)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    output <span class="op">=</span> []</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    <span class="cf">for</span> data_row, measurement, site <span class="kw">in</span> <span class="bu">zip</span>(data, measurements, sites):</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>        output.append({<span class="st">'site'</span>: site,</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>                       <span class="st">'measurement'</span>: measurement,</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>                       <span class="st">'data'</span>: data_row})</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>    <span class="cf">return</span> output</span></code></pre>
 </div>
-<pre><code>
-:::::::::::::::::::::::::
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Classes in Python
-
-Using nested dictionaries and lists should work for some of the simpler cases
-where we need to handle structured data,
-but they get quite difficult to manage once the structure becomes a bit more complex.
-For this reason, in the object oriented paradigm,
-we use **classes** to help with managing this data
-and the operations we would want to perform on it.
-A class is a **template** (blueprint) for a structured piece of data,
-so when we create some data using a class,
-we can be certain that it has the same structure each time.
-
-With our list of dictionaries we had in the example above,
-we have no real guarantee that each dictionary has the same structure,
-e.g. the same keys (`site` and `data`) unless we check it manually.
-With a class, if an object is an **instance** of that class
-(i.e. it was made using that template)
-we know it will have the structure defined by that class.
-Different programming languages make slightly different guarantees
-about how strictly the structure will match,
-but in object oriented programming this is one of the core ideas -
-all objects derived from the same class must follow the same behaviour.
-
-You may not have realised, but you should already be familiar with
-some of the classes that come bundled as part of Python, for example:
-
-```python
-my_list = [1, 2, 3]
-my_dict = {1: '1', 2: '2', 3: '3'}
-my_set = {1, 2, 3}
-
-print(type(my_list))
-print(type(my_dict))
-print(type(my_set))</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="classes-in-python">Classes in Python<a class="anchor" aria-label="anchor" href="#classes-in-python"></a></h2>
+<hr class="half-width"><p>Using nested dictionaries and lists should work for some of the
+simpler cases where we need to handle structured data, but they get
+quite difficult to manage once the structure becomes a bit more complex.
+For this reason, in the object oriented paradigm, we use
+<strong>classes</strong> to help with managing this data and the
+operations we would want to perform on it. A class is a
+<strong>template</strong> (blueprint) for a structured piece of data, so
+when we create some data using a class, we can be certain that it has
+the same structure each time.</p>
+<p>With our list of dictionaries we had in the example above, we have no
+real guarantee that each dictionary has the same structure, e.g. the
+same keys (<code>site</code> and <code>data</code>) unless we check it
+manually. With a class, if an object is an <strong>instance</strong> of
+that class (i.e. it was made using that template) we know it will have
+the structure defined by that class. Different programming languages
+make slightly different guarantees about how strictly the structure will
+match, but in object oriented programming this is one of the core ideas
+- all objects derived from the same class must follow the same
+behaviour.</p>
+<p>You may not have realised, but you should already be familiar with
+some of the classes that come bundled as part of Python, for
+example:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="dv">1</span>: <span class="st">'1'</span>, <span class="dv">2</span>: <span class="st">'2'</span>, <span class="dv">3</span>: <span class="st">'3'</span>}</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>my_set <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(my_list))</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(my_dict))</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(my_set))</span></code></pre>
+</div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1043,12 +1054,12 @@ also worth experimenting with built in Python objects to see which
 methods provide which behaviour. For a more complete list of these
 special methods, see the <a href="https://docs.python.org/3/reference/datamodel.html#special-method-names" class="external-link">Special
 Method Names</a> section of the Python documentation.</p>
-<div id="exercise-a-basic-class" class="callout challenge">
+<div id="a-basic-class" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-a-basic-class" class="callout-inner">
-<h3 class="callout-title">Exercise: A Basic Class</h3>
+<div id="a-basic-class" class="callout-inner">
+<h3 class="callout-title">A Basic Class</h3>
 <div class="callout-content">
 <p>Implement a class to represent a book. Your class should:</p>
 <ul><li>Have a title</li>
@@ -1070,12 +1081,12 @@ Method Names</a> section of the Python documentation.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1542,12 +1553,12 @@ feature in the same way?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>One example solution is shown below. You may start by writing some
 tests (that will initially fail), and then develop the code to satisfy
@@ -1721,7 +1732,7 @@ behaviour of parts of our data.</li>
   "url": "https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/35-object-oriented-programming.html",
   "identifier": "https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/35-object-oriented-programming.html",
   "dateCreated": "2020-04-23",
-  "dateModified": "2024-11-22",
+  "dateModified": "2024-11-25",
   "datePublished": "2024-11-25"
 }
 

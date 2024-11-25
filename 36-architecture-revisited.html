@@ -534,7 +534,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>3.6 Architecture Revisited: Extending Software</h1>
-        <p>Last updated on 2024-11-22 |
+        <p>Last updated on 2024-11-25 |
 
         <a href="https://github.com/carpentries-incubator/python-intermediate-development-earth-sciences/edit/main/episodes/36-architecture-revisited.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -1013,59 +1013,68 @@ the necessary data - including the ability to pass a list of
 measurements to the <code>__init__</code> method. Note that your Site
 class may look very different now, so adapt this example to fit what you
 have.</p>
-<p>```python, python # file: catchment/views.py</p>
-<p>…</p>
-<p>def display_measurement_record(site): “““Display each dataset for a
-single site.”“” print(site.name) for measurement in site.measurements:
-print(site.measurements[measurement].series)</p>
-<pre><code>
-```python, python
-# file: catchment/models.py
-
-...
-
-class MeasurementSeries:
-    def __init__(self, series, name, units):
-        self.series = series
-        self.name = name
-        self.units = units
-        self.series.name = self.name
-
-    def add_measurement(self, data):
-        self.series = pd.concat([self.series,data])
-        self.series.name = self.name
-
-    def __str__(self):
-        if self.units:
-            return f"{self.name} ({self.units})"
-        else:
-            return self.name
-
-class Location:
-    def __init__(self, name):
-        self.name = name
-
-    def __str__(self):
-        return self.name
-
-class Site(Location):
-    def __init__(self,name):
-        super().__init__(name)
-        self.measurements = {}
-
-    def add_measurement(self, measurement_id, data, units=None):
-        if measurement_id in self.measurements.keys():
-            self.measurements[measurement_id].add_measurement(data)
-
-        else:
-            self.measurements[measurement_id] = MeasurementSeries(data, measurement_id, units)
-
-    @property
-    def last_measurements(self):
-        return pd.concat(
-            [self.measurements[key].series[-1:] for key in self.measurements.keys()],
-            axis=1).sort_index()
-</code></pre>
+<div class="codewrapper sourceCode" id="cb25">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># file: catchment/views.py</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>...</span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="kw">def</span> display_measurement_record(site):</span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>    <span class="co">"""Display each dataset for a single site."""</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a>    <span class="bu">print</span>(site.name)</span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>    <span class="cf">for</span> measurement <span class="kw">in</span> site.measurements:</span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>        <span class="bu">print</span>(site.measurements[measurement].series)</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb26">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># file: catchment/models.py</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>...</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="kw">class</span> MeasurementSeries:</span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, series, name, units):</span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>        <span class="va">self</span>.series <span class="op">=</span> series</span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>        <span class="va">self</span>.units <span class="op">=</span> units</span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>        <span class="va">self</span>.series.name <span class="op">=</span> <span class="va">self</span>.name</span>
+<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a>    </span>
+<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a>    <span class="kw">def</span> add_measurement(<span class="va">self</span>, data):</span>
+<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a>        <span class="va">self</span>.series <span class="op">=</span> pd.concat([<span class="va">self</span>.series,data])</span>
+<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a>        <span class="va">self</span>.series.name <span class="op">=</span> <span class="va">self</span>.name</span>
+<span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a>    </span>
+<span id="cb26-16"><a href="#cb26-16" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb26-17"><a href="#cb26-17" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.units:</span>
+<span id="cb26-18"><a href="#cb26-18" tabindex="-1"></a>            <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>units<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb26-19"><a href="#cb26-19" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb26-20"><a href="#cb26-20" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.name</span>
+<span id="cb26-21"><a href="#cb26-21" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" tabindex="-1"></a><span class="kw">class</span> Location:</span>
+<span id="cb26-23"><a href="#cb26-23" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):</span>
+<span id="cb26-24"><a href="#cb26-24" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb26-27"><a href="#cb26-27" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.name</span>
+<span id="cb26-28"><a href="#cb26-28" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" tabindex="-1"></a><span class="kw">class</span> Site(Location):</span>
+<span id="cb26-30"><a href="#cb26-30" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name):</span>
+<span id="cb26-31"><a href="#cb26-31" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(name)</span>
+<span id="cb26-32"><a href="#cb26-32" tabindex="-1"></a>        <span class="va">self</span>.measurements <span class="op">=</span> {}</span>
+<span id="cb26-33"><a href="#cb26-33" tabindex="-1"></a>    </span>
+<span id="cb26-34"><a href="#cb26-34" tabindex="-1"></a>    <span class="kw">def</span> add_measurement(<span class="va">self</span>, measurement_id, data, units<span class="op">=</span><span class="va">None</span>):    </span>
+<span id="cb26-35"><a href="#cb26-35" tabindex="-1"></a>        <span class="cf">if</span> measurement_id <span class="kw">in</span> <span class="va">self</span>.measurements.keys():</span>
+<span id="cb26-36"><a href="#cb26-36" tabindex="-1"></a>            <span class="va">self</span>.measurements[measurement_id].add_measurement(data)</span>
+<span id="cb26-37"><a href="#cb26-37" tabindex="-1"></a>    </span>
+<span id="cb26-38"><a href="#cb26-38" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb26-39"><a href="#cb26-39" tabindex="-1"></a>            <span class="va">self</span>.measurements[measurement_id] <span class="op">=</span> MeasurementSeries(data, measurement_id, units)</span>
+<span id="cb26-40"><a href="#cb26-40" tabindex="-1"></a>    </span>
+<span id="cb26-41"><a href="#cb26-41" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb26-42"><a href="#cb26-42" tabindex="-1"></a>    <span class="kw">def</span> last_measurements(<span class="va">self</span>):</span>
+<span id="cb26-43"><a href="#cb26-43" tabindex="-1"></a>        <span class="cf">return</span> pd.concat(</span>
+<span id="cb26-44"><a href="#cb26-44" tabindex="-1"></a>            [<span class="va">self</span>.measurements[key].series[<span class="op">-</span><span class="dv">1</span>:] <span class="cf">for</span> key <span class="kw">in</span> <span class="va">self</span>.measurements.keys()],</span>
+<span id="cb26-45"><a href="#cb26-45" tabindex="-1"></a>            axis<span class="op">=</span><span class="dv">1</span>).sort_index()</span></code></pre>
+</div>
 <p>Now we need to make sure people can call this view - that means
 connecting it to the controller and ensuring that there’s a way to
 request this view when running the program.</p>
@@ -1078,97 +1087,97 @@ necessary data to drive the new view.</p>
 <p>As the argument parsing routines are getting more involved, we have
 moved these into a single function (<code>parse_cli_arguments</code>),
 to make the script more readable.</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># file: catchment-analysis.py</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="co">"""Software for managing measurement data for our catchment project."""</span></span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="im">import</span> argparse</span>
-<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a></span>
-<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a><span class="im">from</span> catchment <span class="im">import</span> models, views</span>
-<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a><span class="kw">def</span> main(args):</span>
-<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a>    <span class="co">"""The MVC Controller of the patient data system.</span></span>
-<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a></span>
-<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a><span class="co">    The Controller is responsible for:</span></span>
-<span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a><span class="co">    - selecting the necessary models and views for the current task</span></span>
-<span id="cb26-16"><a href="#cb26-16" tabindex="-1"></a><span class="co">    - passing data between models and views</span></span>
-<span id="cb26-17"><a href="#cb26-17" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb26-18"><a href="#cb26-18" tabindex="-1"></a>    infiles <span class="op">=</span> args.infiles</span>
-<span id="cb26-19"><a href="#cb26-19" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(infiles, <span class="bu">list</span>):</span>
-<span id="cb26-20"><a href="#cb26-20" tabindex="-1"></a>        infiles <span class="op">=</span> [args.infiles]</span>
-<span id="cb26-21"><a href="#cb26-21" tabindex="-1"></a></span>
-<span id="cb26-22"><a href="#cb26-22" tabindex="-1"></a>    <span class="cf">for</span> filename <span class="kw">in</span> in_files:</span>
-<span id="cb26-23"><a href="#cb26-23" tabindex="-1"></a>        measurement_data <span class="op">=</span> models.read_variable_from_csv(filename, arg.measurements)</span>
-<span id="cb26-24"><a href="#cb26-24" tabindex="-1"></a></span>
-<span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a></span>
-<span id="cb26-26"><a href="#cb26-26" tabindex="-1"></a>        <span class="co">### MODIFIED START </span><span class="al">###</span></span>
-<span id="cb26-27"><a href="#cb26-27" tabindex="-1"></a>        <span class="cf">if</span> args.view <span class="op">==</span> <span class="st">'visualize'</span>:</span>
-<span id="cb26-28"><a href="#cb26-28" tabindex="-1"></a>            view_data <span class="op">=</span> {<span class="st">'daily sum'</span>: models.daily_total(measurement_data),</span>
-<span id="cb26-29"><a href="#cb26-29" tabindex="-1"></a>                         <span class="st">'daily average'</span>: models.daily_mean(measurement_data),</span>
-<span id="cb26-30"><a href="#cb26-30" tabindex="-1"></a>                         <span class="st">'daily max'</span>: models.daily_max(measurement_data),</span>
-<span id="cb26-31"><a href="#cb26-31" tabindex="-1"></a>                         <span class="st">'daily min'</span>: models.daily_min(measurement_data)}</span>
-<span id="cb26-32"><a href="#cb26-32" tabindex="-1"></a>        </span>
-<span id="cb26-33"><a href="#cb26-33" tabindex="-1"></a>            views.visualize(view_data)</span>
-<span id="cb26-34"><a href="#cb26-34" tabindex="-1"></a></span>
-<span id="cb26-35"><a href="#cb26-35" tabindex="-1"></a>        <span class="cf">elif</span> args.view <span class="op">==</span> <span class="st">'record'</span>:</span>
-<span id="cb26-36"><a href="#cb26-36" tabindex="-1"></a>            measurement_data <span class="op">=</span> measurement_data[args.site]</span>
-<span id="cb26-37"><a href="#cb26-37" tabindex="-1"></a>            site <span class="op">=</span> models.Site(args.site)</span>
-<span id="cb26-38"><a href="#cb26-38" tabindex="-1"></a>            site.add_measurement(arg.measurements, measurement_data)</span>
-<span id="cb26-39"><a href="#cb26-39" tabindex="-1"></a></span>
-<span id="cb26-40"><a href="#cb26-40" tabindex="-1"></a>            views.display_measurement_record(site)</span>
-<span id="cb26-41"><a href="#cb26-41" tabindex="-1"></a>        <span class="co">### MODIFIED </span><span class="re">END</span><span class="co"> </span><span class="al">###</span></span>
-<span id="cb26-42"><a href="#cb26-42" tabindex="-1"></a></span>
-<span id="cb26-43"><a href="#cb26-43" tabindex="-1"></a></span>
-<span id="cb26-44"><a href="#cb26-44" tabindex="-1"></a><span class="kw">def</span> parse_cli_arguments():</span>
-<span id="cb26-45"><a href="#cb26-45" tabindex="-1"></a>    <span class="co">"""Definitions and logic tests for the CLI argument parser"""</span></span>
-<span id="cb26-46"><a href="#cb26-46" tabindex="-1"></a>    </span>
-<span id="cb26-47"><a href="#cb26-47" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser(</span>
-<span id="cb26-48"><a href="#cb26-48" tabindex="-1"></a>        description<span class="op">=</span><span class="st">'A basic environmental data management system'</span>)</span>
-<span id="cb26-49"><a href="#cb26-49" tabindex="-1"></a>    </span>
-<span id="cb26-50"><a href="#cb26-50" tabindex="-1"></a>    req_group <span class="op">=</span> parser.add_argument_group(<span class="st">'required arguments'</span>)</span>
-<span id="cb26-51"><a href="#cb26-51" tabindex="-1"></a></span>
-<span id="cb26-52"><a href="#cb26-52" tabindex="-1"></a>    parser.add_argument(</span>
-<span id="cb26-53"><a href="#cb26-53" tabindex="-1"></a>        <span class="st">'infiles'</span>,</span>
-<span id="cb26-54"><a href="#cb26-54" tabindex="-1"></a>        nargs <span class="op">=</span> <span class="st">'+'</span>,</span>
-<span id="cb26-55"><a href="#cb26-55" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Input CSV(s) containing measurement data'</span>)</span>
-<span id="cb26-56"><a href="#cb26-56" tabindex="-1"></a></span>
-<span id="cb26-57"><a href="#cb26-57" tabindex="-1"></a>    req_group.add_argument(</span>
-<span id="cb26-58"><a href="#cb26-58" tabindex="-1"></a>        <span class="st">'-m'</span>, <span class="st">'--measurements'</span>,</span>
-<span id="cb26-59"><a href="#cb26-59" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Name of measurement data series to load'</span>,</span>
-<span id="cb26-60"><a href="#cb26-60" tabindex="-1"></a>        required <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb26-61"><a href="#cb26-61" tabindex="-1"></a></span>
-<span id="cb26-62"><a href="#cb26-62" tabindex="-1"></a>    <span class="co">### MODIFIED START </span><span class="al">###</span></span>
-<span id="cb26-63"><a href="#cb26-63" tabindex="-1"></a>    parser.add_argument(</span>
-<span id="cb26-64"><a href="#cb26-64" tabindex="-1"></a>        <span class="st">'--view'</span>,</span>
-<span id="cb26-65"><a href="#cb26-65" tabindex="-1"></a>        default <span class="op">=</span> <span class="st">'visualize'</span>,</span>
-<span id="cb26-66"><a href="#cb26-66" tabindex="-1"></a>        choices <span class="op">=</span> [<span class="st">'visualize'</span>, <span class="st">'record'</span>],</span>
-<span id="cb26-67"><a href="#cb26-67" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Which view should be used?'</span>)</span>
-<span id="cb26-68"><a href="#cb26-68" tabindex="-1"></a></span>
-<span id="cb26-69"><a href="#cb26-69" tabindex="-1"></a>    parser.add_argument(</span>
-<span id="cb26-70"><a href="#cb26-70" tabindex="-1"></a>        <span class="st">'--site'</span>,</span>
-<span id="cb26-71"><a href="#cb26-71" tabindex="-1"></a>        <span class="bu">type</span> <span class="op">=</span> <span class="bu">str</span>,</span>
-<span id="cb26-72"><a href="#cb26-72" tabindex="-1"></a>        default <span class="op">=</span> <span class="va">None</span>,</span>
-<span id="cb26-73"><a href="#cb26-73" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Which site should be displayed?'</span>)</span>
-<span id="cb26-74"><a href="#cb26-74" tabindex="-1"></a>    <span class="co">### MODIFIED </span><span class="re">END</span><span class="co"> </span><span class="al">###</span></span>
-<span id="cb26-75"><a href="#cb26-75" tabindex="-1"></a></span>
-<span id="cb26-76"><a href="#cb26-76" tabindex="-1"></a>    args <span class="op">=</span> parser.parse_args()</span>
-<span id="cb26-77"><a href="#cb26-77" tabindex="-1"></a>    </span>
-<span id="cb26-78"><a href="#cb26-78" tabindex="-1"></a>    <span class="cf">if</span> args.view <span class="op">==</span> <span class="st">'record'</span> <span class="kw">and</span> args.site <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb26-79"><a href="#cb26-79" tabindex="-1"></a>        parser.error(<span class="st">"'record' --view requires that --site is set"</span>)</span>
-<span id="cb26-80"><a href="#cb26-80" tabindex="-1"></a></span>
-<span id="cb26-81"><a href="#cb26-81" tabindex="-1"></a>    <span class="cf">return</span> args</span>
-<span id="cb26-82"><a href="#cb26-82" tabindex="-1"></a></span>
-<span id="cb26-83"><a href="#cb26-83" tabindex="-1"></a></span>
-<span id="cb26-84"><a href="#cb26-84" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb26-85"><a href="#cb26-85" tabindex="-1"></a></span>
-<span id="cb26-86"><a href="#cb26-86" tabindex="-1"></a>    args <span class="op">=</span> parse_cli_arguments()</span>
-<span id="cb26-87"><a href="#cb26-87" tabindex="-1"></a></span>
-<span id="cb26-88"><a href="#cb26-88" tabindex="-1"></a>    main(args)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># file: catchment-analysis.py</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="co">"""Software for managing measurement data for our catchment project."""</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a><span class="im">from</span> catchment <span class="im">import</span> models, views</span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a><span class="kw">def</span> main(args):</span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a>    <span class="co">"""The MVC Controller of the patient data system.</span></span>
+<span id="cb27-13"><a href="#cb27-13" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" tabindex="-1"></a><span class="co">    The Controller is responsible for:</span></span>
+<span id="cb27-15"><a href="#cb27-15" tabindex="-1"></a><span class="co">    - selecting the necessary models and views for the current task</span></span>
+<span id="cb27-16"><a href="#cb27-16" tabindex="-1"></a><span class="co">    - passing data between models and views</span></span>
+<span id="cb27-17"><a href="#cb27-17" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb27-18"><a href="#cb27-18" tabindex="-1"></a>    infiles <span class="op">=</span> args.infiles</span>
+<span id="cb27-19"><a href="#cb27-19" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(infiles, <span class="bu">list</span>):</span>
+<span id="cb27-20"><a href="#cb27-20" tabindex="-1"></a>        infiles <span class="op">=</span> [args.infiles]</span>
+<span id="cb27-21"><a href="#cb27-21" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" tabindex="-1"></a>    <span class="cf">for</span> filename <span class="kw">in</span> in_files:</span>
+<span id="cb27-23"><a href="#cb27-23" tabindex="-1"></a>        measurement_data <span class="op">=</span> models.read_variable_from_csv(filename, arg.measurements)</span>
+<span id="cb27-24"><a href="#cb27-24" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" tabindex="-1"></a></span>
+<span id="cb27-26"><a href="#cb27-26" tabindex="-1"></a>        <span class="co">### MODIFIED START </span><span class="al">###</span></span>
+<span id="cb27-27"><a href="#cb27-27" tabindex="-1"></a>        <span class="cf">if</span> args.view <span class="op">==</span> <span class="st">'visualize'</span>:</span>
+<span id="cb27-28"><a href="#cb27-28" tabindex="-1"></a>            view_data <span class="op">=</span> {<span class="st">'daily sum'</span>: models.daily_total(measurement_data),</span>
+<span id="cb27-29"><a href="#cb27-29" tabindex="-1"></a>                         <span class="st">'daily average'</span>: models.daily_mean(measurement_data),</span>
+<span id="cb27-30"><a href="#cb27-30" tabindex="-1"></a>                         <span class="st">'daily max'</span>: models.daily_max(measurement_data),</span>
+<span id="cb27-31"><a href="#cb27-31" tabindex="-1"></a>                         <span class="st">'daily min'</span>: models.daily_min(measurement_data)}</span>
+<span id="cb27-32"><a href="#cb27-32" tabindex="-1"></a>        </span>
+<span id="cb27-33"><a href="#cb27-33" tabindex="-1"></a>            views.visualize(view_data)</span>
+<span id="cb27-34"><a href="#cb27-34" tabindex="-1"></a></span>
+<span id="cb27-35"><a href="#cb27-35" tabindex="-1"></a>        <span class="cf">elif</span> args.view <span class="op">==</span> <span class="st">'record'</span>:</span>
+<span id="cb27-36"><a href="#cb27-36" tabindex="-1"></a>            measurement_data <span class="op">=</span> measurement_data[args.site]</span>
+<span id="cb27-37"><a href="#cb27-37" tabindex="-1"></a>            site <span class="op">=</span> models.Site(args.site)</span>
+<span id="cb27-38"><a href="#cb27-38" tabindex="-1"></a>            site.add_measurement(arg.measurements, measurement_data)</span>
+<span id="cb27-39"><a href="#cb27-39" tabindex="-1"></a></span>
+<span id="cb27-40"><a href="#cb27-40" tabindex="-1"></a>            views.display_measurement_record(site)</span>
+<span id="cb27-41"><a href="#cb27-41" tabindex="-1"></a>        <span class="co">### MODIFIED </span><span class="re">END</span><span class="co"> </span><span class="al">###</span></span>
+<span id="cb27-42"><a href="#cb27-42" tabindex="-1"></a></span>
+<span id="cb27-43"><a href="#cb27-43" tabindex="-1"></a></span>
+<span id="cb27-44"><a href="#cb27-44" tabindex="-1"></a><span class="kw">def</span> parse_cli_arguments():</span>
+<span id="cb27-45"><a href="#cb27-45" tabindex="-1"></a>    <span class="co">"""Definitions and logic tests for the CLI argument parser"""</span></span>
+<span id="cb27-46"><a href="#cb27-46" tabindex="-1"></a>    </span>
+<span id="cb27-47"><a href="#cb27-47" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser(</span>
+<span id="cb27-48"><a href="#cb27-48" tabindex="-1"></a>        description<span class="op">=</span><span class="st">'A basic environmental data management system'</span>)</span>
+<span id="cb27-49"><a href="#cb27-49" tabindex="-1"></a>    </span>
+<span id="cb27-50"><a href="#cb27-50" tabindex="-1"></a>    req_group <span class="op">=</span> parser.add_argument_group(<span class="st">'required arguments'</span>)</span>
+<span id="cb27-51"><a href="#cb27-51" tabindex="-1"></a></span>
+<span id="cb27-52"><a href="#cb27-52" tabindex="-1"></a>    parser.add_argument(</span>
+<span id="cb27-53"><a href="#cb27-53" tabindex="-1"></a>        <span class="st">'infiles'</span>,</span>
+<span id="cb27-54"><a href="#cb27-54" tabindex="-1"></a>        nargs <span class="op">=</span> <span class="st">'+'</span>,</span>
+<span id="cb27-55"><a href="#cb27-55" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Input CSV(s) containing measurement data'</span>)</span>
+<span id="cb27-56"><a href="#cb27-56" tabindex="-1"></a></span>
+<span id="cb27-57"><a href="#cb27-57" tabindex="-1"></a>    req_group.add_argument(</span>
+<span id="cb27-58"><a href="#cb27-58" tabindex="-1"></a>        <span class="st">'-m'</span>, <span class="st">'--measurements'</span>,</span>
+<span id="cb27-59"><a href="#cb27-59" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Name of measurement data series to load'</span>,</span>
+<span id="cb27-60"><a href="#cb27-60" tabindex="-1"></a>        required <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb27-61"><a href="#cb27-61" tabindex="-1"></a></span>
+<span id="cb27-62"><a href="#cb27-62" tabindex="-1"></a>    <span class="co">### MODIFIED START </span><span class="al">###</span></span>
+<span id="cb27-63"><a href="#cb27-63" tabindex="-1"></a>    parser.add_argument(</span>
+<span id="cb27-64"><a href="#cb27-64" tabindex="-1"></a>        <span class="st">'--view'</span>,</span>
+<span id="cb27-65"><a href="#cb27-65" tabindex="-1"></a>        default <span class="op">=</span> <span class="st">'visualize'</span>,</span>
+<span id="cb27-66"><a href="#cb27-66" tabindex="-1"></a>        choices <span class="op">=</span> [<span class="st">'visualize'</span>, <span class="st">'record'</span>],</span>
+<span id="cb27-67"><a href="#cb27-67" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Which view should be used?'</span>)</span>
+<span id="cb27-68"><a href="#cb27-68" tabindex="-1"></a></span>
+<span id="cb27-69"><a href="#cb27-69" tabindex="-1"></a>    parser.add_argument(</span>
+<span id="cb27-70"><a href="#cb27-70" tabindex="-1"></a>        <span class="st">'--site'</span>,</span>
+<span id="cb27-71"><a href="#cb27-71" tabindex="-1"></a>        <span class="bu">type</span> <span class="op">=</span> <span class="bu">str</span>,</span>
+<span id="cb27-72"><a href="#cb27-72" tabindex="-1"></a>        default <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb27-73"><a href="#cb27-73" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Which site should be displayed?'</span>)</span>
+<span id="cb27-74"><a href="#cb27-74" tabindex="-1"></a>    <span class="co">### MODIFIED </span><span class="re">END</span><span class="co"> </span><span class="al">###</span></span>
+<span id="cb27-75"><a href="#cb27-75" tabindex="-1"></a></span>
+<span id="cb27-76"><a href="#cb27-76" tabindex="-1"></a>    args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb27-77"><a href="#cb27-77" tabindex="-1"></a>    </span>
+<span id="cb27-78"><a href="#cb27-78" tabindex="-1"></a>    <span class="cf">if</span> args.view <span class="op">==</span> <span class="st">'record'</span> <span class="kw">and</span> args.site <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb27-79"><a href="#cb27-79" tabindex="-1"></a>        parser.error(<span class="st">"'record' --view requires that --site is set"</span>)</span>
+<span id="cb27-80"><a href="#cb27-80" tabindex="-1"></a></span>
+<span id="cb27-81"><a href="#cb27-81" tabindex="-1"></a>    <span class="cf">return</span> args</span>
+<span id="cb27-82"><a href="#cb27-82" tabindex="-1"></a></span>
+<span id="cb27-83"><a href="#cb27-83" tabindex="-1"></a></span>
+<span id="cb27-84"><a href="#cb27-84" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb27-85"><a href="#cb27-85" tabindex="-1"></a></span>
+<span id="cb27-86"><a href="#cb27-86" tabindex="-1"></a>    args <span class="op">=</span> parse_cli_arguments()</span>
+<span id="cb27-87"><a href="#cb27-87" tabindex="-1"></a></span>
+<span id="cb27-88"><a href="#cb27-88" tabindex="-1"></a>    main(args)</span></code></pre>
 </div>
 <p>We’ve added two options to our command line interface here: one to
 request a specific view (<code>--view</code>) and one for the site ID
@@ -1182,10 +1191,10 @@ arguments are parsed, but before calling the <code>main</code> function,
 to ensure that the site option is set if we are using the
 <code>record</code> view, which will return an error using the
 <code>parser.error</code> function:</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">python3</span> catchment-analysis.py <span class="at">--view</span> record <span class="at">-m</span> <span class="st">'Rainfall (mm)'</span> data/rain_data_2015-12.csv</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">python3</span> catchment-analysis.py <span class="at">--view</span> record <span class="at">-m</span> <span class="st">'Rainfall (mm)'</span> data/rain_data_2015-12.csv</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1198,10 +1207,10 @@ information for the command is given, followed by the error message that
 we have added.</p>
 <p>We can now call our program with these extra arguments to see the
 record for a single site:</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">$</span> python3 catchment-analysis.py <span class="at">--view</span> record <span class="at">--site</span> FP35 <span class="at">-m</span> <span class="st">'Rainfall (mm)'</span> data/rain_data_2015-12.csv</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="ex">$</span> python3 catchment-analysis.py <span class="at">--view</span> record <span class="at">--site</span> FP35 <span class="at">-m</span> <span class="st">'Rainfall (mm)'</span> data/rain_data_2015-12.csv</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1342,7 +1351,7 @@ software package in their own right.</li>
   "url": "https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/36-architecture-revisited.html",
   "identifier": "https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/36-architecture-revisited.html",
   "dateCreated": "2020-04-23",
-  "dateModified": "2024-11-22",
+  "dateModified": "2024-11-25",
   "datePublished": "2024-11-25"
 }
 

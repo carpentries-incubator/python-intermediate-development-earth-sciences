@@ -708,12 +708,12 @@
 </h2>
 <hr class="half-width">
 <p>So, you have gained basic software development skills either by
-self-learning or attending, e.g., a [novice Software Carpentry
-course][swc-lessons]. You have been applying those skills for a while by
-writing code to help with your work and you feel comfortable developing
-code and troubleshooting problems. However, your software has now
-reached a point where there’s too much code to be kept in one script.
-Perhaps it’s involving more researchers (developers) and users, and more
+self-learning or attending, e.g., a <a href="https://software-carpentry.org/lessons/" class="external-link">novice Software Carpentry
+course</a>. You have been applying those skills for a while by writing
+code to help with your work and you feel comfortable developing code and
+troubleshooting problems. However, your software has now reached a point
+where there’s too much code to be kept in one script. Perhaps it’s
+involving more researchers (developers) and users, and more
 collaborative development effort is needed to add new functionality
 while ensuring previous development efforts remain functional and
 maintainable.</p>
@@ -2378,7 +2378,7 @@ replicate someone else’s virtual environment on your machine from the
 </div>
 </section></section><section id="aio-13-ides"><p>Content from <a href="13-ides.html">1.3 Integrated Software Development Environments</a></p>
 <hr>
-<p>Last updated on 2024-11-22 |
+<p>Last updated on 2024-11-25 |
 
         <a href="https://github.com/carpentries-incubator/python-intermediate-development-earth-sciences/edit/main/episodes/13-ides.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
@@ -2566,17 +2566,29 @@ the installed libraries as we would from the command line.</p>
 the same virtual environment and changes made to it in VS Code will be
 accessible from the command line and vice versa. Let’s see this in
 action through the following exercise.</p>
-<blockquote>
-<h2 id="exercise-compare-external-libraries-in-the-command-line-and-vs-code">Exercise:
-Compare External Libraries in the Command Line and VS Code</h2>
+<div id="comparing-external-libraries-in-the-command-line-and-vs-code" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="comparing-external-libraries-in-the-command-line-and-vs-code" class="callout-inner">
+<h3 class="callout-title">Comparing External Libraries in the Command Line and VS Code</h3>
+<div class="callout-content">
 <p>Can you recall two places where information about our project’s
 dependencies can be found from the command line? Compare that
 information with the equivalent configuration in VS Code.</p>
 <p>Hint: We can use an argument to <code>pip</code>, or find the
 packages directly in a subdirectory of our virtual environment directory
 “venv”.</p>
-<blockquote>
-<h2 id="solution">Solution</h2>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
 <p>From the previous episode, you may remember that we can get the list
 of packages in the current virtual environment using
 <code>pip</code>:</p>
@@ -2653,61 +2665,48 @@ following subdirectory of <code>venv</code>:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="kw">(</span><span class="ex">venv</span><span class="kw">)</span> <span class="ex">$</span> ls <span class="at">-l</span> venv/lib/python3.11/site-packages</span></code></pre>
 </div>
-<pre><code></code></pre>
-</blockquote>
-</blockquote>
-<p>total 88 drwxr-xr-x 105 alex staff 3360 20 Nov 15:34 PIL drwxr-xr-x 9
-alex staff 288 20 Nov 15:34 Pillow-10.1.0.dist-info drwxr-xr-x 4 alex
-staff 128 20 Nov 15:34 <strong>pycache</strong> drwxr-xr-x 5 alex staff
-160 20 Nov 15:32 _distutils_hack drwxr-xr-x 16 alex staff 512 20 Nov
-15:34 contourpy drwxr-xr-x 7 alex staff 224 20 Nov 15:34
-contourpy-1.2.0.dist-info drwxr-xr-x 5 alex staff 160 20 Nov 15:34
-cycler drwxr-xr-x 8 alex staff 256 20 Nov 15:34 cycler-0.12.1.dist-info
-drwxr-xr-x 14 alex staff 448 20 Nov 15:34 dateutil -rw-r–r– 1 alex staff
-151 20 Nov 15:32 distutils-precedence.pth drwxr-xr-x 33 alex staff 1056
-20 Nov 15:34 fontTools drwxr-xr-x 9 alex staff 288 20 Nov 15:34
-fonttools-4.45.0.dist-info drwxr-xr-x 8 alex staff 256 20 Nov 15:34
-kiwisolver drwxr-xr-x 8 alex staff 256 20 Nov 15:34
-kiwisolver-1.4.5.dist-info drwxr-xr-x 150 alex staff 4800 20 Nov 15:34
-matplotlib drwxr-xr-x 20 alex staff 640 20 Nov 15:34
-matplotlib-3.8.2.dist-info drwxr-xr-x 5 alex staff 160 20 Nov 15:34
-mpl_toolkits drwxr-xr-x 43 alex staff 1376 20 Nov 15:34 numpy drwxr-xr-x
-9 alex staff 288 20 Nov 15:34 numpy-1.26.2.dist-info drwxr-xr-x 18 alex
-staff 576 20 Nov 15:34 packaging drwxr-xr-x 9 alex staff 288 20 Nov
-15:34 packaging-23.2.dist-info drwxr-xr-x 9 alex staff 288 20 Nov 15:32
-pip drwxr-xr-x 10 alex staff 320 20 Nov 15:33 pip-23.0.1.dist-info
-drwxr-xr-x 6 alex staff 192 20 Nov 15:32 pkg_resources -rw-r–r– 1 alex
-staff 90 20 Nov 15:34 pylab.py drwxr-xr-x 15 alex staff 480 20 Nov 15:34
-pyparsing drwxr-xr-x 7 alex staff 224 20 Nov 15:34
-pyparsing-3.1.1.dist-info drwxr-xr-x 9 alex staff 288 20 Nov 15:34
-python_dateutil-2.8.2.dist-info drwxr-xr-x 49 alex staff 1568 20 Nov
-15:32 setuptools drwxr-xr-x 10 alex staff 320 20 Nov 15:32
-setuptools-67.6.1.dist-info drwxr-xr-x 8 alex staff 256 20 Nov 15:34
-six-1.16.0.dist-info -rw-r–r– 1 alex staff 34549 20 Nov 15:34 six.py</p>
-<div id="challenge1" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>total 88
+drwxr-xr-x  105 alex  staff   3360 20 Nov 15:34 PIL
+drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 Pillow-10.1.0.dist-info
+drwxr-xr-x    4 alex  staff    128 20 Nov 15:34 **pycache**
+drwxr-xr-x    5 alex  staff    160 20 Nov 15:32 \_distutils\_hack
+drwxr-xr-x   16 alex  staff    512 20 Nov 15:34 contourpy
+drwxr-xr-x    7 alex  staff    224 20 Nov 15:34 contourpy-1.2.0.dist-info
+drwxr-xr-x    5 alex  staff    160 20 Nov 15:34 cycler
+drwxr-xr-x    8 alex  staff    256 20 Nov 15:34 cycler-0.12.1.dist-info
+drwxr-xr-x   14 alex  staff    448 20 Nov 15:34 dateutil
+\-rw-r--r--    1 alex  staff    151 20 Nov 15:32 distutils-precedence.pth
+drwxr-xr-x   33 alex  staff   1056 20 Nov 15:34 fontTools
+drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 fonttools-4.45.0.dist-info
+drwxr-xr-x    8 alex  staff    256 20 Nov 15:34 kiwisolver
+drwxr-xr-x    8 alex  staff    256 20 Nov 15:34 kiwisolver-1.4.5.dist-info
+drwxr-xr-x  150 alex  staff   4800 20 Nov 15:34 matplotlib
+drwxr-xr-x   20 alex  staff    640 20 Nov 15:34 matplotlib-3.8.2.dist-info
+drwxr-xr-x    5 alex  staff    160 20 Nov 15:34 mpl\_toolkits
+drwxr-xr-x   43 alex  staff   1376 20 Nov 15:34 numpy
+drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 numpy-1.26.2.dist-info
+drwxr-xr-x   18 alex  staff    576 20 Nov 15:34 packaging
+drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 packaging-23.2.dist-info
+drwxr-xr-x    9 alex  staff    288 20 Nov 15:32 pip
+drwxr-xr-x   10 alex  staff    320 20 Nov 15:33 pip-23.0.1.dist-info
+drwxr-xr-x    6 alex  staff    192 20 Nov 15:32 pkg\_resources
+\-rw-r--r--    1 alex  staff     90 20 Nov 15:34 pylab.py
+drwxr-xr-x   15 alex  staff    480 20 Nov 15:34 pyparsing
+drwxr-xr-x    7 alex  staff    224 20 Nov 15:34 pyparsing-3.1.1.dist-info
+drwxr-xr-x    9 alex  staff    288 20 Nov 15:34 python\_dateutil-2.8.2.dist-info
+drwxr-xr-x   49 alex  staff   1568 20 Nov 15:32 setuptools
+drwxr-xr-x   10 alex  staff    320 20 Nov 15:32 setuptools-67.6.1.dist-info
+drwxr-xr-x    8 alex  staff    256 20 Nov 15:34 six-1.16.0.dist-info
+\-rw-r--r--    1 alex  staff  34549 20 Nov 15:34 six.py</code></pre>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<pre><code>{: .output}
-
-Finally, if you look at both the contents of
-`venv/lib/python3.11/site-packages` and `requirements.txt`
-and compare that with the packages shown in VS Code's Python Interpreter Configuration -
-you will see that they all contain equivalent information.</code></pre>
+<p>Finally, if you look at both the contents of
+<code>venv/lib/python3.11/site-packages</code> and
+<code>requirements.txt</code> and compare that with the packages shown
+in VS Code’s Python Interpreter Configuration - you will see that they
+all contain equivalent information.</p>
 </div>
 </div>
 </div>
@@ -2766,10 +2765,10 @@ After Adding a New Dependency</h3>
 <code>pytest</code> is appearing in our virtual environment but not in
 <code>requirements.txt</code>. First, let’s check the list of installed
 packages:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">(</span><span class="ex">venv</span><span class="kw">)</span> <span class="ex">$</span> python3 <span class="at">-m</span> pip list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="kw">(</span><span class="ex">venv</span><span class="kw">)</span> <span class="ex">$</span> python3 <span class="at">-m</span> pip list</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2801,10 +2800,10 @@ wheel           0.37.1</code></pre>
 </div>
 <p>We can see the <code>pytest</code> library appearing in the listing
 above. However, if we do:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="kw">(</span><span class="ex">venv</span><span class="kw">)</span> <span class="ex">$</span> cat requirements.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="kw">(</span><span class="ex">venv</span><span class="kw">)</span> <span class="ex">$</span> cat requirements.txt</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2825,10 +2824,10 @@ six==1.16.0</code></pre>
 </div>
 <p><code>pytest</code> is missing from <code>requirements.txt</code>. To
 add it, we need to update the file by repeating the command:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="kw">(</span><span class="ex">venv</span><span class="kw">)</span> <span class="ex">$</span> python3 <span class="at">-m</span> pip freeze <span class="op">&gt;</span> requirements.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="kw">(</span><span class="ex">venv</span><span class="kw">)</span> <span class="ex">$</span> python3 <span class="at">-m</span> pip freeze <span class="op">&gt;</span> requirements.txt</span></code></pre>
 </div>
 <p><code>pytest</code> is now present in
 <code>requirements.txt</code>:</p>
@@ -2886,29 +2885,33 @@ editor window, with a configuration for just python files</li>
 <li>Change the contents of the file, to match the code below.</li>
 <li>Save the file.</li>
 </ol>
-<pre><code>{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Catchment-analysis: Rain",
-            "type": "debugpy",
-            "request": "launch",
-            "args" : [ "data/rain_data_2015-12.csv" ],
-            "module": "catchment-analysis",
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "Catchment-analysis: River",
-            "type": "debugpy",
-            "request": "launch",
-            "args" : [ "data/river_data_2015-12.csv" ],
-            "module": "catchment-analysis",
-            "console": "integratedTerminal",
-            "justMyCode": true
-        }
-    ]
-}</code></pre>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="at">    </span><span class="fu">"version"</span><span class="kw">:</span><span class="at"> </span><span class="st">"0.2.0"</span><span class="kw">,</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="at">    </span><span class="fu">"configurations"</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="at">        </span><span class="kw">{</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="at">            </span><span class="fu">"name"</span><span class="kw">:</span><span class="at"> </span><span class="st">"Catchment-analysis: Rain"</span><span class="kw">,</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="at">            </span><span class="fu">"type"</span><span class="kw">:</span><span class="at"> </span><span class="st">"debugpy"</span><span class="kw">,</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="at">            </span><span class="fu">"request"</span><span class="kw">:</span><span class="at"> </span><span class="st">"launch"</span><span class="kw">,</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="at">            </span><span class="fu">"args" </span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"data/rain_data_2015-12.csv"</span><span class="at"> </span><span class="kw">],</span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="at">            </span><span class="fu">"module"</span><span class="kw">:</span><span class="at"> </span><span class="st">"catchment-analysis"</span><span class="kw">,</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="at">            </span><span class="fu">"console"</span><span class="kw">:</span><span class="at"> </span><span class="st">"integratedTerminal"</span><span class="kw">,</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="at">            </span><span class="fu">"justMyCode"</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="at">        </span><span class="kw">},</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="at">        </span><span class="kw">{</span></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="at">            </span><span class="fu">"name"</span><span class="kw">:</span><span class="at"> </span><span class="st">"Catchment-analysis: River"</span><span class="kw">,</span></span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="at">            </span><span class="fu">"type"</span><span class="kw">:</span><span class="at"> </span><span class="st">"debugpy"</span><span class="kw">,</span></span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="at">            </span><span class="fu">"request"</span><span class="kw">:</span><span class="at"> </span><span class="st">"launch"</span><span class="kw">,</span></span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="at">            </span><span class="fu">"args" </span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"data/river_data_2015-12.csv"</span><span class="at"> </span><span class="kw">],</span></span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="at">            </span><span class="fu">"module"</span><span class="kw">:</span><span class="at"> </span><span class="st">"catchment-analysis"</span><span class="kw">,</span></span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="at">            </span><span class="fu">"console"</span><span class="kw">:</span><span class="at"> </span><span class="st">"integratedTerminal"</span><span class="kw">,</span></span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a><span class="at">            </span><span class="fu">"justMyCode"</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="at">        </span><span class="kw">}</span></span>
+<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a><span class="at">    </span><span class="kw">]</span></span>
+<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a><span class="kw">}</span></span></code></pre>
+</div>
 <p>Click again on the <code>Run and Debug</code> tab in the Activity
 Bar. The <code>Run and Debug</code> panel should have changed, and there
 will now be a Run symbol at the top of the panel. When you click on the
@@ -3775,7 +3778,7 @@ features without affecting the stable <code>main</code> code.</li>
 </div>
 </section></section><section id="aio-15-coding-conventions"><p>Content from <a href="15-coding-conventions.html">1.5 Python Code Style Conventions</a></p>
 <hr>
-<p>Last updated on 2024-11-22 |
+<p>Last updated on 2024-11-25 |
 
         <a href="https://github.com/carpentries-incubator/python-intermediate-development-earth-sciences/edit/main/episodes/15-coding-conventions.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 35 minutes</p>
@@ -4305,7 +4308,7 @@ discovered inconsistencies and commit them to the feature branch.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Modify <code>catchment-analysis.py</code> from VS Code, which is
 helpfully marking inconsistencies with coding guidelines by underlying
@@ -4539,7 +4542,7 @@ for functions <code>daily_mean</code> , <code>daily_min</code>,
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>For example, the improved docstrings for the above functions would
 contain explanations for parameters and return values.</p>
@@ -6920,7 +6923,7 @@ builds simultaneously.</li>
 </div>
 </section></section><section id="aio-24-diagnosing-issues-improving-robustness"><p>Content from <a href="24-diagnosing-issues-improving-robustness.html">2.4 Diagnosing Issues and Improving Robustness</a></p>
 <hr>
-<p>Last updated on 2024-11-22 |
+<p>Last updated on 2024-11-25 |
 
         <a href="https://github.com/carpentries-incubator/python-intermediate-development-earth-sciences/edit/main/episodes/24-diagnosing-issues-improving-robustness.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 50 minutes</p>
@@ -7406,10 +7409,11 @@ After you have finished remember to commit your changes.</p>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Possible Solution </h4>
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
+<p>One possible solution is presented below.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -7554,7 +7558,7 @@ your remote repository on GitHub.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>In <code>inflammation/models.py</code>:</p>
 <pre><code>...
@@ -7675,10 +7679,10 @@ which may be difficult to trace).</p>
 <h3 class="callout-title">Exercise: Fix Code Style Errors</h3>
 <div class="callout-content">
 <p>Rename our local variable <code>max</code> to something else
-(e.g. call it <code>max</code>), then rerun your tests and commit these
-latest changes and push them to GitHub using our usual feature branch
-workflow. Make sure your <code>develop</code> and <code>main</code>
-branches are up to date.</p>
+(e.g. call it <code>max_data</code>), then rerun your tests and commit
+these latest changes and push them to GitHub using our usual feature
+branch workflow. Make sure your <code>develop</code> and
+<code>main</code> branches are up to date.</p>
 </div>
 </div>
 </div>
@@ -8074,7 +8078,7 @@ high-level of the business itself.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>One hypothetical new business requirement (BR3) could be extending
 our data system to keep track of which catchment areas contain each
@@ -8125,7 +8129,7 @@ detail of implementation.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>For our business requirement BR3 from the previous exercise, the new
 user/stakeholder requirements may be the ability to see all the
@@ -8256,7 +8260,7 @@ control of resources</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Some More Examples </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <ul>
 <li>Desktop Application
@@ -8330,7 +8334,7 @@ software.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>For our new hypothetical business requirement BR3, new functional
 solution requirements could be extending the clinical trial system to
@@ -10014,7 +10018,7 @@ members.</li>
 </div>
 </section></section><section id="aio-35-object-oriented-programming"><p>Content from <a href="35-object-oriented-programming.html">3.5 Object Oriented Programming</a></p>
 <hr>
-<p>Last updated on 2024-11-22 |
+<p>Last updated on 2024-11-25 |
 
         <a href="https://github.com/carpentries-incubator/python-intermediate-development-earth-sciences/edit/main/episodes/35-object-oriented-programming.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 50 minutes</p>
@@ -10143,10 +10147,13 @@ attach an identifier to the measurements from each site:</p>
 <span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>    },</span>
 <span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>]</span></code></pre>
 </div>
-<p>::::::::::::::::::::::::::::::::::::::: challenge</p>
-</section><section><h2 class="section-heading" id="exercise-structuring-data">Exercise: Structuring Data<a class="anchor" aria-label="anchor" href="#exercise-structuring-data"></a>
-</h2>
-<hr class="half-width">
+<div id="structuring-data-1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="structuring-data-1" class="callout-inner">
+<h3 class="callout-title">Structuring Data</h3>
+<div class="callout-content">
 <p>Write a function, called <code>attach_sites</code>, which can be used
 to attach IDs to our measurement dataset. When used as below, it should
 produce the expected output.</p>
@@ -10179,10 +10186,16 @@ Python list, a NumPy array, or a Pandas DataFrame - any is fine.</p>
     },
 ]</code></pre>
 </div>
-<p>::::::::::::::: solution</p>
-</section><section><h2 class="section-heading" id="solution">Solution<a class="anchor" aria-label="anchor" href="#solution"></a>
-</h2>
-<hr class="half-width">
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
 <p>One possible solution, perhaps the most obvious, is to use the
 <code>range</code> function to index into all three lists at the same
 location:</p>
@@ -10204,10 +10217,9 @@ location:</p>
 <p>However, this solution has a potential problem that can occur
 sometimes, depending on the input. What might go wrong with this
 solution? How could we fix it?</p>
-<p>::::::::::::::: solution</p>
-</section><section><h2 class="section-heading" id="a-better-solution">A Better Solution<a class="anchor" aria-label="anchor" href="#a-better-solution"></a>
-</h2>
-<hr class="half-width">
+<div class="section level3">
+<h3 id="a-better-solution">A Better Solution<a class="anchor" aria-label="anchor" href="#a-better-solution"></a>
+</h3>
 <p>What would happen if the <code>data</code>,
 <code>measurements</code>, and/or <code>sites</code> inputs were
 different lengths?</p>
@@ -10229,61 +10241,63 @@ episode.</p>
 <p>If you’ve not previously come across the <code>zip</code> function,
 read <a href="https://docs.python.org/3/library/functions.html#zip" class="external-link">this
 section</a> of the Python documentation.</p>
-<p>```python, python def attach_names(data, sites, measurements):
-“““Create datastructure containing measurement data from a range of
-sites.”“” assert len(data) == len(sites) assert len(data) ==
-len(measurements) output = []</p>
 <div class="codewrapper sourceCode" id="cb8">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="cf">for</span> data_row<span class="ex">,</span> measurement, site in zip<span class="er">(</span><span class="ex">data,</span> measurements, sites<span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="ex">output.append</span><span class="er">(</span><span class="ex">{</span><span class="st">'site'</span><span class="ex">:</span> site,</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                   <span class="st">'measurement'</span><span class="ex">:</span> measurement,</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                   <span class="st">'data'</span><span class="ex">:</span> data_row}<span class="kw">)</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="cf">return</span> <span class="ex">output</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="kw">def</span> attach_names(data, sites, measurements):</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="co">"""Create datastructure containing measurement data from a range of sites."""</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(data) <span class="op">==</span> <span class="bu">len</span>(sites)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(data) <span class="op">==</span> <span class="bu">len</span>(measurements)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    output <span class="op">=</span> []</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    <span class="cf">for</span> data_row, measurement, site <span class="kw">in</span> <span class="bu">zip</span>(data, measurements, sites):</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>        output.append({<span class="st">'site'</span>: site,</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>                       <span class="st">'measurement'</span>: measurement,</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>                       <span class="st">'data'</span>: data_row})</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>    <span class="cf">return</span> output</span></code></pre>
 </div>
-<pre><code>
-:::::::::::::::::::::::::
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Classes in Python
-
-Using nested dictionaries and lists should work for some of the simpler cases
-where we need to handle structured data,
-but they get quite difficult to manage once the structure becomes a bit more complex.
-For this reason, in the object oriented paradigm,
-we use **classes** to help with managing this data
-and the operations we would want to perform on it.
-A class is a **template** (blueprint) for a structured piece of data,
-so when we create some data using a class,
-we can be certain that it has the same structure each time.
-
-With our list of dictionaries we had in the example above,
-we have no real guarantee that each dictionary has the same structure,
-e.g. the same keys (`site` and `data`) unless we check it manually.
-With a class, if an object is an **instance** of that class
-(i.e. it was made using that template)
-we know it will have the structure defined by that class.
-Different programming languages make slightly different guarantees
-about how strictly the structure will match,
-but in object oriented programming this is one of the core ideas -
-all objects derived from the same class must follow the same behaviour.
-
-You may not have realised, but you should already be familiar with
-some of the classes that come bundled as part of Python, for example:
-
-```python
-my_list = [1, 2, 3]
-my_dict = {1: '1', 2: '2', 3: '3'}
-my_set = {1, 2, 3}
-
-print(type(my_list))
-print(type(my_dict))
-print(type(my_set))</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="classes-in-python">Classes in Python<a class="anchor" aria-label="anchor" href="#classes-in-python"></a>
+</h2>
+<hr class="half-width">
+<p>Using nested dictionaries and lists should work for some of the
+simpler cases where we need to handle structured data, but they get
+quite difficult to manage once the structure becomes a bit more complex.
+For this reason, in the object oriented paradigm, we use
+<strong>classes</strong> to help with managing this data and the
+operations we would want to perform on it. A class is a
+<strong>template</strong> (blueprint) for a structured piece of data, so
+when we create some data using a class, we can be certain that it has
+the same structure each time.</p>
+<p>With our list of dictionaries we had in the example above, we have no
+real guarantee that each dictionary has the same structure, e.g. the
+same keys (<code>site</code> and <code>data</code>) unless we check it
+manually. With a class, if an object is an <strong>instance</strong> of
+that class (i.e. it was made using that template) we know it will have
+the structure defined by that class. Different programming languages
+make slightly different guarantees about how strictly the structure will
+match, but in object oriented programming this is one of the core ideas
+- all objects derived from the same class must follow the same
+behaviour.</p>
+<p>You may not have realised, but you should already be familiar with
+some of the classes that come bundled as part of Python, for
+example:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="dv">1</span>: <span class="st">'1'</span>, <span class="dv">2</span>: <span class="st">'2'</span>, <span class="dv">3</span>: <span class="st">'3'</span>}</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>my_set <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(my_list))</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(my_dict))</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(my_set))</span></code></pre>
+</div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -10536,12 +10550,12 @@ also worth experimenting with built in Python objects to see which
 methods provide which behaviour. For a more complete list of these
 special methods, see the <a href="https://docs.python.org/3/reference/datamodel.html#special-method-names" class="external-link">Special
 Method Names</a> section of the Python documentation.</p>
-<div id="exercise-a-basic-class" class="callout challenge">
+<div id="a-basic-class" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-a-basic-class" class="callout-inner">
-<h3 class="callout-title">Exercise: A Basic Class</h3>
+<div id="a-basic-class" class="callout-inner">
+<h3 class="callout-title">A Basic Class</h3>
 <div class="callout-content">
 <p>Implement a class to represent a book. Your class should:</p>
 <ul>
@@ -10565,12 +10579,12 @@ Method Names</a> section of the Python documentation.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -11046,12 +11060,12 @@ feature in the same way?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>One example solution is shown below. You may start by writing some
 tests (that will initially fail), and then develop the code to satisfy
@@ -11171,7 +11185,7 @@ behaviour of parts of our data.</li>
 </div>
 </section></section><section id="aio-36-architecture-revisited"><p>Content from <a href="36-architecture-revisited.html">3.6 Architecture Revisited: Extending Software</a></p>
 <hr>
-<p>Last updated on 2024-11-22 |
+<p>Last updated on 2024-11-25 |
 
         <a href="https://github.com/carpentries-incubator/python-intermediate-development-earth-sciences/edit/main/episodes/36-architecture-revisited.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -11660,59 +11674,68 @@ the necessary data - including the ability to pass a list of
 measurements to the <code>__init__</code> method. Note that your Site
 class may look very different now, so adapt this example to fit what you
 have.</p>
-<p>```python, python # file: catchment/views.py</p>
-<p>…</p>
-<p>def display_measurement_record(site): “““Display each dataset for a
-single site.”“” print(site.name) for measurement in site.measurements:
-print(site.measurements[measurement].series)</p>
-<pre><code>
-```python, python
-# file: catchment/models.py
-
-...
-
-class MeasurementSeries:
-    def __init__(self, series, name, units):
-        self.series = series
-        self.name = name
-        self.units = units
-        self.series.name = self.name
-
-    def add_measurement(self, data):
-        self.series = pd.concat([self.series,data])
-        self.series.name = self.name
-
-    def __str__(self):
-        if self.units:
-            return f"{self.name} ({self.units})"
-        else:
-            return self.name
-
-class Location:
-    def __init__(self, name):
-        self.name = name
-
-    def __str__(self):
-        return self.name
-
-class Site(Location):
-    def __init__(self,name):
-        super().__init__(name)
-        self.measurements = {}
-
-    def add_measurement(self, measurement_id, data, units=None):
-        if measurement_id in self.measurements.keys():
-            self.measurements[measurement_id].add_measurement(data)
-
-        else:
-            self.measurements[measurement_id] = MeasurementSeries(data, measurement_id, units)
-
-    @property
-    def last_measurements(self):
-        return pd.concat(
-            [self.measurements[key].series[-1:] for key in self.measurements.keys()],
-            axis=1).sort_index()
-</code></pre>
+<div class="codewrapper sourceCode" id="cb25">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># file: catchment/views.py</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>...</span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="kw">def</span> display_measurement_record(site):</span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>    <span class="co">"""Display each dataset for a single site."""</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a>    <span class="bu">print</span>(site.name)</span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>    <span class="cf">for</span> measurement <span class="kw">in</span> site.measurements:</span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>        <span class="bu">print</span>(site.measurements[measurement].series)</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb26">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># file: catchment/models.py</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>...</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="kw">class</span> MeasurementSeries:</span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, series, name, units):</span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>        <span class="va">self</span>.series <span class="op">=</span> series</span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>        <span class="va">self</span>.units <span class="op">=</span> units</span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>        <span class="va">self</span>.series.name <span class="op">=</span> <span class="va">self</span>.name</span>
+<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a>    </span>
+<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a>    <span class="kw">def</span> add_measurement(<span class="va">self</span>, data):</span>
+<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a>        <span class="va">self</span>.series <span class="op">=</span> pd.concat([<span class="va">self</span>.series,data])</span>
+<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a>        <span class="va">self</span>.series.name <span class="op">=</span> <span class="va">self</span>.name</span>
+<span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a>    </span>
+<span id="cb26-16"><a href="#cb26-16" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb26-17"><a href="#cb26-17" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.units:</span>
+<span id="cb26-18"><a href="#cb26-18" tabindex="-1"></a>            <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>units<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb26-19"><a href="#cb26-19" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb26-20"><a href="#cb26-20" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.name</span>
+<span id="cb26-21"><a href="#cb26-21" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" tabindex="-1"></a><span class="kw">class</span> Location:</span>
+<span id="cb26-23"><a href="#cb26-23" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):</span>
+<span id="cb26-24"><a href="#cb26-24" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb26-27"><a href="#cb26-27" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.name</span>
+<span id="cb26-28"><a href="#cb26-28" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" tabindex="-1"></a><span class="kw">class</span> Site(Location):</span>
+<span id="cb26-30"><a href="#cb26-30" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,name):</span>
+<span id="cb26-31"><a href="#cb26-31" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(name)</span>
+<span id="cb26-32"><a href="#cb26-32" tabindex="-1"></a>        <span class="va">self</span>.measurements <span class="op">=</span> {}</span>
+<span id="cb26-33"><a href="#cb26-33" tabindex="-1"></a>    </span>
+<span id="cb26-34"><a href="#cb26-34" tabindex="-1"></a>    <span class="kw">def</span> add_measurement(<span class="va">self</span>, measurement_id, data, units<span class="op">=</span><span class="va">None</span>):    </span>
+<span id="cb26-35"><a href="#cb26-35" tabindex="-1"></a>        <span class="cf">if</span> measurement_id <span class="kw">in</span> <span class="va">self</span>.measurements.keys():</span>
+<span id="cb26-36"><a href="#cb26-36" tabindex="-1"></a>            <span class="va">self</span>.measurements[measurement_id].add_measurement(data)</span>
+<span id="cb26-37"><a href="#cb26-37" tabindex="-1"></a>    </span>
+<span id="cb26-38"><a href="#cb26-38" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb26-39"><a href="#cb26-39" tabindex="-1"></a>            <span class="va">self</span>.measurements[measurement_id] <span class="op">=</span> MeasurementSeries(data, measurement_id, units)</span>
+<span id="cb26-40"><a href="#cb26-40" tabindex="-1"></a>    </span>
+<span id="cb26-41"><a href="#cb26-41" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb26-42"><a href="#cb26-42" tabindex="-1"></a>    <span class="kw">def</span> last_measurements(<span class="va">self</span>):</span>
+<span id="cb26-43"><a href="#cb26-43" tabindex="-1"></a>        <span class="cf">return</span> pd.concat(</span>
+<span id="cb26-44"><a href="#cb26-44" tabindex="-1"></a>            [<span class="va">self</span>.measurements[key].series[<span class="op">-</span><span class="dv">1</span>:] <span class="cf">for</span> key <span class="kw">in</span> <span class="va">self</span>.measurements.keys()],</span>
+<span id="cb26-45"><a href="#cb26-45" tabindex="-1"></a>            axis<span class="op">=</span><span class="dv">1</span>).sort_index()</span></code></pre>
+</div>
 <p>Now we need to make sure people can call this view - that means
 connecting it to the controller and ensuring that there’s a way to
 request this view when running the program.</p>
@@ -11726,97 +11749,97 @@ necessary data to drive the new view.</p>
 <p>As the argument parsing routines are getting more involved, we have
 moved these into a single function (<code>parse_cli_arguments</code>),
 to make the script more readable.</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># file: catchment-analysis.py</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="co">"""Software for managing measurement data for our catchment project."""</span></span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="im">import</span> argparse</span>
-<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a></span>
-<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a><span class="im">from</span> catchment <span class="im">import</span> models, views</span>
-<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a><span class="kw">def</span> main(args):</span>
-<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a>    <span class="co">"""The MVC Controller of the patient data system.</span></span>
-<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a></span>
-<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a><span class="co">    The Controller is responsible for:</span></span>
-<span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a><span class="co">    - selecting the necessary models and views for the current task</span></span>
-<span id="cb26-16"><a href="#cb26-16" tabindex="-1"></a><span class="co">    - passing data between models and views</span></span>
-<span id="cb26-17"><a href="#cb26-17" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb26-18"><a href="#cb26-18" tabindex="-1"></a>    infiles <span class="op">=</span> args.infiles</span>
-<span id="cb26-19"><a href="#cb26-19" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(infiles, <span class="bu">list</span>):</span>
-<span id="cb26-20"><a href="#cb26-20" tabindex="-1"></a>        infiles <span class="op">=</span> [args.infiles]</span>
-<span id="cb26-21"><a href="#cb26-21" tabindex="-1"></a></span>
-<span id="cb26-22"><a href="#cb26-22" tabindex="-1"></a>    <span class="cf">for</span> filename <span class="kw">in</span> in_files:</span>
-<span id="cb26-23"><a href="#cb26-23" tabindex="-1"></a>        measurement_data <span class="op">=</span> models.read_variable_from_csv(filename, arg.measurements)</span>
-<span id="cb26-24"><a href="#cb26-24" tabindex="-1"></a></span>
-<span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a></span>
-<span id="cb26-26"><a href="#cb26-26" tabindex="-1"></a>        <span class="co">### MODIFIED START </span><span class="al">###</span></span>
-<span id="cb26-27"><a href="#cb26-27" tabindex="-1"></a>        <span class="cf">if</span> args.view <span class="op">==</span> <span class="st">'visualize'</span>:</span>
-<span id="cb26-28"><a href="#cb26-28" tabindex="-1"></a>            view_data <span class="op">=</span> {<span class="st">'daily sum'</span>: models.daily_total(measurement_data),</span>
-<span id="cb26-29"><a href="#cb26-29" tabindex="-1"></a>                         <span class="st">'daily average'</span>: models.daily_mean(measurement_data),</span>
-<span id="cb26-30"><a href="#cb26-30" tabindex="-1"></a>                         <span class="st">'daily max'</span>: models.daily_max(measurement_data),</span>
-<span id="cb26-31"><a href="#cb26-31" tabindex="-1"></a>                         <span class="st">'daily min'</span>: models.daily_min(measurement_data)}</span>
-<span id="cb26-32"><a href="#cb26-32" tabindex="-1"></a>        </span>
-<span id="cb26-33"><a href="#cb26-33" tabindex="-1"></a>            views.visualize(view_data)</span>
-<span id="cb26-34"><a href="#cb26-34" tabindex="-1"></a></span>
-<span id="cb26-35"><a href="#cb26-35" tabindex="-1"></a>        <span class="cf">elif</span> args.view <span class="op">==</span> <span class="st">'record'</span>:</span>
-<span id="cb26-36"><a href="#cb26-36" tabindex="-1"></a>            measurement_data <span class="op">=</span> measurement_data[args.site]</span>
-<span id="cb26-37"><a href="#cb26-37" tabindex="-1"></a>            site <span class="op">=</span> models.Site(args.site)</span>
-<span id="cb26-38"><a href="#cb26-38" tabindex="-1"></a>            site.add_measurement(arg.measurements, measurement_data)</span>
-<span id="cb26-39"><a href="#cb26-39" tabindex="-1"></a></span>
-<span id="cb26-40"><a href="#cb26-40" tabindex="-1"></a>            views.display_measurement_record(site)</span>
-<span id="cb26-41"><a href="#cb26-41" tabindex="-1"></a>        <span class="co">### MODIFIED </span><span class="re">END</span><span class="co"> </span><span class="al">###</span></span>
-<span id="cb26-42"><a href="#cb26-42" tabindex="-1"></a></span>
-<span id="cb26-43"><a href="#cb26-43" tabindex="-1"></a></span>
-<span id="cb26-44"><a href="#cb26-44" tabindex="-1"></a><span class="kw">def</span> parse_cli_arguments():</span>
-<span id="cb26-45"><a href="#cb26-45" tabindex="-1"></a>    <span class="co">"""Definitions and logic tests for the CLI argument parser"""</span></span>
-<span id="cb26-46"><a href="#cb26-46" tabindex="-1"></a>    </span>
-<span id="cb26-47"><a href="#cb26-47" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser(</span>
-<span id="cb26-48"><a href="#cb26-48" tabindex="-1"></a>        description<span class="op">=</span><span class="st">'A basic environmental data management system'</span>)</span>
-<span id="cb26-49"><a href="#cb26-49" tabindex="-1"></a>    </span>
-<span id="cb26-50"><a href="#cb26-50" tabindex="-1"></a>    req_group <span class="op">=</span> parser.add_argument_group(<span class="st">'required arguments'</span>)</span>
-<span id="cb26-51"><a href="#cb26-51" tabindex="-1"></a></span>
-<span id="cb26-52"><a href="#cb26-52" tabindex="-1"></a>    parser.add_argument(</span>
-<span id="cb26-53"><a href="#cb26-53" tabindex="-1"></a>        <span class="st">'infiles'</span>,</span>
-<span id="cb26-54"><a href="#cb26-54" tabindex="-1"></a>        nargs <span class="op">=</span> <span class="st">'+'</span>,</span>
-<span id="cb26-55"><a href="#cb26-55" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Input CSV(s) containing measurement data'</span>)</span>
-<span id="cb26-56"><a href="#cb26-56" tabindex="-1"></a></span>
-<span id="cb26-57"><a href="#cb26-57" tabindex="-1"></a>    req_group.add_argument(</span>
-<span id="cb26-58"><a href="#cb26-58" tabindex="-1"></a>        <span class="st">'-m'</span>, <span class="st">'--measurements'</span>,</span>
-<span id="cb26-59"><a href="#cb26-59" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Name of measurement data series to load'</span>,</span>
-<span id="cb26-60"><a href="#cb26-60" tabindex="-1"></a>        required <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb26-61"><a href="#cb26-61" tabindex="-1"></a></span>
-<span id="cb26-62"><a href="#cb26-62" tabindex="-1"></a>    <span class="co">### MODIFIED START </span><span class="al">###</span></span>
-<span id="cb26-63"><a href="#cb26-63" tabindex="-1"></a>    parser.add_argument(</span>
-<span id="cb26-64"><a href="#cb26-64" tabindex="-1"></a>        <span class="st">'--view'</span>,</span>
-<span id="cb26-65"><a href="#cb26-65" tabindex="-1"></a>        default <span class="op">=</span> <span class="st">'visualize'</span>,</span>
-<span id="cb26-66"><a href="#cb26-66" tabindex="-1"></a>        choices <span class="op">=</span> [<span class="st">'visualize'</span>, <span class="st">'record'</span>],</span>
-<span id="cb26-67"><a href="#cb26-67" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Which view should be used?'</span>)</span>
-<span id="cb26-68"><a href="#cb26-68" tabindex="-1"></a></span>
-<span id="cb26-69"><a href="#cb26-69" tabindex="-1"></a>    parser.add_argument(</span>
-<span id="cb26-70"><a href="#cb26-70" tabindex="-1"></a>        <span class="st">'--site'</span>,</span>
-<span id="cb26-71"><a href="#cb26-71" tabindex="-1"></a>        <span class="bu">type</span> <span class="op">=</span> <span class="bu">str</span>,</span>
-<span id="cb26-72"><a href="#cb26-72" tabindex="-1"></a>        default <span class="op">=</span> <span class="va">None</span>,</span>
-<span id="cb26-73"><a href="#cb26-73" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Which site should be displayed?'</span>)</span>
-<span id="cb26-74"><a href="#cb26-74" tabindex="-1"></a>    <span class="co">### MODIFIED </span><span class="re">END</span><span class="co"> </span><span class="al">###</span></span>
-<span id="cb26-75"><a href="#cb26-75" tabindex="-1"></a></span>
-<span id="cb26-76"><a href="#cb26-76" tabindex="-1"></a>    args <span class="op">=</span> parser.parse_args()</span>
-<span id="cb26-77"><a href="#cb26-77" tabindex="-1"></a>    </span>
-<span id="cb26-78"><a href="#cb26-78" tabindex="-1"></a>    <span class="cf">if</span> args.view <span class="op">==</span> <span class="st">'record'</span> <span class="kw">and</span> args.site <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb26-79"><a href="#cb26-79" tabindex="-1"></a>        parser.error(<span class="st">"'record' --view requires that --site is set"</span>)</span>
-<span id="cb26-80"><a href="#cb26-80" tabindex="-1"></a></span>
-<span id="cb26-81"><a href="#cb26-81" tabindex="-1"></a>    <span class="cf">return</span> args</span>
-<span id="cb26-82"><a href="#cb26-82" tabindex="-1"></a></span>
-<span id="cb26-83"><a href="#cb26-83" tabindex="-1"></a></span>
-<span id="cb26-84"><a href="#cb26-84" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb26-85"><a href="#cb26-85" tabindex="-1"></a></span>
-<span id="cb26-86"><a href="#cb26-86" tabindex="-1"></a>    args <span class="op">=</span> parse_cli_arguments()</span>
-<span id="cb26-87"><a href="#cb26-87" tabindex="-1"></a></span>
-<span id="cb26-88"><a href="#cb26-88" tabindex="-1"></a>    main(args)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># file: catchment-analysis.py</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="co">"""Software for managing measurement data for our catchment project."""</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a><span class="im">from</span> catchment <span class="im">import</span> models, views</span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a><span class="kw">def</span> main(args):</span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a>    <span class="co">"""The MVC Controller of the patient data system.</span></span>
+<span id="cb27-13"><a href="#cb27-13" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" tabindex="-1"></a><span class="co">    The Controller is responsible for:</span></span>
+<span id="cb27-15"><a href="#cb27-15" tabindex="-1"></a><span class="co">    - selecting the necessary models and views for the current task</span></span>
+<span id="cb27-16"><a href="#cb27-16" tabindex="-1"></a><span class="co">    - passing data between models and views</span></span>
+<span id="cb27-17"><a href="#cb27-17" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb27-18"><a href="#cb27-18" tabindex="-1"></a>    infiles <span class="op">=</span> args.infiles</span>
+<span id="cb27-19"><a href="#cb27-19" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(infiles, <span class="bu">list</span>):</span>
+<span id="cb27-20"><a href="#cb27-20" tabindex="-1"></a>        infiles <span class="op">=</span> [args.infiles]</span>
+<span id="cb27-21"><a href="#cb27-21" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" tabindex="-1"></a>    <span class="cf">for</span> filename <span class="kw">in</span> in_files:</span>
+<span id="cb27-23"><a href="#cb27-23" tabindex="-1"></a>        measurement_data <span class="op">=</span> models.read_variable_from_csv(filename, arg.measurements)</span>
+<span id="cb27-24"><a href="#cb27-24" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" tabindex="-1"></a></span>
+<span id="cb27-26"><a href="#cb27-26" tabindex="-1"></a>        <span class="co">### MODIFIED START </span><span class="al">###</span></span>
+<span id="cb27-27"><a href="#cb27-27" tabindex="-1"></a>        <span class="cf">if</span> args.view <span class="op">==</span> <span class="st">'visualize'</span>:</span>
+<span id="cb27-28"><a href="#cb27-28" tabindex="-1"></a>            view_data <span class="op">=</span> {<span class="st">'daily sum'</span>: models.daily_total(measurement_data),</span>
+<span id="cb27-29"><a href="#cb27-29" tabindex="-1"></a>                         <span class="st">'daily average'</span>: models.daily_mean(measurement_data),</span>
+<span id="cb27-30"><a href="#cb27-30" tabindex="-1"></a>                         <span class="st">'daily max'</span>: models.daily_max(measurement_data),</span>
+<span id="cb27-31"><a href="#cb27-31" tabindex="-1"></a>                         <span class="st">'daily min'</span>: models.daily_min(measurement_data)}</span>
+<span id="cb27-32"><a href="#cb27-32" tabindex="-1"></a>        </span>
+<span id="cb27-33"><a href="#cb27-33" tabindex="-1"></a>            views.visualize(view_data)</span>
+<span id="cb27-34"><a href="#cb27-34" tabindex="-1"></a></span>
+<span id="cb27-35"><a href="#cb27-35" tabindex="-1"></a>        <span class="cf">elif</span> args.view <span class="op">==</span> <span class="st">'record'</span>:</span>
+<span id="cb27-36"><a href="#cb27-36" tabindex="-1"></a>            measurement_data <span class="op">=</span> measurement_data[args.site]</span>
+<span id="cb27-37"><a href="#cb27-37" tabindex="-1"></a>            site <span class="op">=</span> models.Site(args.site)</span>
+<span id="cb27-38"><a href="#cb27-38" tabindex="-1"></a>            site.add_measurement(arg.measurements, measurement_data)</span>
+<span id="cb27-39"><a href="#cb27-39" tabindex="-1"></a></span>
+<span id="cb27-40"><a href="#cb27-40" tabindex="-1"></a>            views.display_measurement_record(site)</span>
+<span id="cb27-41"><a href="#cb27-41" tabindex="-1"></a>        <span class="co">### MODIFIED </span><span class="re">END</span><span class="co"> </span><span class="al">###</span></span>
+<span id="cb27-42"><a href="#cb27-42" tabindex="-1"></a></span>
+<span id="cb27-43"><a href="#cb27-43" tabindex="-1"></a></span>
+<span id="cb27-44"><a href="#cb27-44" tabindex="-1"></a><span class="kw">def</span> parse_cli_arguments():</span>
+<span id="cb27-45"><a href="#cb27-45" tabindex="-1"></a>    <span class="co">"""Definitions and logic tests for the CLI argument parser"""</span></span>
+<span id="cb27-46"><a href="#cb27-46" tabindex="-1"></a>    </span>
+<span id="cb27-47"><a href="#cb27-47" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser(</span>
+<span id="cb27-48"><a href="#cb27-48" tabindex="-1"></a>        description<span class="op">=</span><span class="st">'A basic environmental data management system'</span>)</span>
+<span id="cb27-49"><a href="#cb27-49" tabindex="-1"></a>    </span>
+<span id="cb27-50"><a href="#cb27-50" tabindex="-1"></a>    req_group <span class="op">=</span> parser.add_argument_group(<span class="st">'required arguments'</span>)</span>
+<span id="cb27-51"><a href="#cb27-51" tabindex="-1"></a></span>
+<span id="cb27-52"><a href="#cb27-52" tabindex="-1"></a>    parser.add_argument(</span>
+<span id="cb27-53"><a href="#cb27-53" tabindex="-1"></a>        <span class="st">'infiles'</span>,</span>
+<span id="cb27-54"><a href="#cb27-54" tabindex="-1"></a>        nargs <span class="op">=</span> <span class="st">'+'</span>,</span>
+<span id="cb27-55"><a href="#cb27-55" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Input CSV(s) containing measurement data'</span>)</span>
+<span id="cb27-56"><a href="#cb27-56" tabindex="-1"></a></span>
+<span id="cb27-57"><a href="#cb27-57" tabindex="-1"></a>    req_group.add_argument(</span>
+<span id="cb27-58"><a href="#cb27-58" tabindex="-1"></a>        <span class="st">'-m'</span>, <span class="st">'--measurements'</span>,</span>
+<span id="cb27-59"><a href="#cb27-59" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Name of measurement data series to load'</span>,</span>
+<span id="cb27-60"><a href="#cb27-60" tabindex="-1"></a>        required <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb27-61"><a href="#cb27-61" tabindex="-1"></a></span>
+<span id="cb27-62"><a href="#cb27-62" tabindex="-1"></a>    <span class="co">### MODIFIED START </span><span class="al">###</span></span>
+<span id="cb27-63"><a href="#cb27-63" tabindex="-1"></a>    parser.add_argument(</span>
+<span id="cb27-64"><a href="#cb27-64" tabindex="-1"></a>        <span class="st">'--view'</span>,</span>
+<span id="cb27-65"><a href="#cb27-65" tabindex="-1"></a>        default <span class="op">=</span> <span class="st">'visualize'</span>,</span>
+<span id="cb27-66"><a href="#cb27-66" tabindex="-1"></a>        choices <span class="op">=</span> [<span class="st">'visualize'</span>, <span class="st">'record'</span>],</span>
+<span id="cb27-67"><a href="#cb27-67" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Which view should be used?'</span>)</span>
+<span id="cb27-68"><a href="#cb27-68" tabindex="-1"></a></span>
+<span id="cb27-69"><a href="#cb27-69" tabindex="-1"></a>    parser.add_argument(</span>
+<span id="cb27-70"><a href="#cb27-70" tabindex="-1"></a>        <span class="st">'--site'</span>,</span>
+<span id="cb27-71"><a href="#cb27-71" tabindex="-1"></a>        <span class="bu">type</span> <span class="op">=</span> <span class="bu">str</span>,</span>
+<span id="cb27-72"><a href="#cb27-72" tabindex="-1"></a>        default <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb27-73"><a href="#cb27-73" tabindex="-1"></a>        <span class="bu">help</span> <span class="op">=</span> <span class="st">'Which site should be displayed?'</span>)</span>
+<span id="cb27-74"><a href="#cb27-74" tabindex="-1"></a>    <span class="co">### MODIFIED </span><span class="re">END</span><span class="co"> </span><span class="al">###</span></span>
+<span id="cb27-75"><a href="#cb27-75" tabindex="-1"></a></span>
+<span id="cb27-76"><a href="#cb27-76" tabindex="-1"></a>    args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb27-77"><a href="#cb27-77" tabindex="-1"></a>    </span>
+<span id="cb27-78"><a href="#cb27-78" tabindex="-1"></a>    <span class="cf">if</span> args.view <span class="op">==</span> <span class="st">'record'</span> <span class="kw">and</span> args.site <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb27-79"><a href="#cb27-79" tabindex="-1"></a>        parser.error(<span class="st">"'record' --view requires that --site is set"</span>)</span>
+<span id="cb27-80"><a href="#cb27-80" tabindex="-1"></a></span>
+<span id="cb27-81"><a href="#cb27-81" tabindex="-1"></a>    <span class="cf">return</span> args</span>
+<span id="cb27-82"><a href="#cb27-82" tabindex="-1"></a></span>
+<span id="cb27-83"><a href="#cb27-83" tabindex="-1"></a></span>
+<span id="cb27-84"><a href="#cb27-84" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb27-85"><a href="#cb27-85" tabindex="-1"></a></span>
+<span id="cb27-86"><a href="#cb27-86" tabindex="-1"></a>    args <span class="op">=</span> parse_cli_arguments()</span>
+<span id="cb27-87"><a href="#cb27-87" tabindex="-1"></a></span>
+<span id="cb27-88"><a href="#cb27-88" tabindex="-1"></a>    main(args)</span></code></pre>
 </div>
 <p>We’ve added two options to our command line interface here: one to
 request a specific view (<code>--view</code>) and one for the site ID
@@ -11830,10 +11853,10 @@ arguments are parsed, but before calling the <code>main</code> function,
 to ensure that the site option is set if we are using the
 <code>record</code> view, which will return an error using the
 <code>parser.error</code> function:</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">python3</span> catchment-analysis.py <span class="at">--view</span> record <span class="at">-m</span> <span class="st">'Rainfall (mm)'</span> data/rain_data_2015-12.csv</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">python3</span> catchment-analysis.py <span class="at">--view</span> record <span class="at">-m</span> <span class="st">'Rainfall (mm)'</span> data/rain_data_2015-12.csv</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -11846,10 +11869,10 @@ information for the command is given, followed by the error message that
 we have added.</p>
 <p>We can now call our program with these extra arguments to see the
 record for a single site:</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">$</span> python3 catchment-analysis.py <span class="at">--view</span> record <span class="at">--site</span> FP35 <span class="at">-m</span> <span class="st">'Rainfall (mm)'</span> data/rain_data_2015-12.csv</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="ex">$</span> python3 catchment-analysis.py <span class="at">--view</span> record <span class="at">--site</span> FP35 <span class="at">-m</span> <span class="st">'Rainfall (mm)'</span> data/rain_data_2015-12.csv</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -12128,9 +12151,10 @@ adopt in your development process too.</p>
 </section><section><h2 class="section-heading" id="code-review">Code Review<a class="anchor" aria-label="anchor" href="#code-review"></a>
 </h2>
 <hr class="half-width">
-<p>[Code review][code-review] is a software quality assurance practice
-where one or several people from the team (different from the code’s
-author) check the software by viewing parts of its source code.</p>
+<p><a href="https://en.wikipedia.org/wiki/Code_review" class="external-link">Code review</a>
+is a software quality assurance practice where one or several people
+from the team (different from the code’s author) check the software by
+viewing parts of its source code.</p>
 <div id="group-exercise-advantages-of-code-review" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -12148,7 +12172,7 @@ advantages of, code review?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The purposes of code review include:</p>
 <ul>
@@ -12823,7 +12847,8 @@ basically a text file with some extra syntax to provide ways of
 formatting them. A big advantage of them is that they can be read as
 plain-text files or as source files for rendering them with formatting
 structures, and are very quick to write. GitHub provides a very useful
-[guide to writing Markdown][github-markdown] for its repositories.</p>
+<a href="https://guides.github.com/features/mastering-markdown/" class="external-link">guide
+to writing Markdown</a> for its repositories.</p>
 <p>Let’s start writing <code>README.md</code> using a text editor of
 your choice and add the following line.</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -12836,9 +12861,8 @@ short, snappy, and perhaps to some degree an indicator of what it does.
 We would ideally rename the repository to reflect the new name, but
 let’s leave that for now. In Markdown, the <code>#</code> designates a
 heading, two <code>##</code> are used for a subheading, and so on. The
-Software Sustainability Institute’s [guide on naming
-projects][ssi-choosing-name] and products provides some helpful
-pointers.</p>
+Software Sustainability Institute’s <a href="https://software.ac.uk/resources/guides/choosing-project-and-product-names" class="external-link">guide
+on naming projects</a> and products provides some helpful pointers.</p>
 <p>We should also add a short description underneath the title.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -13221,8 +13245,8 @@ depending on the nature of the data.</p>
 policies and guidelines regarding how we manage research data, which may
 include funding council, institutional, national, and even international
 policies and laws. Within Europe, for example, there’s the need to
-conform to things like [GDPR][gdpr]. It’s a very good idea to make
-yourself aware of these aspects.</p>
+conform to things like <a href="https://ec.europa.eu/info/law/law-topic/data-protection/eu-data-protection-rules_en" class="external-link">GDPR</a>.
+It’s a very good idea to make yourself aware of these aspects.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -14721,7 +14745,7 @@ for requirements within a timebox.</li>
 </div>
 </section></section><section id="aio-60-wrap-up"><p>Content from <a href="60-wrap-up.html">Wrap-up</a></p>
 <hr>
-<p>Last updated on 2024-11-22 |
+<p>Last updated on 2024-11-25 |
 
         <a href="https://github.com/carpentries-incubator/python-intermediate-development-earth-sciences/edit/main/episodes/60-wrap-up.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -14862,10 +14886,15 @@ learning:</p>
 <li><a href="persistence.html">Additional episode on persisting
 data</a></li>
 <li><a href="databases.html">Additional episode on databases</a></li>
-<li>[CodeRefinery courses on FAIR (Findable, Accessible, Interoperable,
-and Reusable) software practices][coderefinery-lessons]</li>
-<li>[Python documentation][python-documentation]</li>
-<li>[GitHub Actions documentation][github-actions]</li>
+<li><a href="https://github.com/carpentries-incubator/fair-research-software" class="external-link">A
+course on FAIR (Findable, Accessible, Interoperable, and Reusable)
+research software practices in the Carpentries Incubator</a></li>
+<li><a href="https://coderefinery.org/lessons/" class="external-link">CodeRefinery resources
+on FAIR (Findable, Accessible, Interoperable, and Reusable) research
+software practices</a></li>
+<li><a href="https://docs.python.org/3/" class="external-link">Python documentation</a></li>
+<li><a href="https://docs.github.com/en/actions" class="external-link">GitHub Actions
+documentation</a></li>
 </ul>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
