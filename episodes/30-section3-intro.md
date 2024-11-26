@@ -21,7 +21,9 @@ exercises: 0
 In this section, we will take a step back from coding development practices and tools
 and look at the bigger picture of software as a *process* of development.
 
-> *"If you fail to plan, you are planning to fail."* - Benjamin Franklin
+> *"If you fail to plan, you are planning to fail."* 
+> 
+> \--- Benjamin Franklin
 
 ![](fig/section3-overview.png){alt='Software design and architecture' .image-with-shadow width="800px" }
 
