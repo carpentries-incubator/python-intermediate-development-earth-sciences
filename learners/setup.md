@@ -12,5 +12,5 @@ You will need the following software and accounts setup to be able to follow the
 - Python 3 distribution
 - VS Code integrated development environment (IDE)
 
-Please follow the [installation instructions](setup-instructions.md) to install the above tools and 
+Please follow the [installation instructions](installation-instructions.md) to install the above tools and 
 set up for the course.
