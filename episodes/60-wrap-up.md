@@ -138,6 +138,7 @@ Below are some additional resources to help you continue learning:
 
 - [Additional episode on persisting data](../instructors/persistence.md)
 - [Additional episode on databases](../instructors/databases.md)
+- [CodeRefinery lessons][coderefinery-lessons] on writing software for open and reproducible research
 - [Python documentation][python-documentation]
 - [GitHub Actions documentation][github-actions]
 
