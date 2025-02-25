@@ -39,7 +39,7 @@ Here is an overview of the tools we will be using.
 
 ## Setup, Common Issues \& Fixes
 
-Have you [setup and installed](../learners/setup-instructions.md) all the tools and accounts required for this course?
+Have you [setup and installed](../learners/installation-instructions.md) all the tools and accounts required for this course?
 Check the list of [common issues, fixes \& tips](../instructors/common-issues.md)
 if you experience any problems running any of the tools you installed -
 your issue may be solved there.
