@@ -65,13 +65,14 @@ Current maintainers of this lesson (in alphabetical order) are:
 
 - [Doug Lowe][doug-lowe]
 - [Anja Le Blanc](https://github.com/AnjaLeBlanc)
+- [Aleksandra Nenadic](https://github.com/anenadic)
 
 The maintainer team aims to meet at 11:00 UK time (BST or GMT) on the fourth Wednesday each month. The meetings alternate between operations meetings and co-working sprints.
 Meeting notes are kept in the [Google doc](https://docs.google.com/document/d/1-SvoY_2GvlQgJnu8zfr6VnU7sev_iWZAIwBUywNSfWE/edit#).
 
 ## Authors
 
-A list of people who authored the lesson can be found in <AUTHORS>.
+A list of people who authored the lesson can be found in [AUTHORS.md](AUTHORS.md).
 
 ## Licence
 
@@ -82,7 +83,7 @@ under the [MIT licence][mit-license]. For more information, see <LICENSE.md>.
 
 ## Citation
 
-To cite this lesson, please consult with <CITATION>.
+To cite this lesson, please consult with [CITATION](CITATION).
 
 ## Contact
 
