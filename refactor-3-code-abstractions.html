@@ -563,7 +563,7 @@ load.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The new function <code>load_catchment_data()</code> that reads all
 the data into the format needed for the analysis should look something
@@ -720,7 +720,7 @@ function.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Hint </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>At the end of this exercise, the code in the
 <code>analyse_data()</code> function should look like:</p>
@@ -748,7 +748,7 @@ function.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>For example, we can declare class <code>CSVDataSource</code> like
 this:</p>
@@ -854,7 +854,7 @@ duty, what parameters they need and what they return.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>The interface is the <code>load_catchment_data()</code> method, which
 takes no parameters and returns a list where each entry is a 2D array of
@@ -939,13 +939,13 @@ the following format:</p>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1" aria-label="code-block-15-3"></a>       <span class="dt">"Site"</span><span class="fu">:</span> <span class="st">"FP35"</span><span class="fu">,</span></span>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1" aria-label="code-block-15-4"></a>       <span class="dt">"Site Name"</span><span class="fu">:</span> <span class="st">"Lower Wraxall Farm"</span><span class="fu">,</span></span>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1" aria-label="code-block-15-5"></a>       <span class="dt">"Date"</span><span class="fu">:</span> <span class="st">"01/12/2008 23:00"</span><span class="fu">,</span></span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1" aria-label="code-block-15-6"></a>       <span class="dt">"Rainfall (mm)"</span><span class="fu">:</span> <span class="dv">0</span><span class="er">.</span><span class="dv">0</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1" aria-label="code-block-15-6"></a>       <span class="dt">"Rainfall (mm)"</span><span class="fu">:</span> <span class="fl">0.0</span></span>
 <span id="cb15-7"><a href="#cb15-7" tabindex="-1" aria-label="code-block-15-7"></a>   <span class="fu">}</span><span class="ot">,</span></span>
 <span id="cb15-8"><a href="#cb15-8" tabindex="-1" aria-label="code-block-15-8"></a>   <span class="fu">{</span></span>
 <span id="cb15-9"><a href="#cb15-9" tabindex="-1" aria-label="code-block-15-9"></a>       <span class="dt">"Site"</span><span class="fu">:</span> <span class="st">"FP35"</span><span class="fu">,</span></span>
 <span id="cb15-10"><a href="#cb15-10" tabindex="-1" aria-label="code-block-15-10"></a>       <span class="dt">"Site Name"</span><span class="fu">:</span> <span class="st">"Lower Wraxall Farm"</span><span class="fu">,</span></span>
 <span id="cb15-11"><a href="#cb15-11" tabindex="-1" aria-label="code-block-15-11"></a>       <span class="dt">"Date"</span><span class="fu">:</span> <span class="st">"01/12/2008 23:15"</span><span class="fu">,</span></span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1" aria-label="code-block-15-12"></a>       <span class="dt">"Rainfall (mm)"</span><span class="fu">:</span> <span class="dv">0</span><span class="er">.</span><span class="dv">0</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1" aria-label="code-block-15-12"></a>       <span class="dt">"Rainfall (mm)"</span><span class="fu">:</span> <span class="fl">0.0</span></span>
 <span id="cb15-13"><a href="#cb15-13" tabindex="-1" aria-label="code-block-15-13"></a>   <span class="fu">}</span></span>
 <span id="cb15-14"><a href="#cb15-14" tabindex="-1" aria-label="code-block-15-14"></a><span class="ot">]</span></span></code></pre>
 </div>
@@ -959,7 +959,7 @@ file extension.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The new class could look something like:</p>
 <div class="codewrapper sourceCode" id="cb16">
@@ -1061,7 +1061,7 @@ method. Use this mock in a test.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1192,7 +1192,7 @@ producing a new data to reflect the result of the function.</p>
   "identifier": "https://carpentries-incubator.github.io/python-intermediate-development-earth-sciences/refactor-3-code-abstractions.html",
   "dateCreated": "2020-04-23",
   "dateModified": "2025-01-28",
-  "datePublished": "2026-04-28"
+  "datePublished": "2026-05-05"
 }
 
   </script><script>
